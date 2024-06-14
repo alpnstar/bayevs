@@ -11,14 +11,16 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
 
     const [contextDisplay, setContextDisplay] = useState<boolean>(false);
     const contextRef = useRef<HTMLDivElement>(null);
-
+    const body = document.getElementById('body');
+    (body as HTMLBodyElement).addEventListener('click', function (event: MouseEvent) {
+        const target = (event.target as HTMLElement);
+        if (!target.closest('.header__categories')) {
+            setContextDisplay(false)
+        }
+    });
     useEffect(() => {
         setCategoriesElems(prevState => [...prevState, {id: category.id, setDisplay: setContextDisplay}])
     }, []);
-    console.log(contextRef.current)
-    useEffect(() => {
-        contextRef.current && console.log(contextRef.current.offsetHeight)
-    }, [contextRef.current]);
 
     function clickHandler(): void {
         if (contextDisplay) return setContextDisplay(false);
@@ -28,9 +30,9 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
     }
 
     return (
-        <li onClick={clickHandler}
+        <li
             className={`main-style-list__item header__categories-item header__categories-item--expand ${contextDisplay ? 'header__categories-item--expand--active' : ''}`}>
-            <div className="header__categories-item-title-wrapper">
+            <div onClick={clickHandler} className="header__categories-item-title-wrapper">
                 <div className="header__categories-item-title">{category.title}</div>
             </div>
             <div ref={contextRef}
