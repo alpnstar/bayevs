@@ -31,11 +31,11 @@ html {
 .main-style-list {
   &__list {
     display: flex;
+    flex-wrap: wrap;
     gap: 35px;
   }
 
   &__item {
-    font-size: 11px;
     text-transform: uppercase;
   }
 }
