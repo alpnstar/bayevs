@@ -1,12 +1,11 @@
 import React, {Children, cloneElement, useEffect, useRef, useState} from 'react'
-import Page from './Page'
 import {CarouselContext} from './carousel-context'
 import './Carousel.scss'
 
 const TRANSITION_DURATION = 300;
 const INTERVAL_SLIDE_DELAY = 10000;
 let sliderTimeout;
-
+let temp;
 export const Carousel = ({children, widthInput, infinite}) => {
     const [slideDelayActive, setSlideDelayActive] = useState(true);
     const [step, setStep] = useState(1);
