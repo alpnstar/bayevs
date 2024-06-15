@@ -76,7 +76,7 @@ export const Carousel = ({children, widthInput, infinite}) => {
         }
     }, [])
 
-
+//
     useEffect(() => {
         if (transitionDuration === 0) {
             setTimeout(() => {
