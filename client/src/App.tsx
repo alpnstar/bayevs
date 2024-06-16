@@ -10,7 +10,6 @@ const App: FC = () => {
         <div className="app">
             <Header/>
             <main>
-                1
                 <RoutesComponent/>
             </main>
         </div>
