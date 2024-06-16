@@ -3,6 +3,7 @@ import {Header} from "./components/Header/Header";
 
 import './scss/style.scss';
 import RoutesComponent from "./components/Routes/RoutesComponent";
+import Slider from "./components/Slider/Slider";
 
 const App: FC = () => {
 
@@ -10,6 +11,7 @@ const App: FC = () => {
         <div className="app">
             <Header/>
             <main>
+                <Slider/>
                 <RoutesComponent/>
             </main>
         </div>
