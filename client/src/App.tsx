@@ -11,7 +11,6 @@ const App: FC = () => {
         <div className="app">
             <Header/>
             <main>
-                <Slider/>
                 <RoutesComponent/>
             </main>
         </div>
