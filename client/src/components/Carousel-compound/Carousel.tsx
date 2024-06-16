@@ -3,7 +3,7 @@ import { CarouselContext } from './carousel-context';
 import './Carousel.scss';
 
 const TRANSITION_DURATION = 300;
-const INTERVAL_SLIDE_DELAY = 10000;
+const INTERVAL_SLIDE_DELAY = 7000;
 let sliderTimeout: NodeJS.Timeout;
 
 interface CarouselProps {

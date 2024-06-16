@@ -48,8 +48,8 @@ $breakpoints: (
 }
 
 // EM
-@function em($px) {
-  $result: math.div($px, 16) + em;
+@function em($px, $fs) {
+  $result: math.div($px, $fs) + em;
   @return $result;
 }
 

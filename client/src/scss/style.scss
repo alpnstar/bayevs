@@ -1,6 +1,8 @@
 @import "mixins";
 @import "vars";
-@import "../components/Header/header.scss";
+@import "../components/Header/header";
+@import "../components/PopularProducts/popularProducts";
+@import "../components/HomeAbout/homeAbout";
 @import "../styles/reset.css";
 @import "../styles/fonts.css";
 
@@ -38,5 +40,23 @@ html {
   &__item {
     text-transform: uppercase;
   }
+}
+
+.main-h1, .main-h2 {
+  color: #222;
+  letter-spacing: 1px;
+  line-height: 28px;
+  text-transform: uppercase;
+
+}
+
+.main-h2 {
+  font-size: 22px;
+  margin-bottom: em(25, 22);
+}
+
+.main-h1 {
+  margin: 0 0 em(25, 24);
+  font-size: rem(24);
 }
 

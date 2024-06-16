@@ -1,5 +1,5 @@
 .slider {
-
+  margin-bottom: 100px;
 
   &__wrapper {
     max-width: 1452px !important;
@@ -14,5 +14,7 @@
     height: 550px;
     background-image: url("../../../public/images/banner.jpg");
     background-size: cover;
+
+
   }
 }
