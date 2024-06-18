@@ -11,11 +11,19 @@ export interface ISubCategory {
 }
 
 export interface ICategory {
-    id:number,
+    id: number,
     title: string,
     subCategories: ISubCategory[],
 }
+
 export interface ICategoriesElem {
     id: number,
     setDisplay: Dispatch<SetStateAction<boolean>>,
 }
+
+export interface IProductsItem {
+    img: string,
+    title: string,
+}
+
+export type productsType = IProductsItem[];

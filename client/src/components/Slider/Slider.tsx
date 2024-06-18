@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import './slider.scss';
-import Carousel from "../Carousel-compound";
-import Page from "../Carousel-compound/Page";
+import Carousel from "../UI/Carousel-compound";
+import Page from "../UI/Carousel-compound/Page";
 import IMG from '../../../public/images/banner.jpg'
 
 interface ISliderElem {

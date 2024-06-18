@@ -3,8 +3,11 @@
 @import "../components/Header/header";
 @import "../components/PopularProducts/popularProducts";
 @import "../components/HomeAbout/homeAbout";
+@import "../components/Products/products";
+@import "../components/UI/Popup/popup";
 @import "../styles/reset.css";
 @import "../styles/fonts.css";
+@import '../components/Footer/footer';
 
 body,
 html,
@@ -58,5 +61,10 @@ html {
 .main-h1 {
   margin: 0 0 em(25, 24);
   font-size: rem(24);
+}
+
+.--hidden {
+  overflow: hidden;
+  padding-right: 15px;
 }
 

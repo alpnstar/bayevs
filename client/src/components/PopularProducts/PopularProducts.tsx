@@ -1,6 +1,12 @@
 import React, {FC} from 'react';
 import IMG from '../../../public/images/model.jpg';
+import {productsType} from "../../types/types";
+import Products from "../Products/Products";
 
+const data: productsType = [{
+    img: IMG,
+    title: 'Панама LF-Label Tiger, хлопок, цвет чёрный 899901',
+}]
 const PopularProducts: FC = () => {
     return (
         <section className="popular-products">
@@ -8,31 +14,7 @@ const PopularProducts: FC = () => {
                 <h2 className="main-h2">
                     Новинки головных уборов LF-LABEL
                 </h2>
-                <ul className="popular-products__list">
-                    <li className="popular-products__item">
-                        <div className="popular-products__item-img"><img src={IMG} alt=""/></div>
-                        <button className="popular-products__item-fast-view">
-                            Быстрый просмотр
-                        </button>
-                        <span className="popular-products__item-title">Кепка реглан, ткань лён, цвет белый 133-5</span>
-                    </li>
-                    <li className="popular-products__item">
-                        <div className="popular-products__item-img"><img src={IMG} alt=""/></div>
-                        <span className="popular-products__item-title"> Кепка реглан, ткань лён, цвет белый 133-5</span>
-                    </li>
-                    <li className="popular-products__item">
-                        <div className="popular-products__item-img"><img src={IMG} alt=""/></div>
-                        <span className="popular-products__item-title">Кепка реглан, ткань лён, цвет белый 133-5</span>
-                    </li>
-                    <li className="popular-products__item">
-                        <div className="popular-products__item-img"><img src={IMG} alt=""/></div>
-                        <span className="popular-products__item-title">Кепка реглан, ткань лён, цвет белый 133-5</span>
-                    </li>
-                    <li className="popular-products__item">
-                        <div className="popular-products__item-img"><img src={IMG} alt=""/></div>
-                        <span className="popular-products__item-title">Кепка реглан, ткань лён, цвет белый 133-5</span>
-                    </li>
-                </ul>
+                <Products products={data}/>
             </div>
         </section>
     );

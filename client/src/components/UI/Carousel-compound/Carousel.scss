@@ -36,7 +36,10 @@
   transition: stroke 0.1s ease;
 
   &:hover {
-    stroke: #3F3F3F;
+    polyline {
+      stroke: #3F3F3F;
+
+    }
   }
 
   &-left {

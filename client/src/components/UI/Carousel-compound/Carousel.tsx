@@ -2,7 +2,7 @@ import React, { Children, cloneElement, useEffect, useRef, useState, ReactElemen
 import { CarouselContext } from './carousel-context';
 import './Carousel.scss';
 
-const TRANSITION_DURATION = 300;
+const TRANSITION_DURATION = 500;
 const INTERVAL_SLIDE_DELAY = 7000;
 let sliderTimeout: NodeJS.Timeout;
 
@@ -162,12 +162,16 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
                     }}
                     className="carousel-arrow carousel-arrow-left"
                     width="25px"
-                    height="40px"
-                    viewBox="0 0 25 40"
+                    height="50px"
+                    viewBox="0 0 25 50"
                     xmlns="http://www.w3.org/2000/svg"
                     data-svg="carousel-slidenav-previous-large"
                 >
-                    <polyline strokeWidth="2" points="20.527,1.5 2,20.024 20.525,38.547 " />
+                    <polyline strokeWidth="4" points="22,1.5 22,48.5" fill="none" stroke="#dddddd"/>
+                    <polyline strokeWidth="4" points="22,1.5 2,25" fill="none" stroke="#dddddd" strokeLinecap="round"
+                              strokeLinejoin="round"/>
+                    <polyline strokeWidth="4" points="2,25 22,48.5" fill="none" stroke="#dddddd" strokeLinecap="round"
+                              strokeLinejoin="round"/>
                 </svg>
                 <svg
                     onClick={() => {
@@ -177,13 +181,18 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
                     }}
                     className="carousel-arrow carousel-arrow-right"
                     width="25px"
-                    height="40px"
-                    viewBox="0 0 25 40"
+                    height="50px"
+                    viewBox="0 0 25 50"
                     xmlns="http://www.w3.org/2000/svg"
                     data-svg="carousel-slidenav-next-large"
                 >
-                    <polyline strokeWidth="2" points="4.002,38.547 22.527,20.024 4,1.5 " />
+                    <polyline strokeWidth="4" points="3,1.5 3,48.5" fill="none" stroke="#dddddd"/>
+                    <polyline strokeWidth="4" points="3,1.5 23,25" fill="none" stroke="#dddddd" strokeLinecap="round"
+                              strokeLinejoin="round"/>
+                    <polyline strokeWidth="4" points="23,25 3,48.5" fill="none" stroke="#dddddd" strokeLinecap="round"
+                              strokeLinejoin="round"/>
                 </svg>
+
                 <div className="carousel-bullet-list">
                     {pages.length !== 0 &&
                         pages.map((_, index) =>

@@ -1,0 +1,29 @@
+.footer {
+  padding: 36px 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-top: 1px solid #f1f1f1;
+
+  * {
+    color: #999;
+  }
+
+  a {
+    border-bottom: 1px solid;
+
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+
+  &__links {
+    margin-bottom: 41px;
+    &-list {
+      display: flex;
+      gap: 35px;
+    }
+
+
+  }
+}
