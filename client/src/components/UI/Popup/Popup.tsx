@@ -1,4 +1,4 @@
-import React, {FC, MouseEventHandler, ReactNode, useEffect} from 'react';
+import React, {FC, JSXElementConstructor, MouseEventHandler, ReactNode, useEffect} from 'react';
 
 interface IPopupProps {
     children: ReactNode,
@@ -15,7 +15,7 @@ const Popup: FC<IPopupProps> = ({children, visible, setVisible}) => {
             setVisible(false);
         }
     }
-    let scrollTop: number = document.documentElement.scrollTop;
+
 
     useEffect(() => {
         const bodyElem = (document.getElementById('body') as HTMLBodyElement);
@@ -23,13 +23,14 @@ const Popup: FC<IPopupProps> = ({children, visible, setVisible}) => {
         bodyElem.classList.remove('--hidden');
 
     }, [visible]);
+
     return (
-        <div onClick={clickHandler} className={`popup ${visible ? 'popup--visible' : ''}`}
-             style={{top: scrollTop + 'px'}}>
+        <div onClick={clickHandler} className={`popup ${visible ? 'popup--visible' : ''}`}>
             <div className="popup__wrapper">
                 {children}
             </div>
         </div>
+
     );
 };
 

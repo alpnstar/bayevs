@@ -1,6 +1,14 @@
 .header {
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  background-color: #fff;
+
   &__top {
     display: flex;
+    height: 50px;
     padding: 20px 10px;
     justify-content: space-between;
     background-color: #222;
@@ -22,6 +30,29 @@
 
   &__navigation, &__user-actions {
     font-size: rem(11);
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      display: inline-block;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 5px;
+      width: 165px;
+      height: 20px;
+      transition: opacity 0.2s 0.2s linear, width 0.2s  linear, height 0.2s  linear;
+      opacity: 1;
+    }
+
+    .--logo-hidden {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      transition: opacity 0.2s linear, width 0.2s 0.2s linear, height 0.2s 0.2s linear
+    }
   }
 
   &__middle-wrapper {
@@ -53,7 +84,12 @@
   &__bottom {
     border-top: 1px solid #f1f1f1;
     border-bottom: 1px solid #f1f1f1;
-
+    position: sticky;
+    width: 100%;
+    left: 0;
+    top: 50px;
+    z-index: 100000;
+    background-color: #fff;
 
   }
 
