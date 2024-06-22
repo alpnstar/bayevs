@@ -1,69 +1,13 @@
 @import "mixins";
 @import "vars";
+@import "base";
 @import "../components/Header/header";
 @import "../components/PopularProducts/popularProducts";
 @import "../components/HomeAbout/homeAbout";
+@import "../components/Search/search";
 @import "../components/Products/products";
 @import "../components/UI/Popup/popup";
+@import '../components/Footer/footer';
 @import "../styles/reset.css";
 @import "../styles/fonts.css";
-@import '../components/Footer/footer';
-
-body,
-html,
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Tahoma, sans-serif;
-}
-body,
-html {
-  width: 100%;
-  height: 100%;
-}
-
-.container {
-  max-width: 1220px;
-  width: 100%;
-  padding: 0 10px;
-  margin: 0 auto;
-}
-
-.main-style-list {
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 35px;
-  }
-
-  &__item {
-    text-transform: uppercase;
-  }
-}
-
-.main-h1, .main-h2 {
-  color: #222;
-  letter-spacing: 1px;
-  line-height: 28px;
-  text-transform: uppercase;
-
-}
-
-.main-h2 {
-  font-size: 22px;
-  margin-bottom: em(25, 22);
-}
-
-.main-h1 {
-  margin: 0 0 em(25, 24);
-  font-size: rem(24);
-}
-
-.--hidden {
-  overflow: hidden;
-  padding-right: 15px;
-}
 

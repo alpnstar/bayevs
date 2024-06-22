@@ -29,6 +29,10 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
         setContextDisplay(true);
     }
 
+    function closeClickHandler(): void {
+        setContextDisplay(false);
+    }
+
     return (
         <li
             className={`main-style-list__item header__categories-item header__categories-item--expand ${contextDisplay ? 'header__categories-item--expand--active' : ''}`}>
@@ -38,6 +42,10 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
             <div ref={contextRef}
                  className={`header__categories-context ${contextDisplay ? 'header__categories-context--active' : ''}`}>
                 <div className="header__categories-context-wrapper container">
+                    <div className="header__categories-context-header">
+                        <h2>{category.title}</h2>
+                        <div onClick={closeClickHandler} className="close-button"></div>
+                    </div>
                     <div className="header__sub-categories">
                         {category.subCategories.map((subCategory, index) => (
                             <div key={index} className="header__sub-categories-item">

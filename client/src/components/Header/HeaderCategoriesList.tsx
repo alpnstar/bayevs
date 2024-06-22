@@ -7,10 +7,61 @@ const HeaderCategoriesList: FC = () => {
     const [categoriesElems, setCategoriesElems] = useState<ICategoriesElem[]>([]);
     const [categoriesData, setCategoriesData] = useState<ICategory[]>(
         [{
-            id:1,
+            id: 1,
             title: 'Мужчинам',
             subCategories: [
                 {
+                    title: 'Головные уборы',
+                    items: [{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },{
+                        title: 'Панамы',
+                        url: '#',
+                    },]
+                }, {
                     title: 'Головные уборы',
                     items: [{
                         title: 'Панамы',
@@ -26,7 +77,7 @@ const HeaderCategoriesList: FC = () => {
                 }
             ]
         }, {
-            id:2,
+            id: 2,
             title: 'Женщинам',
             subCategories: [
                 {
@@ -43,7 +94,8 @@ const HeaderCategoriesList: FC = () => {
         <>
             <ul className="main-style-list__list header__categories-list">
                 {categoriesData.map((item, index) => <HeaderCategoriesItem key={index} category={item}
-                 categoriesElems={categoriesElems} setCategoriesElems={setCategoriesElems}/>)}
+                                                                           categoriesElems={categoriesElems}
+                                                                           setCategoriesElems={setCategoriesElems}/>)}
 
                 <li className="main-style-list__item header__categories-item">
                     <div className="header__categories-item-title-wrapper">

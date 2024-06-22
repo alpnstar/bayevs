@@ -74,3 +74,13 @@
     }
   }
 }
+@media screen and (max-width: 430px) {
+  .products{
+    &__list {
+      justify-content: center;
+    }
+    &__item {
+      max-width: 350px;
+    }
+  }
+}
