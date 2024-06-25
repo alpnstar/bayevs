@@ -43,7 +43,7 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
                  className={`header__categories-context ${contextDisplay ? 'header__categories-context--active' : ''}`}>
                 <div className="header__categories-context-wrapper container">
                     <div className="header__categories-context-header">
-                        <h2>{category.title}</h2>
+                        <h2 className="main-h2">{category.title}</h2>
                         <div onClick={closeClickHandler} className="close-button"></div>
                     </div>
                     <div className="header__sub-categories">

@@ -1,4 +1,7 @@
+
 .header {
+
+
   position: sticky;
   left: 0;
   top: 0;
@@ -31,21 +34,6 @@
       }
     }
 
-    .burger {
-      display: none;
-
-      span {
-        display: block;
-        width: 30px;
-        height: 2px;
-        background-color: white;
-        margin-top: 5px;
-
-        &:first-child {
-          margin-top: 0;
-        }
-      }
-    }
 
     * {
       color: #fff;
@@ -233,7 +221,7 @@
         }
 
         h2 {
-          font-size: 24px;
+          margin-bottom: 0;
         }
       }
 
@@ -250,6 +238,7 @@
       max-width: 500px;
       width: 100%;
       overflow: hidden;
+
       &-title {
         display: inline-block;
         font-size: rem(14);
@@ -263,9 +252,11 @@
         flex-direction: column;
         max-height: 200px;
         font-size: rem(12);
-li{
-  width: fit-content;
-}
+
+        li {
+          width: fit-content;
+        }
+
         * {
           color: #888;
         }
@@ -275,6 +266,104 @@ li{
 
 
 }
+
+.burger {
+  display: none;
+
+  span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    margin-top: 5px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.burger-menu {
+  position: absolute;
+  overflow: hidden;
+  left: 100%;
+  top: 0;
+  width: 0;
+  height: 0;
+  z-index: 10000;
+  transition: left 0.2s linear,
+  width 0s 0.2s linear,
+  height 0s 0.2s linear,
+  padding 0s 0.2s linear;
+;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+
+  * {
+    color: black;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+
+    }
+  }
+
+  &__navigation {
+    li {
+      display: block;
+      padding: 10px 0;
+      border-top: 1px #9d9d9d solid;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+
+  &__user-actions {
+    gap: 10px;
+  }
+
+  .close-button {
+
+  }
+
+  &--active {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    padding: 20px;
+    transition: left 0.2s linear;
+
+    .close-button {
+      display: block;
+    }
+  }
+}
+
 
 @media screen and (max-width: 430px) {
   .header {

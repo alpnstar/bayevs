@@ -6,12 +6,18 @@ import Search from "../Search/Search";
 import Popup from "../UI/Popup/Popup";
 import SearchButton from "../Search/SearchButton";
 import SearchPopup from "../Search/SearchPopup";
+import BurgerMenu from "./BurgerMenu";
 
 const HeaderTop: FC = () => {
     const [searchVisible, setSearchVisible] = useState<boolean>(false);
+    const [burgerVisible, setBurgerVisible] = useState<boolean>(false);
 
     function searchClickHandler() {
         setSearchVisible(!searchVisible);
+    }
+
+    function burgerClickHandler() {
+        setBurgerVisible(!burgerVisible);
     }
 
     return (
@@ -21,7 +27,8 @@ const HeaderTop: FC = () => {
                 <HeaderUserActions/>
                 <SearchButton clickHandler={searchClickHandler}/>
                 <SearchPopup visible={searchVisible} setVisible={setSearchVisible}/>
-                <Burger/>
+                <Burger clickHandler={burgerClickHandler}/>
+                <BurgerMenu burgerVisible={burgerVisible} setBurgerVisible={setBurgerVisible}/>
             </div>
         </div>
     );

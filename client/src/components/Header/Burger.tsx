@@ -1,8 +1,12 @@
 import React, {FC} from 'react';
 
-const Burger: FC = () => {
+interface IBurgerProps {
+    clickHandler: () => void,
+}
+
+const Burger: FC<IBurgerProps> = ({clickHandler}) => {
     return (
-        <div className="burger">
+        <div onClick={clickHandler} className="burger">
             <span className="burger__item"></span>
             <span className="burger__item"></span><span
             className="burger__item"></span>
