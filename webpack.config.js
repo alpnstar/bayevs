@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -25,7 +26,7 @@ module.exports = {
     },
     devServer: {
         compress: false,
-        hot: false,
+        hot: true,
         open: false,
         historyApiFallback: true,
     },
@@ -39,6 +40,7 @@ module.exports = {
         new Dotenv({
             path: devMode ? './.env.dev' : './.env.prod',
         }),
+        new ReactRefreshWebpackPlugin(),
     ],
     module: {
         rules: [
@@ -47,18 +49,29 @@ module.exports = {
                 loader: "html-loader",
                 options: {}
             },
-             {
-                 test: /\.tsx?$/,
-                 loader: 'ts-loader',
-                 exclude: '/node_modules/',
-             },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: '/node_modules/',
+            },
 
             {
                 test: /\.(c|sa|sc)ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
                     "css-loader",
-                    "sass-loader",
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            additionalData: `
+                @import "vars";
+                @import "mixins";
+              `,
+                            sassOptions: {
+                                includePaths: [path.resolve(__dirname, 'client/src/scss')],
+                            },
+                        },
+                    }
 
                 ],
             },
@@ -122,7 +135,11 @@ module.exports = {
                 exclude: '/node/modules/',
                 use: {
                     loader: 'babel-loader',
-
+                    options: {
+                        plugins: [
+                            require.resolve('react-refresh/babel')
+                        ]
+                    }
                 },
             }
         ],

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC} from "react";
 import {IProductsItem} from "../../types/types";
 
 interface IProductsItemProps {

@@ -1,6 +1,5 @@
-import React, { useContext, ReactNode } from 'react';
-import { CarouselContext } from '../carousel-context';
-import './Page.scss';
+import React, { useContext, ReactNode } from "react";
+import { CarouselContext } from "../carousel-context";
 
 interface PageProps {
     children: ReactNode;
@@ -20,7 +19,7 @@ export const Page: React.FC<PageProps> = ({ children }) => {
             className="page__main-container"
             style={{
                 minWidth: `${width}px`,
-                maxWidth: `${width}px`,
+                maxWidth: `${width}px`
             }}
         >
             {children}

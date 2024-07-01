@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import searchIMG from '../../../public/images/search.png';
+import React, {FC} from "react";
+import searchIMG from "../../../public/images/search.png";
 import HeaderCategories from "./HeaderCategories";
 
 const HeaderBottom: FC = () => {

@@ -1,16 +1,16 @@
 @use "sass:math";
 
-@mixin push--auto {
+@mixin push-auto {
   margin: {
-    left: auto;
     right: auto;
+    left: auto;
   }
 }
 
 @mixin pseudo($display: block, $pos: absolute, $content: "") {
   content: $content;
-  display: $display;
   position: $pos;
+  display: $display;
 }
 
 $breakpoints: (
@@ -23,12 +23,15 @@ $breakpoints: (
         "desktop":      1248px,
         "desktop-wide": 1440px,
 );
+
 @mixin mq($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);
+
     @if $type == max {
       $width: $width + 1px;
     }
+
     @media only screen and (#{$type}-width: $width) {
       @content;
     }
@@ -36,24 +39,28 @@ $breakpoints: (
 }
 
 // TO %
-@function prc($pxOne, $pxTwo) {
+@function mprc($pxOne, $pxTwo) {
   $result: math.div($pxOne, $pxTwo) * 100%;
+
   @return $result;
 }
 
 // REM
-@function rem($px) {
+@function mrem($px) {
   $result: math.div($px, 16) + rem;
+
   @return $result;
 }
 
 // EM
-@function em($px, $fs) {
+@function mem($px, $fs) {
   $result: math.div($px, $fs) + em;
+
   @return $result;
 }
 
-@function prcp($pxOne, $pxTwo, $pxThree) {
+@function mprcp($pxOne, $pxTwo, $pxThree) {
   $result: math.div(math.div($pxOne, $pxTwo) * 100, 100) * $pxThree + px;
+
   @return $result;
 }

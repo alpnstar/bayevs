@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import logoIMG from '../../../public/images/logo.png';
+import React, {FC} from "react";
+import logoIMG from "../../../public/images/logo.png";
 
 
 const HeaderMiddle: FC = () => {

@@ -1,15 +1,10 @@
+
 .home-about {
-  margin: 47px 0 99px 0;
-
-  &__wrapper {
-  }
-
-  &__header {
-  }
+  margin: 47px 0 99px;
 
   p {
     margin-top: 10px;
-    font-size: rem(13);
+    font-size: mrem(13);
     line-height: 1.5;
   }
 

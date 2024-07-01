@@ -1,5 +1,5 @@
-import React, {Dispatch, FC, SetStateAction} from 'react';
-import CloseButton from "../UI/CloseButton";
+import React, {Dispatch, FC, SetStateAction} from "react";
+import CloseButton from "../UI/CloseButton/CloseButton";
 
 interface IBurgerMenu {
     burgerVisible: boolean,
@@ -8,7 +8,7 @@ interface IBurgerMenu {
 
 const BurgerMenu: FC<IBurgerMenu> = ({burgerVisible, setBurgerVisible}) => {
     return (
-        <div className={`burger-menu ${burgerVisible ? 'burger-menu--active' : ''}`}>
+        <div className={`burger-menu ${burgerVisible ? "burger-menu--active" : ""}`}>
             <div className="burger-menu__header">
                 <h2 className="main-h2">меню</h2>
                 <CloseButton setState={setBurgerVisible}/>

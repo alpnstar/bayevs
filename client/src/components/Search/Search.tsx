@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC} from "react";
+import "./search.scss";
 
 const Search: FC = () => {
     return (

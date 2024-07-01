@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction, useState} from 'react';
+import React, {Dispatch, FC, SetStateAction, useState} from "react";
 import HeaderCategoriesItem from "./HeaderCategoriesItem";
 import {ICategoriesElem, ICategory} from "../../types/types";
 
@@ -8,83 +8,83 @@ const HeaderCategoriesList: FC = () => {
     const [categoriesData, setCategoriesData] = useState<ICategory[]>(
         [{
             id: 1,
-            title: 'Мужчинам',
+            title: "Мужчинам",
             subCategories: [
                 {
-                    title: 'Головные уборы',
+                    title: "Головные уборы",
                     items: [{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     },{
-                        title: 'Панамы',
-                        url: '#',
-                    },]
+                        title: "Панамы",
+                        url: "#"
+                    }]
                 }, {
-                    title: 'Головные уборы',
+                    title: "Головные уборы",
                     items: [{
-                        title: 'Панамы',
-                        url: '#',
+                        title: "Панамы",
+                        url: "#"
                     }]
                 },
                 {
-                    title: 'Аксессуары',
+                    title: "Аксессуары",
                     items: [{
-                        title: 'Очки',
-                        url: '#',
+                        title: "Очки",
+                        url: "#"
                     }]
                 }
             ]
         }, {
             id: 2,
-            title: 'Женщинам',
+            title: "Женщинам",
             subCategories: [
                 {
-                    title: 'Головные уборы',
+                    title: "Головные уборы",
                     items: [{
-                        title: 'lorem',
-                        url: '#',
+                        title: "lorem",
+                        url: "#"
                     }]
                 }
             ]

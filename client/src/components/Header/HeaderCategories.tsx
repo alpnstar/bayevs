@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState} from "react";
 import HeaderCategoriesList from "./HeaderCategoriesList";
 import Popup from "../UI/Popup/Popup";
 import Search from "../Search/Search";

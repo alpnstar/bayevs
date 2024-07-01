@@ -1,8 +1,8 @@
-import React, {FC, useState} from 'react';
-import './slider.scss';
+import React, {FC, useState} from "react";
+import "./slider.scss";
 import Carousel from "../UI/Carousel-compound";
 import Page from "../UI/Carousel-compound/Page";
-import IMG from '../../../public/images/banner.jpg'
+import IMG from "../../../public/images/banner.jpg";
 
 interface ISliderElem {
     imgSrc: string,
@@ -11,21 +11,21 @@ interface ISliderElem {
 
 const Slider: FC = () => {
 
-    const [data, setData] = useState<ISliderElem[]>([
+    const [data] = useState<ISliderElem[]>([
         {
             imgSrc: IMG,
-            url: '',
+            url: ""
         },
 
         {
             imgSrc: IMG,
-            url: '',
+            url: ""
         },
 
         {
             imgSrc: IMG,
-            url: '',
-        },
+            url: ""
+        }
     ]);
     return (
         <section className="slider">

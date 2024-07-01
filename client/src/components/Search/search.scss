@@ -1,9 +1,10 @@
 .search {
   width: 100%;
+
   &__wrapper {
-    max-width: 550px;
-    width: 100%;
     position: relative;
+    width: 100%;
+    max-width: 550px;
 
 
   }
@@ -20,34 +21,34 @@
 
   &__submit {
     position: absolute;
-    left: 100%;
-    cursor: pointer;
-    transform: translateX(-100%);
     top: 0;
-    background-color: #fff;
-    background-image: url("../../public/images/search-big.png");
-    background-repeat: no-repeat;
-    background-position: center;
+    left: 100%;
     width: 56px;
     height: 56px;
+    background-color: #fff;
+    background-image: url("../../../public/images/search-big.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transform: translateX(-100%);
   }
 
   &__button {
-    letter-spacing: 2px;
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
+    letter-spacing: 2px;
 
-    &:before {
+    &::before {
+      content: url("../../../public/images/search.png");
       position: absolute;
-      left: 0;
       top: 18px;
-      content: url("../../public/images/search.png");
+      left: 0;
     }
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (width <= 430px) {
   .search__input::placeholder {
     font-size: 10px;
   }

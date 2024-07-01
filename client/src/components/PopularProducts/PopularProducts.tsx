@@ -1,12 +1,12 @@
-import React, {FC} from 'react';
-import IMG from '../../../public/images/model.jpg';
+import React, {FC} from "react";
+import IMG from "../../../public/images/model.jpg";
 import {productsType} from "../../types/types";
 import Products from "../Products/Products";
 
 const data: productsType = [{
     img: IMG,
-    title: 'Панама LF-Label Tiger, хлопок, цвет чёрный 899901',
-}]
+    title: "Панама LF-Label Tiger, хлопок, цвет чёрный 899901"
+}];
 const PopularProducts: FC = () => {
     return (
         <section className="popular-products">

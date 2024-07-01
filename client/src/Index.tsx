@@ -3,8 +3,8 @@ import React from "react";
 import App from "./App";
 import {BrowserRouter, HashRouter} from "react-router-dom";
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.querySelector("#root") as HTMLElement).render(
     <HashRouter>
         <App/>
     </HashRouter>
-)
+);

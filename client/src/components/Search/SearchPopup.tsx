@@ -1,4 +1,4 @@
-import React, {Dispatch, FC} from 'react';
+import React, {Dispatch, FC} from "react";
 import Popup from "../UI/Popup/Popup";
 import Search from "./Search";
 

@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction} from 'react';
+import React, {Dispatch, FC, SetStateAction} from "react";
 
 interface ICloseButtonProps {
     setState: Dispatch<SetStateAction<boolean>>,
@@ -10,9 +10,7 @@ const CloseButton: FC<ICloseButtonProps> = ({setState}) => {
     }
 
     return (
-        <div onClick={clickHandler} className="close-button">
-
-        </div>
+        <div onClick={clickHandler} className="close-button" />
     );
 };
 
