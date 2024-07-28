@@ -62,7 +62,10 @@
 
     img {
       object-fit: contain;
-      cursor: pointer;
+      cursor: zoom-in;
+      &:hover{
+        opacity: 0.8;
+      }
     }
 
     &-main {
