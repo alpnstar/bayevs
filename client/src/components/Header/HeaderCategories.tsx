@@ -1,25 +1,21 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import HeaderCategoriesList from "./HeaderCategoriesList";
-import Popup from "../UI/Popup/Popup";
-import Search from "../Search/Search";
 import SearchPopup from "../Search/SearchPopup";
 import SearchButton from "../Search/SearchButton";
+import {useToggler} from "../../hooks/useToggler";
 
 const HeaderCategories: FC = () => {
-    const [searchVisible, setSearchVisible] = useState<boolean>(false);
+    const [searchVisible, setSearchVisibleHandler] = useToggler(false);
 
-    function clickHandler() {
-        setSearchVisible(true);
-    }
 
     return (
         <>
-            <div className="header__categories">
+            <nav className="header__categories">
                 <HeaderCategoriesList/>
-                <SearchButton clickHandler={clickHandler}/>
-            </div>
+                <SearchButton clickHandler={setSearchVisibleHandler}/>
+            </nav>
 
-            <SearchPopup visible={searchVisible} setVisible={setSearchVisible}/>
+            <SearchPopup visible={searchVisible} setSearchVisibleHandler={setSearchVisibleHandler}/>
 
         </>
     );

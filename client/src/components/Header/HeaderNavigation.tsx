@@ -1,23 +1,8 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC} from "react";
+import useViewLogo from "./useViewLogo";
 
 const HeaderNavigation: FC = () => {
-    const [displayLogo, setDisplayLogo] = useState<boolean>(false);
-
-    useEffect(() => {
-        function handleScroll() {
-            const scrollTop = document.body.scrollTop;
-            if (scrollTop) {
-                setDisplayLogo(true);
-            } else {
-                setDisplayLogo(false);
-            }
-        }
-
-        document.body.addEventListener("scroll", handleScroll);
-        return () => {
-            document.body.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+    const [displayLogo] = useViewLogo(false);
     return (
         <nav className="header__navigation">
             <a href="/" className={`logo ${!displayLogo ? "--logo-hidden" : ""}`}>LF LABEL</a>

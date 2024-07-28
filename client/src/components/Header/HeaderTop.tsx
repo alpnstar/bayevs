@@ -1,24 +1,15 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC} from "react";
 import HeaderNavigation from "./HeaderNavigation";
 import HeaderUserActions from "./HeaderUserActions";
 import Burger from "./Burger";
-import Search from "../Search/Search";
-import Popup from "../UI/Popup/Popup";
 import SearchButton from "../Search/SearchButton";
 import SearchPopup from "../Search/SearchPopup";
 import BurgerMenu from "./BurgerMenu";
+import {useToggler} from "../../hooks/useToggler";
 
 const HeaderTop: FC = () => {
-    const [searchVisible, setSearchVisible] = useState<boolean>(false);
-    const [burgerVisible, setBurgerVisible] = useState<boolean>(false);
-
-    function searchClickHandler() {
-        setSearchVisible(!searchVisible);
-    }
-
-    function burgerClickHandler() {
-        setBurgerVisible(!burgerVisible);
-    }
+    const [searchVisible, searchClickHandler] = useToggler(false);
+    const [burgerVisible, burgerClickHandler] = useToggler(false);
 
     return (
         <div className="header__top">
@@ -26,9 +17,9 @@ const HeaderTop: FC = () => {
                 <HeaderNavigation/>
                 <HeaderUserActions/>
                 <SearchButton clickHandler={searchClickHandler}/>
-                <SearchPopup visible={searchVisible} setVisible={setSearchVisible}/>
+                <SearchPopup visible={searchVisible} setSearchVisibleHandler={searchClickHandler}/>
                 <Burger clickHandler={burgerClickHandler}/>
-                <BurgerMenu burgerVisible={burgerVisible} setBurgerVisible={setBurgerVisible}/>
+                <BurgerMenu burgerVisible={burgerVisible} burgerClickHandler={burgerClickHandler}/>
             </div>
         </div>
     );

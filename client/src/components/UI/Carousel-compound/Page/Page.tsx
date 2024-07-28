@@ -1,5 +1,5 @@
-import React, { useContext, ReactNode } from "react";
-import { CarouselContext } from "../carousel-context";
+import React, {ReactNode, useContext} from "react";
+import {CarouselContext} from "../carousel-context";
 
 interface PageProps {
     children: ReactNode;

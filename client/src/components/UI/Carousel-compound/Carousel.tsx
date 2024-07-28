@@ -1,5 +1,5 @@
-import React, { Children, cloneElement, useEffect, useRef, useState, ReactElement, ReactNode } from "react";
-import { CarouselContext } from "./carousel-context";
+import React, {Children, cloneElement, ReactElement, ReactNode, useEffect, useRef, useState} from "react";
+import {CarouselContext} from "./carousel-context";
 import "./Carousel.scss";
 
 const TRANSITION_DURATION = 500;

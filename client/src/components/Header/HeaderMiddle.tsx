@@ -4,7 +4,7 @@ import logoIMG from "../../../public/images/logo.png";
 
 const HeaderMiddle: FC = () => {
     return (
-        <div className="header__middle">
+        <section className="header__middle">
             <div className="header__middle-wrapper container">
                 <div className="header__logo-wrapper">
                         <span className="logo">
@@ -18,7 +18,7 @@ const HeaderMiddle: FC = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

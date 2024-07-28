@@ -1,7 +1,8 @@
 import React, {Dispatch, FC, SetStateAction} from "react";
+import {togglerHandlerType} from "../../../hooks/useToggler";
 
 interface ICloseButtonProps {
-    setState: Dispatch<SetStateAction<boolean>>,
+    setState: Dispatch<SetStateAction<boolean>> | togglerHandlerType,
 }
 
 const CloseButton: FC<ICloseButtonProps> = ({setState}) => {

@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction, useState} from "react";
+import React, {FC, useState} from "react";
 import HeaderCategoriesItem from "./HeaderCategoriesItem";
 import {ICategoriesElem, ICategory} from "../../types/types";
 

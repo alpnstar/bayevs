@@ -7,9 +7,9 @@ interface ICategorySingleProps {
 
 export const CategorySingle: FC<ICategorySingleProps> = () => {
     return (
-        <div className={'category-products'}>
+        <section className={'category-products'}>
             <div className="category-products__wrapper container">
-                <div className="category-products__header">
+                <section className="category-products__header">
                     <div className="category-products__breadcrumbs">
                         <span className="category-products__breadcrumbs-item">
                             LF-LABEL
@@ -24,8 +24,8 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                     <span className="category-products__title">
                        <h1 className="main-h1">Головные уборы</h1>
                     </span>
-                </div>
-                <div className='category-products__body'>
+                </section>
+                <section className='category-products__body'>
                     <div className="category-products__categories">
                         <ul className="category-products__categories-list">
                             <li className="category-products__category">
@@ -64,8 +64,8 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                     <div className="category-products__products">
 
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
+        </section>
     );
 };

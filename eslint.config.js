@@ -70,6 +70,7 @@ module.exports = tseslint.config(
             'capitalized-comments': 'error',
             'id-length': ["error", {"max": 20}],
             'new-cap': 'error',
+            'typescript-eslint/no-unused-vars': 'warn',
         },
     },
 );

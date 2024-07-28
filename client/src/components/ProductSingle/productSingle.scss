@@ -1,0 +1,148 @@
+.product-single {
+  margin: 40px 0 100px;
+
+  &__wrapper {
+
+  }
+
+  &__breadcrumbs {
+    display: flex;
+    margin-bottom: 34px;
+
+    * {
+      color: #999;
+      font-size: mrem(11);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    &-item {
+      a {
+        padding: 0 0 1px;
+
+
+        &:hover {
+          color: #444;
+        }
+      }
+
+
+      &::after {
+        content: '/';
+        display: inline-block;
+        margin: 0 13.5px;
+      }
+
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+
+      &--available {
+        a {
+          display: inline-block;
+          border-bottom: 1px #999 solid;
+        }
+      }
+    }
+  }
+
+
+  &__main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 69px;
+
+  }
+
+  &__view {
+    display: flex;
+    gap: 10px;
+
+    img {
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    &-main {
+      img {
+        width: 400px;
+        height: 572px;
+      }
+    }
+
+    &-other {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      img {
+        width: 90px;
+        height: 130px;
+      }
+    }
+  }
+
+
+  &__info {
+  }
+
+  &__info-title {
+    margin: 0 0 10px;
+  }
+
+  &__code {
+    display: inline-block;
+    margin: 0 0 27px;
+    font-size: mrem(11);
+    text-transform: uppercase;
+  }
+
+  &__character {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+
+    &-item {
+      color: #777;
+      font-size: mrem(12);
+      line-height: 16px;
+
+      b {
+        color: #000;
+        font-weight: 600;
+
+      }
+    }
+  }
+
+
+  &__actions {
+    &-button {
+      display: inline-block;
+      padding: 10px;
+      border: 2px black solid;
+      border-radius: 5px;
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.1s linear, color 0.1s linear;
+
+      &:hover {
+        background: #fff;
+        color: #000;
+      }
+    }
+
+
+  }
+
+
+}
+

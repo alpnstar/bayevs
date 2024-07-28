@@ -40,7 +40,7 @@ module.exports = {
         new Dotenv({
             path: devMode ? './.env.dev' : './.env.prod',
         }),
-        new ReactRefreshWebpackPlugin(),
+        devMode ? new ReactRefreshWebpackPlugin() : null,
     ],
     module: {
         rules: [
@@ -49,11 +49,14 @@ module.exports = {
                 loader: "html-loader",
                 options: {}
             },
-            {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                exclude: '/node_modules/',
-            },
+            // {
+            //     test: /\.tsx?$/,
+            //     loader: 'ts-loader',
+            //     exclude: '/node_modules/',
+            //     options: {
+            //     }
+            //
+            // },
 
             {
                 test: /\.(c|sa|sc)ss$/i,
@@ -131,15 +134,10 @@ module.exports = {
 
             },
             {
-                test: /\.jsx?$/,
+                test: /\.([jt])sx?$/,
                 exclude: '/node/modules/',
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        plugins: [
-                            require.resolve('react-refresh/babel')
-                        ]
-                    }
                 },
             }
         ],

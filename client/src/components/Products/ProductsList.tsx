@@ -7,7 +7,7 @@ interface IProductsProps {
     products: productsType,
 }
 
-const Products: FC<IProductsProps> = ({products}) => {
+const ProductsList: FC<IProductsProps> = ({products}) => {
 
 
     return (
@@ -17,4 +17,5 @@ const Products: FC<IProductsProps> = ({products}) => {
     );
 };
 
-export default Products;
+export default ProductsList;
+

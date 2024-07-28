@@ -1,19 +1,20 @@
 import React, {FC, ReactNode, useEffect} from "react";
 import "./popup.scss";
+import {togglerHandlerType} from "../../../hooks/useToggler";
 
 interface IPopupProps {
     children: ReactNode,
     visible: boolean,
-    setVisible: React.Dispatch<React.SetStateAction<boolean>>,
+    setVisibleHandler: togglerHandlerType,
 }
 
 
-const Popup: FC<IPopupProps> = ({children, visible, setVisible}) => {
+const Popup: FC<IPopupProps> = ({children, visible, setVisibleHandler}) => {
     function clickHandler(event: React.MouseEvent) {
         const target = event.target as HTMLDivElement;
-
-        if (Array.from(target.classList).indexOf("popup") !== -1) {
-            setVisible(false);
+        const targetClassList = Array.from(target.classList);
+        if (targetClassList.indexOf("popup") !== -1 || Array.from(target.classList).indexOf('popup__wrapper') !== -1) {
+            setVisibleHandler(false);
         }
     }
 

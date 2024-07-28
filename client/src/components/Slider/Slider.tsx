@@ -28,7 +28,7 @@ const Slider: FC = () => {
         }
     ]);
     return (
-        <section className="slider">
+        <article className="slider">
             <div className="slider__wrapper container">
                 <Carousel infinite={true} widthInput={100}>
                     {data.map(item => (
@@ -42,7 +42,7 @@ const Slider: FC = () => {
 
                 </Carousel>
             </div>
-        </section>
+        </article>
     );
 };
 

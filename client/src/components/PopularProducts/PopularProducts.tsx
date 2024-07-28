@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import IMG from "../../../public/images/model.jpg";
 import {productsType} from "../../types/types";
-import Products from "../Products/Products";
+import ProductsList from "../Products/ProductsList";
 
 const data: productsType = [{
     img: IMG,
@@ -14,7 +14,7 @@ const PopularProducts: FC = () => {
                 <h2 className="main-h2">
                     Новинки головных уборов LF-LABEL
                 </h2>
-                <Products products={data}/>
+                <ProductsList products={data}/>
             </div>
         </section>
     );
