@@ -63,6 +63,7 @@
     img {
       object-fit: contain;
       cursor: zoom-in;
+
       &:hover{
         opacity: 0.8;
       }
@@ -78,11 +79,10 @@
     &-other {
       display: flex;
       flex-direction: column;
-      gap: 14px;
 
       img {
-        width: 90px;
-        height: 130px;
+        max-width: 90px;
+        max-height: 120px;
       }
     }
   }
