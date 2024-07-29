@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import logoIMG from "../../../public/images/logo.png";
+import {Link} from "react-router-dom";
 
 
 const HeaderMiddle: FC = () => {
@@ -8,7 +9,9 @@ const HeaderMiddle: FC = () => {
             <div className="header__middle-wrapper container">
                 <div className="header__logo-wrapper">
                         <span className="logo">
-                            <img src={logoIMG} alt="rsrg"/>
+                            <Link to={'/'}>
+                                <img src={logoIMG} alt="rsrg"/>
+                            </Link>
                         </span>
                 </div>
                 <div className="header__phones">

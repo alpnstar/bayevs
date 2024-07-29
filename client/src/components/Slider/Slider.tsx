@@ -33,8 +33,8 @@ const Slider: FC = () => {
                 <Carousel infinite={true} widthInput={100}>
                     {data.map(item => (
                         <Page>
-                            <div className="item">
-                                <a href={item.url}><img className="carousel-item-img" src={item.imgSrc} alt=""/></a>
+                            <div>
+                                <a href={item.url}><img  className="carousel__item-img" src={item.imgSrc} alt=""/></a>
                             </div>
                         </Page>
                     ))}

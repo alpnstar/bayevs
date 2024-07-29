@@ -41,9 +41,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
                 const itemHeight = window.getComputedStyle(realItems[step]).height;
                 if (itemHeight !== "" && itemHeight !== "0px" && itemHeight !== "0") {
                     setHeight(itemHeight);
-                } else {
-                    setStep(step);
-                }
+                } else setStep(step);
             }
         }, 110);
     }, [step, realItems]);

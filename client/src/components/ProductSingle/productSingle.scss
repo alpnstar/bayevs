@@ -64,7 +64,7 @@
       object-fit: contain;
       cursor: zoom-in;
 
-      &:hover{
+      &:hover {
         opacity: 0.8;
       }
     }
@@ -149,3 +149,61 @@
 
 }
 
+@media screen and (width <= 770px) {
+  .product-single {
+    &__main {
+      width: 100%;
+
+    }
+
+    &__view {
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
+      width: 100%;
+
+      &-main {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        img {
+          height: 100%;
+
+        }
+      }
+
+    }
+
+    &__view-other {
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+
+
+}
+
+@media screen and (width <= 330px) {
+  .product-single {
+    &__main {
+
+    }
+
+    &__view {
+      &-main {
+        img {
+        }
+      }
+
+    }
+
+    &__view-other {
+      img {
+        max-width: 60px;
+      }
+    }
+  }
+
+
+}
