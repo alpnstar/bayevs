@@ -1,6 +1,6 @@
 .category-products {
   &__wrapper {
-    padding: 50px 0 0;
+    padding: 50px 10px 0;
   }
 
   &__header {
@@ -37,10 +37,13 @@
   }
 
   &__body {
+    display: flex;
+    gap: 55px;
+
   }
 
   &__categories {
-    width: 210px;
+    min-width: 210px;
 
     &-item {
       .category-products__category-title {
@@ -61,7 +64,6 @@
       }
 
 
-
       &--active {
         .category-products__category-title {
           background-color: #EEE;
@@ -77,6 +79,10 @@
     flex-direction: column;
   }
 
+  &__season-select {
+    width: 100%;
+    margin-bottom: 35px;
+  }
 
   &__category {
 
@@ -112,4 +118,20 @@
 
   &__products {
   }
+}
+
+@media screen and (width <= 430px) {
+  .category-products{
+    &__categories {
+      width: 100%;
+      &-list {
+        height: 200px;
+        overflow-y: scroll;
+      }
+    }
+    &__body {
+      flex-direction: column;
+    }
+  }
+
 }
