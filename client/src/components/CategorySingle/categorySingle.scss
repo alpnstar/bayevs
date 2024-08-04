@@ -46,6 +46,8 @@
     min-width: 210px;
 
     &-item {
+      cursor: pointer;
+
       .category-products__category-title {
         display: block;
         padding: 10px;
@@ -124,11 +126,13 @@
   .category-products{
     &__categories {
       width: 100%;
+
       &-list {
-        height: 200px;
         overflow-y: scroll;
+        height: 200px;
       }
     }
+
     &__body {
       flex-direction: column;
     }

@@ -4,6 +4,7 @@ import tempImg from '../../../public/images/product.jpg';
 import tempImg2 from '../../../public/images/model.jpg';
 import {useToggler} from "../../hooks/useToggler";
 import ImageView from "../UI/ImageView/ImageView";
+import {MainButton} from "../UI/MainButton/MainButton";
 
 
 const tempData = [{
@@ -83,9 +84,7 @@ const ProductSingle: FC = () => {
                             </div>
 
                         </div>
-                        <div className="product-single__actions">
-                            <button className="product-single__actions-button">В корзину</button>
-                        </div>
+                        <MainButton onClick={() => console.log(1)} text={'В корзину'}/>
                     </div>
                 </div>
             </div>

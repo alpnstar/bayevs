@@ -1,0 +1,42 @@
+.breadcrumbs {
+  display: flex;
+  margin-bottom: 34px;
+
+  * {
+    color: #999;
+    font-size: mrem(11);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &__item {
+    a {
+      padding: 0 0 1px;
+
+
+      &:hover {
+        color: #444;
+      }
+    }
+
+
+    &::after {
+      content: '/';
+      display: inline-block;
+      margin: 0 13.5px;
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+
+    &--available {
+      a {
+        display: inline-block;
+        border-bottom: 1px #999 solid;
+      }
+    }
+  }
+}
