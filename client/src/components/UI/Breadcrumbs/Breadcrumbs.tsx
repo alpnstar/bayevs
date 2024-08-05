@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import './breadcrumbs.scss';
+import "./breadcrumbs.scss";
 interface IBreadcrumbsProps {
   items: string[];
 }

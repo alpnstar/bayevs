@@ -9,6 +9,7 @@
   "rules": {
     "no-descending-specificity": null,
     "selector-class-pattern": null,
+    "font-family-name-quotes": "always-where-required",
     "plugin/stylelint-group-selectors": true,
     "order/properties-alphabetical-order": null,
     "order/order": [

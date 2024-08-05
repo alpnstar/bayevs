@@ -1,8 +1,9 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import useViewLogo from "./useViewLogo";
 
 const HeaderNavigation: FC = () => {
     const [displayLogo] = useViewLogo(false);
+
     return (
         <nav className="header__navigation">
             <a href="/" className={`logo ${!displayLogo ? "--logo-hidden" : ""}`}>LF LABEL</a>

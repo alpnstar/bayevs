@@ -4,8 +4,14 @@ export default function useViewLogo(init: boolean): [boolean, React.Dispatch<Set
     const [displayLogo, setDisplayLogo] = useState<boolean>(init);
 
     useEffect(() => {
+
+        const app = document.querySelector(".app") as HTMLDivElement;
+        app.addEventListener("scroll", handleScroll);
+        return () => {
+            app.removeEventListener("scroll", handleScroll);
+        };
         function handleScroll() {
-            const scrollTop = document.body.scrollTop;
+            const scrollTop = app.scrollTop;
             if (scrollTop) {
                 setDisplayLogo(true);
             } else {
@@ -13,10 +19,8 @@ export default function useViewLogo(init: boolean): [boolean, React.Dispatch<Set
             }
         }
 
-        document.body.addEventListener("scroll", handleScroll);
-        return () => {
-            document.body.removeEventListener("scroll", handleScroll);
-        };
     }, []);
+
+
     return [displayLogo, setDisplayLogo];
 }
