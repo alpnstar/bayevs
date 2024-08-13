@@ -2,7 +2,6 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
     grid-gap: 29px;
     max-width: 960px;
   }
@@ -20,20 +19,34 @@
       transition: color 0.1s linear;
     }
 
+    &-price {
+      display: inline-block;
+      margin-bottom: 15px;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
     &:hover {
       border: 1px solid #f1f1f1;
       cursor: pointer;
+      * {
+        color: #888;
+
+      }
 
       .products__item {
+
         &-title {
-          color: #888;
           transition: color 0.1s linear;
+          color: #888;
+
         }
 
         &-fast-view {
           opacity: 0.9;
           cursor: pointer;
         }
+
       }
     }
 
@@ -49,10 +62,9 @@
 
     &-fast-view {
       position: absolute;
-      bottom: 80px;
+      bottom: 120px;
       left: 50%;
       z-index: 1;
-      display: none;
       box-sizing: border-box;
       width: 174px;
       padding: 10px 20px;

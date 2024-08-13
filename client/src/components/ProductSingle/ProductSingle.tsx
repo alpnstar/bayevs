@@ -1,37 +1,45 @@
-import React, {FC, useState} from 'react';
-import './productSingle.scss';
-import tempImg from '../../../public/images/product.jpg';
-import tempImg2 from '../../../public/images/model.jpg';
+import React, {FC, useState} from "react";
+import "./productSingle.scss";
+import tempImg from "../../../public/images/product.jpg";
+import tempImg2 from "../../../public/images/model.jpg";
 import {useToggler} from "../../hooks/useToggler";
 import ImageView from "../UI/ImageView/ImageView";
 import {MainButton} from "../UI/MainButton/MainButton";
+import {useAppDispatch} from "../../store/hooks";
+import {IProductSingle} from "../../types/types";
 
 
 const tempData = [{
     id: Math.random(),
-    data: tempImg,
+    data: tempImg
 }, {
     id: Math.random(),
-    data: tempImg2,
+    data: tempImg2
 }, {
     id: Math.random(),
-    data: tempImg2,
+    data: tempImg2
 }, {
     id: Math.random(),
-    data: tempImg,
+    data: tempImg
 }, {
     id: Math.random(),
-    data: tempImg2,
+    data: tempImg2
 }];
 
-const ProductSingle: FC = () => {
+interface IProductSingleProps {
+    product: IProductSingle,
+}
+
+const ProductSingle: FC<IProductSingleProps> = ({product}) => {
     const [imageView, setImageViewHandler] = useToggler(false);
     const [selectedImage, setSelectedImage] = useState<number>(0);
+    const dispatch = useAppDispatch();
+
 
     function setSelectedImageHandler(i: number) {
         return function () {
             setSelectedImage(i);
-        }
+        };
     }
 
     function imageClickHandler(index: number) {
@@ -39,7 +47,7 @@ const ProductSingle: FC = () => {
             setSelectedImageHandler(index)();
             setImageViewHandler(true);
 
-        }
+        };
     }
 
     return (
@@ -64,7 +72,7 @@ const ProductSingle: FC = () => {
                         <div className="product-single__view-other">
                             {tempData.map((item, index) =>
                                 index !== 0 ?
-                                    <img onClick={imageClickHandler(index)} src={item.data} alt=""/> : '')}
+                                    <img onClick={imageClickHandler(index)} src={item.data} alt=""/> : "")}
                         </div>
                     </div>
                     <div className="product-single__info">
@@ -84,7 +92,8 @@ const ProductSingle: FC = () => {
                             </div>
 
                         </div>
-                        <MainButton onClick={() => console.log(1)} text={'В корзину'}/>
+                        {/*<MainButton onClick={addToCart(product)} text="В корзину"/>*/}
+                        <MainButton onClick={()=>1} text="В корзину"/>
                     </div>
                 </div>
             </div>
@@ -93,6 +102,6 @@ const ProductSingle: FC = () => {
         </section>
 
     );
-}
+};
 
 export default ProductSingle;

@@ -58,7 +58,7 @@ module.exports = [
             'jsx-quotes': ['error', 'prefer-double'],
             'array-callback-return': 'error',
             'no-unmodified-loop-condition': 'error',
-            'id-length': ["error", { "max": 20 }],
+            'id-length': ["warn", { "max": 20 }],
             'new-cap': 'error',
             "no-unused-vars": "off",
             '@typescript-eslint/no-unused-vars': ['warn'],

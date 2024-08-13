@@ -1,6 +1,26 @@
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query";
+import {buildUrl, clearParams} from "../../utils/common";
 
 
-
+let BASE_URL;
+export const productsApi = createApi({
+    reducerPath: 'products',
+    baseQuery: fetchBaseQuery(({baseUrl: BASE_URL + '/categories'})),
+    endpoints: (builder) => ({
+        getProductsById: builder.query({
+            query: (id) => id,
+        }),
+        getProducts: builder.query({
+            query: () => '',
+        }),
+        getProductsByCategory: builder.query({
+            query: (data) => buildUrl(
+                '',
+                clearParams(data.params, [])
+            )
+        })
+    })
+})
 
 // export const categoriesApi = createApi({
 //     reducerPath: 'categories',

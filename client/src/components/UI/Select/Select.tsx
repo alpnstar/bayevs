@@ -1,5 +1,5 @@
 import './select.scss';
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {SelectOption, SelectProps} from "./selectTypes";
 
 const Select: React.FC<SelectProps> = ({ options, value, onChange, placeholder }) => {

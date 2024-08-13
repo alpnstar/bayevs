@@ -4,8 +4,11 @@ import {productsType} from "../../types/types";
 import ProductsList from "../Products/ProductsList";
 
 const data: productsType = [{
+    id: Math.random(),
     img: IMG,
-    title: "Панама LF-Label Tiger, хлопок, цвет чёрный 899901"
+    title: "Панама LF-Label Tiger, хлопок, цвет чёрный 899901",
+    price: 1000,
+    maxQuantity: 5,
 }];
 const PopularProducts: FC = () => {
     return (

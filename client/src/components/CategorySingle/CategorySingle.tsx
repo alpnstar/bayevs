@@ -56,11 +56,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                                             Шляпы
                                        </span>
                                             </li>
-                                            <li className="category-products__categories-item">
-                                                <span className="category-products__category-title">
-                                            Шняги
-                                       </span>
-                                            </li>
+
                                         </ul>
                                     </li>
 
@@ -87,11 +83,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                                             Шляпы
                                        </span>
                                             </li>
-                                            <li className="category-products__categories-item">
-                                                <span className="category-products__category-title">
-                                            Шняги
-                                       </span>
-                                            </li>
+
                                         </ul>
                                     </li>
 
@@ -118,11 +110,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                                             Шляпы
                                        </span>
                                             </li>
-                                            <li className="category-products__categories-item">
-                                                <span className="category-products__category-title">
-                                            Шняги
-                                       </span>
-                                            </li>
+
                                         </ul>
                                     </li>
 

@@ -11,7 +11,7 @@ const ProductsList: FC<IProductsProps> = ({products}) => {
 
 
     return (
-        <ul className='products__list'>
+        <ul className="products__list">
             {products.map(item => <ProductsItem product={item}/>)}
         </ul>
     );
