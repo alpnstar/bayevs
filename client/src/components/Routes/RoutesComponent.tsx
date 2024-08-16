@@ -4,14 +4,17 @@ import Home from "../Home/Home";
 import {CategorySingle} from "../CategorySingle/CategorySingle";
 import ProductSingle from "../ProductSingle/ProductSingle";
 import {Cart} from "../Cart/Cart";
+import {About} from "../About/About";
+import {ROUTES} from "../../utils/ROUTES";
 
 const RoutesComponent: FC = () => {
     return (
         <Routes>
             <Route index element={<Home/>}/>
-            <Route path={'/category'} element={<CategorySingle/>}/>
-            <Route path={'/product'} element={<ProductSingle/>}/>
-            <Route path={'/cart'} element={<Cart foo={''}/>}/>
+            <Route path={ROUTES.category} element={<CategorySingle/>}/>
+            <Route path={ROUTES.product} element={<ProductSingle/>}/>
+            <Route path={ROUTES.contacts} element={<About/>}/>
+            <Route path={ROUTES.cart} element={<Cart foo={''}/>}/>
         </Routes>
     );
 };

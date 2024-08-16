@@ -4,6 +4,7 @@ import Select from "../UI/Select/Select";
 import ProductsList from "../Products/ProductsList";
 import IMG from "../../../public/images/model.jpg";
 import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
+import PageHeader from "../UI/PageHeader/PageHeader";
 
 interface ICategorySingleProps {
 
@@ -20,12 +21,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
     return (
         <section className={'category-products'}>
             <div className="category-products__wrapper container">
-                <section className="category-products__header">
-                    <Breadcrumbs items={['']}/>
-                    <span className="category-products__title">
-                       <h1 className="main-h1">Головные уборы</h1>
-                    </span>
-                </section>
+                <PageHeader title={'Головные уборы'} breadcrumbsItems={['LF-LABEL', 'Каталог', 'Головные уборы']}/>
                 <section className='category-products__body'>
                     <div className="category-products__categories">
                         <div className="category-products__season-select">

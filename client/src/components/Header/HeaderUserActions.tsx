@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
+import {ROUTES} from "../../utils/ROUTES";
 
 const HeaderUserActions: FC = () => {
     return (
@@ -7,7 +8,7 @@ const HeaderUserActions: FC = () => {
             <ul className="main-style-list__list">
                 <li className="main-style-list__item "><a href="#">Регистрация</a></li>
                 <li className="main-style-list__item "><a href="#">Вход</a></li>
-                <Link to={'/cart'}>
+                <Link to={ROUTES.cart}>
                     <li className="main-style-list__item "><a href="#">Корзина</a></li>
                 </Link>
             </ul>
