@@ -5,45 +5,48 @@ import './about.scss';
 import {ROUTES} from "../../utils/ROUTES";
 
 interface IAboutProps {
+    title: string,
     children: React.ReactNode;
 }
-export const About: FC<IAboutProps> = ({children}) => {
+
+export const About: FC<IAboutProps> = ({title, children}) => {
 
     return (
         <div className="about">
             <div className="about__wrapper container">
-                <PageHeader title={'Контакты'} breadcrumbsItems={['LF-LABEL']}/>
+                <PageHeader title={title} breadcrumbsItems={['LF-LABEL']}/>
 
                 <div className="about__body">
                     <div className="about__side">
                         <ul className="about__side-list">
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.aboutCompany}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>О компании</NavLink>
+                                <NavLink to={ROUTES.aboutCompany}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>О
+                                    компании</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.lookbook}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Lookbook</NavLink>
+                                <NavLink to={ROUTES.lookbook}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Lookbook</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.toCustomers}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Заказчикам</NavLink>
+                                <NavLink to={ROUTES.toCustomers}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Заказчикам</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.news}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Новости</NavLink>
+                                <NavLink to={ROUTES.news}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Новости</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.articles}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Статьи</NavLink>
+                                <NavLink to={ROUTES.articles}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Статьи</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.toWholesalers}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Оптовикам</NavLink>
+                                <NavLink to={ROUTES.toWholesalers}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Оптовикам</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink  to={ROUTES.contacts}
-                                    className={({ isActive }) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Контакты</NavLink>
+                                <NavLink to={ROUTES.contacts}
+                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Контакты</NavLink>
                             </li>
                         </ul>
                     </div>

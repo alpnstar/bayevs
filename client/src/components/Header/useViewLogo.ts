@@ -10,6 +10,7 @@ export default function useViewLogo(init: boolean): [boolean, React.Dispatch<Set
         return () => {
             app.removeEventListener("scroll", handleScroll);
         };
+
         function handleScroll() {
             const scrollTop = app.scrollTop;
             if (scrollTop) {

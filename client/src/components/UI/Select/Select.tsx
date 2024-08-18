@@ -2,7 +2,7 @@ import './select.scss';
 import React, {useEffect, useRef, useState} from 'react';
 import {SelectOption, SelectProps} from "./selectTypes";
 
-const Select: React.FC<SelectProps> = ({ options, value, onChange, placeholder }) => {
+const Select: React.FC<SelectProps> = ({options, value, onChange, placeholder}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
         options.find(option => option.value === value) || null

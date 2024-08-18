@@ -5,14 +5,14 @@ interface PageProps {
     children: ReactNode;
 }
 
-export const Page: React.FC<PageProps> = ({ children }) => {
+export const Page: React.FC<PageProps> = ({children}) => {
     const context = useContext(CarouselContext);
 
     if (!context) {
         return <div>Error: CarouselContext not provided</div>;
     }
 
-    const { width } = context;
+    const {width} = context;
 
     return (
         <div

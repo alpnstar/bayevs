@@ -34,7 +34,7 @@ const Slider: FC = () => {
                     {data.map(item => (
                         <Page>
                             <div>
-                                <a href={item.url}><img  className="carousel__item-img" src={item.imgSrc} alt=""/></a>
+                                <a href={item.url}><img className="carousel__item-img" src={item.imgSrc} alt=""/></a>
                             </div>
                         </Page>
                     ))}

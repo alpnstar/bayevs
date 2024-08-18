@@ -4,10 +4,10 @@ import {cartActions} from "../../store/slices/cartSlice";
 import {ICartItem} from "../../types/types";
 
 interface ICartItemProps {
-  item:ICartItem ;
+    item: ICartItem;
 }
 
-export const CartItem:FC<ICartItemProps> = ({item}) => {
+export const CartItem: FC<ICartItemProps> = ({item}) => {
 
     const dispatch = useAppDispatch();
 
@@ -15,7 +15,9 @@ export const CartItem:FC<ICartItemProps> = ({item}) => {
         return function (): void {
             dispatch(cartActions.decrementItem({id: item.id, quantity}))
         }
-    }function increment(quantity: number) {
+    }
+
+    function increment(quantity: number) {
         return function (): void {
             dispatch(cartActions.incrementItem({id: item.id, quantity}))
         }

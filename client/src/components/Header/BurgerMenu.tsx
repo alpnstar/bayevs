@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import CloseButton from "../UI/CloseButton/CloseButton";
 import {togglerHandlerType} from "../../hooks/useToggler";
+import {NavLink} from "react-router-dom";
 
 interface IBurgerMenu {
     burgerVisible: boolean,
@@ -16,14 +17,23 @@ const BurgerMenu: FC<IBurgerMenu> = ({burgerVisible, burgerClickHandler}) => {
             </div>
             <div className="burger-menu__body">
                 <ul className="burger-menu__list burger-menu__navigation">
-                    <li className="burger-menu__list-item"><a href="">О компании</a></li>
-                    <li className="burger-menu__list-item"><a href="">Новости</a></li>
-                    <li className="burger-menu__list-item"><a href="">Оптовикам</a></li>
-                    <li className="burger-menu__list-item"><a href="">Контакты</a></li>
+                    <li className="burger-menu__list-item">
+                        <NavLink onClick={() => burgerClickHandler()} to="/about-company">О компании</NavLink>
+                    </li>
+                    <li className="burger-menu__list-item">
+                        <NavLink onClick={() => burgerClickHandler()} to="/news">Новости</NavLink>
+                    </li>
+                    <li className="burger-menu__list-item">
+                        <NavLink onClick={() => burgerClickHandler()} to="/wholesalers">Оптовикам</NavLink>
+                    </li>
+                    <li className="burger-menu__list-item">
+                        <NavLink onClick={() => burgerClickHandler()} to="/contacts">Контакты</NavLink>
+                    </li>
                 </ul>
                 <ul className="burger-menu__list burger-menu__user-actions">
-                    <li className="burger-menu__list-item">Регистрация</li>
-                    <li className="burger-menu__list-item">Вход</li>
+                    <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()} to="/cart">Корзина</NavLink></li>
+                    <li className="burger-menu__list-item" onClick={(e) => e.preventDefault()}>Регистрация</li>
+                    <li className="burger-menu__list-item" onClick={(e) => e.preventDefault()}>Вход</li>
                 </ul>
             </div>
         </div>

@@ -4,12 +4,12 @@ import Home from "../Home/Home";
 import {CategorySingle} from "../CategorySingle/CategorySingle";
 import ProductSingle from "../ProductSingle/ProductSingle";
 import {Cart} from "../Cart/Cart";
-import {About} from "../About/About";
 import {ROUTES} from "../../utils/ROUTES";
 import {Contacts} from "../Contacts/Contacts";
 import {ToCustomers} from "../ToCustomers/ToCustomers";
 import {ToWholesalers} from "../ToWholesalers/ToWholesalers";
 import {AboutCompany} from "../AboutCompany/AboutCompany";
+import {About} from "../About/About";
 
 const RoutesComponent: FC = () => {
     return (
@@ -21,6 +21,9 @@ const RoutesComponent: FC = () => {
             <Route path={ROUTES.toCustomers} element={<ToCustomers/>}/>
             <Route path={ROUTES.toWholesalers} element={<ToWholesalers/>}/>
             <Route path={ROUTES.aboutCompany} element={<AboutCompany/>}/>
+            <Route path={ROUTES.news} element={<About title={'Новости'} children={<></>}/>}/>
+            <Route path={ROUTES.articles} element={<About title={'Статьи'} children={<></>}/>}/>
+            <Route path={ROUTES.lookbook} element={<About title={'Lookbook'} children={<></>}/>}/>
             <Route path={ROUTES.cart} element={<Cart/>}/>
         </Routes>
     );

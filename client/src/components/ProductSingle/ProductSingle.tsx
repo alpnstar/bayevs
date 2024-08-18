@@ -93,7 +93,7 @@ const ProductSingle: FC<IProductSingleProps> = ({product}) => {
 
                         </div>
                         {/*<MainButton onClick={addToCart(product)} text="В корзину"/>*/}
-                        <MainButton onClick={()=>1} text="В корзину"/>
+                        <MainButton onClick={() => 1} text="В корзину"/>
                     </div>
                 </div>
             </div>

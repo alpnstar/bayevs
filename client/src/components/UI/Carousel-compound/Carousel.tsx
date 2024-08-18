@@ -17,7 +17,7 @@ interface CloneCount {
     tail: number;
 }
 
-export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infinite }) => {
+export const Carousel: React.FC<CarouselProps> = ({children, widthInput, infinite}) => {
     const [slideDelayActive, setSlideDelayActive] = useState<boolean>(true);
     const [step, setStep] = useState<number>(1);
     const [width, setWidth] = useState<number>(widthInput);
@@ -25,7 +25,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
     const [height, setHeight] = useState<string>("auto");
     const [pages, setPages] = useState<ReactElement[]>([]);
     const [realItems, setRealItems] = useState<Element[]>([]);
-    const [clonesCount, setClonesCount] = useState<CloneCount>({ head: 0, tail: 0 });
+    const [clonesCount, setClonesCount] = useState<CloneCount>({head: 0, tail: 0});
     const [transitionDuration, setTransitionDuration] = useState<number>(0);
     const windowElRef = useRef<HTMLDivElement>(null);
 
@@ -67,7 +67,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
                     : null;
                 if (headClone && tailClone) {
                     setPages([headClone, ...childrenArray, tailClone]);
-                    setClonesCount({ head: 1, tail: 1 });
+                    setClonesCount({head: 1, tail: 1});
                     return;
                 }
             }
@@ -135,7 +135,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
     };
 
     return (
-        <CarouselContext.Provider value={{ width }}>
+        <CarouselContext.Provider value={{width}}>
             <div className="carousel">
                 <div className="carousel__window" ref={windowElRef}>
                     <div
@@ -201,7 +201,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, widthInput, infini
                                         setStep(index);
                                     }}
                                     className={`carousel__bullet-item ${step === index ? "carousel__bullet-item--active" : ""}`}
-                                 />
+                                />
                             ) : null
                         )}
                 </div>

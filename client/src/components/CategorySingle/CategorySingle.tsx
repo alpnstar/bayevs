@@ -3,7 +3,6 @@ import React, {FC, useState} from "react";
 import Select from "../UI/Select/Select";
 import ProductsList from "../Products/ProductsList";
 import IMG from "../../../public/images/model.jpg";
-import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
 import PageHeader from "../UI/PageHeader/PageHeader";
 
 interface ICategorySingleProps {

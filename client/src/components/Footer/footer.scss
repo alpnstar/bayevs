@@ -29,3 +29,14 @@
 
   }
 }
+
+@media screen and (width <= 770px) {
+.footer{
+  &__links{
+    &-list{
+      gap: 20px;
+      justify-content: center;
+    }
+  }
+}
+}

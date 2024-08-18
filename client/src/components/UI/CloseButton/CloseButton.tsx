@@ -11,7 +11,7 @@ const CloseButton: FC<ICloseButtonProps> = ({setState}) => {
     }
 
     return (
-        <div onClick={clickHandler} className="close-button" />
+        <div onClick={clickHandler} className="close-button"/>
     );
 };
 

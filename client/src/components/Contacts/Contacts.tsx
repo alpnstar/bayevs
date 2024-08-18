@@ -5,7 +5,7 @@ import {About} from "../About/About";
 export const Contacts: FC = () => {
 
     return (
-        <About>
+        <About title={'Контакты'}>
             <div className="contacts">
                 <h3 className="contacts__h3">Телефоны для связи:</h3>
                 <ul className="contacts__phone-list">

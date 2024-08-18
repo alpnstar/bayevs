@@ -15,49 +15,49 @@ const HeaderCategoriesList: FC = () => {
                     items: [{
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
-                    },{
+                    }, {
                         title: "Панамы",
                         url: "#"
                     }]

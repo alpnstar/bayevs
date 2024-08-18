@@ -41,7 +41,7 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
                         </span>
                                 <ul className="header__sub-categories-item-list">
                                     {subCategory.items.map((subCategoryItems, index) => (
-                                        <li key={index}><Link onClick ={() => clickHandler(false)} to={'/category'}><a
+                                        <li key={index}><Link onClick={() => clickHandler(false)} to={'/category'}><a
                                             href="">{subCategoryItems.title}</a></Link></li>
                                     ))}
                                 </ul>

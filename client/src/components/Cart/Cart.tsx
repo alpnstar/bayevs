@@ -5,7 +5,6 @@ import {useAppSelector} from "../../store/hooks";
 import {CartItem} from "./CartItem";
 
 
-
 export const Cart: FC = () => {
     const cart = useAppSelector(state => state.cartReducer);
 

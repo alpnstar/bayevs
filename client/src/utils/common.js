@@ -12,7 +12,7 @@ export const buildUrl = (url, params) => {
 };
 export const clearParams = (params, exclusion = []) =>
     _.reduce(params, (acc, value, item) => {
-    if (value || exclusion.indexOf(item) !== -1) acc[item] = value;
-    return acc;
-}, {});
+        if (value || exclusion.indexOf(item) !== -1) acc[item] = value;
+        return acc;
+    }, {});
 
