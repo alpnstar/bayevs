@@ -4,11 +4,9 @@ import {MainButton} from "../UI/MainButton/MainButton";
 import {useAppSelector} from "../../store/hooks";
 import {CartItem} from "./CartItem";
 
-interface ICartProps {
-    foo: string;
-}
 
-export const Cart: FC<ICartProps> = ({foo}) => {
+
+export const Cart: FC = () => {
     const cart = useAppSelector(state => state.cartReducer);
 
     return (

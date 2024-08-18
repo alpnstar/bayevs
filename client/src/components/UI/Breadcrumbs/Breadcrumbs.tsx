@@ -12,12 +12,7 @@ export const Breadcrumbs:FC<IBreadcrumbsProps> = () => {
           <div className="breadcrumbs__item breadcrumbs__item--available">
               <a href="#">LF-LABEL</a>
           </div>
-          <div className="breadcrumbs__item">
-              <a href="#">LF-LABEL</a>
-          </div>
-          <div className="breadcrumbs__item">
-              <a href="#">LF-LABEL</a>
-          </div>
+
       </div>
 
   );

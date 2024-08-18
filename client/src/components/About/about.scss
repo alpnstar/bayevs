@@ -5,7 +5,7 @@
   }
 
   &__side {
-    width: 210px;
+    min-width: 210px;
   }
 
   &__side-list {
@@ -23,16 +23,21 @@
     &:hover {
       color: #000;
     }
+
     &-link {
       &--active {
+        color: #000;
         font-weight: bold;
-          color: #000;
       }
     }
   }
 
   &__info {
     font-size: 12px;
+
+    b {
+      font-weight: bold;
+    }
 
     h2 {
       margin: 25px 0 15px;
@@ -43,24 +48,22 @@
       font-size: 18px;
       line-height: 22px;
 
-      &:first-child{
+      &:first-child {
         margin-top: 0;
       }
     }
-  }
 
+    p {
+      margin-top: 10px;
+      line-height: 1.5;
+    }
 
+    li {
+      margin-bottom: 10px;
+      margin-left: 17px;
+      list-style: square;
+    }
 
-  &__info-phone-list-item {
-    margin-bottom: 10px;
-    margin-left: 17px;
-    list-style: square;
-  }
-
-
-
-
-  &__info-email {
     a {
       text-decoration: underline;
 
@@ -70,5 +73,27 @@
       }
     }
   }
-
 }
+
+  @media screen and (width <= 430px) {
+    .about {
+      &__body {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      &__side {
+        min-width: 100%;
+        padding: 0 0 20px;
+        border-right: none;
+        border-bottom: 1px #f1f1f1 solid;
+
+        &-list {
+          flex-flow: row wrap;
+          gap: 20px 20px;
+          padding: 0 0;
+        }
+      }
+    }
+    
+  }

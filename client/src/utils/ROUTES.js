@@ -9,9 +9,8 @@ export const ROUTES = {
     login: '/login',
     registration: '/registration',
     lookbook: '/lookbook',
-    toCustomers: '/to-customers',
     news: '/news',
     articles: '/articles',
-    wholesalers: '/wholesalers',
-    employees: '/employees',
+    toCustomers: '/to-customers',
+    toWholesalers: '/wholesalers',
 };
