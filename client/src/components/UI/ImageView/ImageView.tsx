@@ -3,9 +3,10 @@ import Popup from "../Popup/Popup";
 import CarouselArrows from "../CarouselArrows/CarouselArrows";
 import {togglerHandlerType} from "../../../hooks/useToggler";
 import './imageView.scss';
+import {Media, MediaAttributes} from "../../../types/types";
 
 interface IImageView {
-    data: any[],
+    data: Media[],
     display: boolean,
     setDisplay: togglerHandlerType,
     indexSelectedImage: number,
@@ -32,7 +33,7 @@ export const ImageView: FC<IImageView> = ({data, indexSelectedImage, setIndexSel
             }}>
                 <div className="image-view">
                     <div className="image-view__item">
-                        <img src={data[indexSelectedImage].data} alt=""/>
+                        <img src={data[indexSelectedImage].attributes.generated_conversions.list} alt=""/>
                     </div>
                     <div className="image-view__counter">
                         {indexSelectedImage + 1 + ' из ' + data.length}

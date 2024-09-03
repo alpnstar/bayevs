@@ -7,6 +7,7 @@ const initialState: ICart = {
     items: [],
     totalQuantity: 0,
     totalSum: 0,
+    currency: "USD",
 };
 type changeCartType = ReturnType<typeof cartSlice.actions.addItem>;
 export const onChangeCart: Middleware<object, RootState> = store => next => (action) => {
@@ -34,11 +35,12 @@ const cartSlice = createSlice({
                 return;
             }
             state.items.push({...action.payload});
+            state.currency = action.payload.attributes.skus[0].attributes.price.currency;
             return state;
         },
 
         decrementItem(state, action: PayloadAction<{
-            id: number,
+            id: string,
             quantity: number,
         }>) {
             const elemIndex = state.items.findIndex(item => item.id === action.payload.id);
@@ -54,12 +56,11 @@ const cartSlice = createSlice({
             return state;
         },
         incrementItem(state, action: PayloadAction<{
-            id: number,
+            id: string,
             quantity: number,
         }>) {
             const elemIndex = state.items.findIndex(item => item.id === action.payload.id);
             const elem = state.items[elemIndex];
-            // if (elem.quantity - action.payload.quantity !== 0) {
             state.items[elemIndex] = {
                 ...elem,
                 quantity: elem.quantity + action.payload.quantity,
@@ -75,7 +76,7 @@ const cartSlice = createSlice({
                 calculateQuantity();
 
                 function calculateSum(): void {
-                    state.totalSum = state.items.reduce((acc, item) => acc += item.price * item.quantity, 0)
+                    state.totalSum = state.items.reduce((acc, item) => acc += item.attributes.skus[0].attributes.price.amount * item.quantity, 0)
                 }
 
                 function calculateQuantity(): void {
@@ -85,6 +86,9 @@ const cartSlice = createSlice({
         },
         setCartState(state, action: PayloadAction<ICart>) {
             return state = action.payload;
+        },
+        setCurrency(state, action: PayloadAction<string>) {
+
         }
     }
 });

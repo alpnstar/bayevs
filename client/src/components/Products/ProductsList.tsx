@@ -1,10 +1,10 @@
 import React, {FC} from "react";
-import {productsType} from "../../types/types";
+import {Product} from "../../types/types";
 import ProductsItem from "./ProductsItem";
 import "./products.scss";
 
 interface IProductsProps {
-    products: productsType,
+    products: Product[],
 }
 
 const ProductsList: FC<IProductsProps> = ({products}) => {

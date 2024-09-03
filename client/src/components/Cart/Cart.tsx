@@ -7,7 +7,6 @@ import {CartItem} from "./CartItem";
 
 export const Cart: FC = () => {
     const cart = useAppSelector(state => state.cartReducer);
-
     return (
         <div className="cart">
             <div className="cart__wrapper container">
@@ -17,8 +16,8 @@ export const Cart: FC = () => {
                 </div>
                 <div className="cart__info">
                     <div className="cart__summary">
-                        <span className="cart__summary-text">Итого: {cart.totalSum} ₽</span>
-                        <span className="cart__summary-total"></span>
+                        <span className="cart__summary-text">Итого: </span>
+                        <span className="cart__summary-total">{cart.totalSum} {cart.currency}</span>
                     </div>
 
                     <div className="cart__actions">

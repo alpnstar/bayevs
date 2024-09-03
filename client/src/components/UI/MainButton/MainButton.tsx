@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import './mainButton.scss';
 
 interface IMainButtonProps {
-    onClick: () => void;
+    onClick: (arg:any) => void;
     text: string;
     className?: string;
 }

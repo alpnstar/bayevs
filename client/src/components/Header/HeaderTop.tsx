@@ -8,10 +8,11 @@ import {useToggler} from "../../hooks/useToggler";
 
 interface IHeaderTop {
     burgerClickHandler: () => void,
+    searchClickHandler:()=> void,
 }
 
-const HeaderTop: FC<IHeaderTop> = ({burgerClickHandler}) => {
-    const [searchVisible, searchClickHandler] = useToggler(false);
+const HeaderTop: FC<IHeaderTop> = ({searchClickHandler,burgerClickHandler}) => {
+
 
 
     return (
@@ -21,7 +22,6 @@ const HeaderTop: FC<IHeaderTop> = ({burgerClickHandler}) => {
                     <HeaderNavigation/>
                     <HeaderUserActions/>
                     <SearchButton clickHandler={searchClickHandler}/>
-                    <SearchPopup visible={searchVisible} setSearchVisibleHandler={searchClickHandler}/>
                     <Burger clickHandler={burgerClickHandler}/>
                 </div>
             </div>

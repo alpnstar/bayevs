@@ -1,40 +1,27 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import "./productSingle.scss";
-import tempImg from "../../../public/images/product.jpg";
-import tempImg2 from "../../../public/images/model.jpg";
 import {useToggler} from "../../hooks/useToggler";
-import ImageView from "../UI/ImageView/ImageView";
-import {MainButton} from "../UI/MainButton/MainButton";
 import {useAppDispatch} from "../../store/hooks";
-import {IProductSingle} from "../../types/types";
+import {Product} from "../../types/types";
+import {useParams} from "react-router";
+import {useLazyGetProductByIdQuery} from "../../store/query/productsApi";
+import {MainButton} from "../UI/MainButton/MainButton";
+import ImageView from "../UI/ImageView/ImageView";
+import addToCart from "../Products/useAddToCart";
 
-
-const tempData = [{
-    id: Math.random(),
-    data: tempImg
-}, {
-    id: Math.random(),
-    data: tempImg2
-}, {
-    id: Math.random(),
-    data: tempImg2
-}, {
-    id: Math.random(),
-    data: tempImg
-}, {
-    id: Math.random(),
-    data: tempImg2
-}];
 
 interface IProductSingleProps {
-    product: IProductSingle,
+    product: Product,
 }
 
-const ProductSingle: FC<IProductSingleProps> = ({product}) => {
+const ProductSingle: FC<IProductSingleProps> = () => {
+    const params = useParams<{ id: string }>();
+    const [trigger, {data, isSuccess, isLoading}] = useLazyGetProductByIdQuery();
+    const [product, setProduct] = useState<Product>(data);
+    const [currentSku, setCurrentSku] = useState(0);
     const [imageView, setImageViewHandler] = useToggler(false);
     const [selectedImage, setSelectedImage] = useState<number>(0);
     const dispatch = useAppDispatch();
-
 
     function setSelectedImageHandler(i: number) {
         return function () {
@@ -50,7 +37,16 @@ const ProductSingle: FC<IProductSingleProps> = ({product}) => {
         };
     }
 
+    useEffect(() => {
+        if (params.id) {
+            trigger(params.id);
+        }
+    }, [params]);
+    useEffect(() => {
+        data && setProduct(data.data);
+    }, [data]);
     return (
+        product && isSuccess &&
         <section className="product-single">
             <div className="product-single__wrapper container">
                 <div className="product-single__breadcrumbs">
@@ -67,37 +63,36 @@ const ProductSingle: FC<IProductSingleProps> = ({product}) => {
                 <div className="product-single__main">
                     <div className="product-single__view">
                         <div onClick={imageClickHandler(0)} className="product-single__view-main">
-                            <img src={tempData[0].data} alt=""/>
+                            <img src={product.attributes.media[selectedImage].attributes.generated_conversions.list}
+                                 alt=""/>
                         </div>
                         <div className="product-single__view-other">
-                            {tempData.map((item, index) =>
+                            {product.attributes.media.map((item, index) =>
                                 index !== 0 ?
-                                    <img onClick={imageClickHandler(index)} src={item.data} alt=""/> : "")}
+                                    <img onClick={imageClickHandler(index)}
+                                         src={item.attributes.generated_conversions.list} alt=""/> : "")}
                         </div>
                     </div>
                     <div className="product-single__info">
                         <h1 className="product-single__info-title main-h1">
-                            Товар lorem
-                        </h1>
-                        <span className="product-single__code">Артикул: 241235132</span>
+                            {product.attributes.name}
+                        </h1><h1 className="product-single__info-price main-h2">
+                        {product.attributes.skus[currentSku].attributes.price.amount + ' ' + product.attributes.skus[currentSku].attributes.price.currency}
+                    </h1>
+                        <span
+                            className="product-single__code">Артикул: {product.attributes.parent_sku}</span>
                         <div className="product-single__character">
-                            <div className="product-single__character-item">
-                                Ткань: <b>70% шерсть</b>
-                            </div>
-                            <div className="product-single__character-item">
-                                Материал подкладки: <b>флис</b>
-                            </div>
-                            <div className="product-single__character-item">
-                                Размеры: <b>56, 57, 58, 59, 60, 61, 62</b>
-                            </div>
-
+                            {product.attributes.skus[currentSku].attributes.attributeOptions.map(attrs =>
+                                <div className="product-single__character-item">
+                                    {attrs.attributes.label}: <b>{attrs.attributes.value}</b>
+                                </div>
+                            )}
                         </div>
-                        {/*<MainButton onClick={addToCart(product)} text="В корзину"/>*/}
-                        <MainButton onClick={() => 1} text="В корзину"/>
+                        <MainButton onClick={addToCart(product)} text="В корзину"/>
                     </div>
                 </div>
             </div>
-            <ImageView display={imageView} setDisplay={setImageViewHandler} data={tempData}
+            <ImageView display={imageView} setDisplay={setImageViewHandler} data={product.attributes.media}
                        indexSelectedImage={selectedImage} setIndexSelectedImage={setSelectedImage}/>
         </section>
 
