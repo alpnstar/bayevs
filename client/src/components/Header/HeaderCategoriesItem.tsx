@@ -1,10 +1,11 @@
 import React, {Dispatch, FC, SetStateAction, useEffect} from "react";
-import {ICategoriesElem, ICategory} from "../../types/types";
+import {Category, ICategoriesElem, ICategory} from "../../types/types";
 import useCategoriesContext from "./useCategoriesContext";
 import {Link} from "react-router-dom";
+import {ICategoryData} from "./HeaderCategoriesList";
 
 interface ICategoriesItemProps {
-    category: ICategory,
+    category: ICategoryData,
     categoriesElems: ICategoriesElem[],
     setCategoriesElems: Dispatch<SetStateAction<ICategoriesElem[]>>
 }
@@ -37,13 +38,13 @@ const HeaderCategoriesItem: FC<ICategoriesItemProps> = ({category, categoriesEle
                         {category.subCategories.map((subCategory, index) => (
                             <div key={index} className="header__sub-categories-item">
                         <span className="header__sub-categories-item-title">
-                            {subCategory.title}
                         </span>
                                 <ul className="header__sub-categories-item-list">
-                                    {subCategory.items.map((subCategoryItems, index) => (
-                                        <li key={index}><Link onClick={() => clickHandler(false)} to={'/category'}><a
-                                            href="">{subCategoryItems.title}</a></Link></li>
-                                    ))}
+                                    {
+                                        <li key={index}><Link onClick={() => clickHandler(false)}
+                                                              to={'/category/' + subCategory.id+'/products'}><a
+                                            href="">{''}{subCategory.attributes.name}</a></Link></li>
+                                    }
                                 </ul>
 
                             </div>

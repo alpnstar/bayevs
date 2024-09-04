@@ -1,22 +1,32 @@
 import './categorySingle.scss';
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import Select from "../UI/Select/Select";
 import ProductsList from "../Products/ProductsList";
 import IMG from "../../../public/images/model.jpg";
 import PageHeader from "../UI/PageHeader/PageHeader";
+import {useParams} from "react-router";
+import {useLazyGetProductByIdQuery} from "../../store/query/productsApi";
+import {useLazyGetCategoryProductsQuery} from "../../store/query/categoriesApi";
 
 interface ICategorySingleProps {
 
 }
-
+const options = [
+    {value: 'option1', label: 'Option 1'},
+    {value: 'option2', label: 'Option 2'},
+    {value: 'option3', label: 'Option 3'},
+];
 export const CategorySingle: FC<ICategorySingleProps> = () => {
     const [selectedValue, setSelectedValue] = useState<string>('');
+    const params = useParams();
 
-    const options = [
-        {value: 'option1', label: 'Option 1'},
-        {value: 'option2', label: 'Option 2'},
-        {value: 'option3', label: 'Option 3'},
-    ];
+    const [trigger, {data:products={data:[]}, isSuccess, isLoading}] = useLazyGetCategoryProductsQuery();
+
+
+    console.log(products)
+    useEffect(() => {
+        params.id && trigger(params.id);
+    }, [params]);
     return (
         <section className={'category-products'}>
             <div className="category-products__wrapper container">
@@ -115,16 +125,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                         </ul>
                     </div>
                     <div className="category-products__products">
-                        <ProductsList products={[{
-                            img: IMG,
-                            title: "Панама LF-Label Tiger, хлопок, цвет чёрный 899901"
-                        }, {
-                            img: IMG,
-                            title: "Панама LF-Label Tiger, хлопок, цвет чёрный 899901"
-                        }, {
-                            img: IMG,
-                            title: "Панама LF-Label Tiger, хлопок, цвет чёрный 899901"
-                        },]}/>
+                        <ProductsList products={products.data}/>
                     </div>
                 </section>
             </div>

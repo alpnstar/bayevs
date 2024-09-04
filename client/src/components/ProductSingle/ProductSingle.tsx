@@ -10,9 +10,7 @@ import ImageView from "../UI/ImageView/ImageView";
 import addToCart from "../Products/useAddToCart";
 
 
-interface IProductSingleProps {
-    product: Product,
-}
+
 
 const ProductSingle: FC<IProductSingleProps> = () => {
     const params = useParams<{ id: string }>();

@@ -3,6 +3,7 @@ import {rootReducer} from "./rootReducer";
 import {productsApi} from "./query/productsApi";
 import {onChangeCart} from "./slices/cartSlice";
 import {bannersApi} from "./query/bannersApi";
+import {categoriesApi} from "./query/categoriesApi";
 
 
 const store = configureStore({
@@ -10,7 +11,7 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
         immutableCheck: false,
-    }).concat(bannersApi.middleware, productsApi.middleware, onChangeCart),
+    }).concat(categoriesApi.middleware,bannersApi.middleware, productsApi.middleware, onChangeCart),
 });
 
 

@@ -1,8 +1,8 @@
 import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
-import {ICategoriesElem, ICategory} from "../../types/types";
+import {Category, ICategoriesElem} from "../../types/types";
 
 type useCategoriesContextReturnType = [boolean, Dispatch<SetStateAction<boolean>>, React.RefObject<HTMLDivElement>, (toggler: boolean) => void];
-export default function useCategoriesContext(category: ICategory, categoriesElems: ICategoriesElem[]): useCategoriesContextReturnType {
+export default function useCategoriesContext(category: Category, categoriesElems: ICategoriesElem[]): useCategoriesContextReturnType {
     const [contextDisplay, setContextDisplay] = useState<boolean>(false);
     const contextRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +22,7 @@ export default function useCategoriesContext(category: ICategory, categoriesElem
         if (toggler) {
             if (contextDisplay) return setContextDisplay(false);
             // eslint-disable-next-line sonarjs/no-ignored-return
-            categoriesElems.filter(item => item.id !== category.id)
+            categoriesElems.filter(item => item !== category.id)
                 .map(item => item.setDisplay(false));
             setContextDisplay(true);
             return;

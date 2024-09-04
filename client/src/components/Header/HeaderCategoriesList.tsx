@@ -1,95 +1,49 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
+import {Category, ICategoriesElem} from "../../types/types";
+import {useGetCategoriesQuery} from "../../store/query/categoriesApi";
 import HeaderCategoriesItem from "./HeaderCategoriesItem";
-import {ICategoriesElem, ICategory} from "../../types/types";
+
+export interface ISubCategoryDataItem {
+    title: string;
+    url: string;
+}
+
+// Тип для подкатегории
+export interface ISubCategoryData {
+    title: string;
+    items: ISubCategoryDataItem[];
+}
+
+// Тип для категории
+export interface ICategoryData {
+    id: number;
+    title: string;
+    subCategories: Category[];
+}
 
 const HeaderCategoriesList: FC = () => {
 
     const [categoriesElems, setCategoriesElems] = useState<ICategoriesElem[]>([]);
-    const [categoriesData, setCategoriesData] = useState<ICategory[]>(
+    const {data:categories = {data: []}} = useGetCategoriesQuery();
+    const [categoriesData, setCategoriesData] = useState<ICategoryData[]>(
         [{
             id: 1,
             title: "Мужчинам",
             subCategories: [
-                {
-                    title: "Головные уборы",
-                    items: [{
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }, {
-                        title: "Панамы",
-                        url: "#"
-                    }]
-                }, {
-                    title: "Головные уборы",
-                    items: [{
-                        title: "Панамы",
-                        url: "#"
-                    }]
-                },
-                {
-                    title: "Аксессуары",
-                    items: [{
-                        title: "Очки",
-                        url: "#"
-                    }]
-                }
-            ]
-        }, {
-            id: 2,
-            title: "Женщинам",
-            subCategories: [
-                {
-                    title: "Головные уборы",
-                    items: [{
-                        title: "lorem",
-                        url: "#"
-                    }]
-                }
             ]
         }]
     );
+    useEffect(() => {
+       categories.data.length && setCategoriesData([
+           {
+               id: 1,
+               title: "Мужчинам",
+               subCategories: categories.data,
+           }
+
+       ]);
+    }, [categories]);
+    console.log(categoriesData);
     return (
         <>
             <ul className="main-style-list__list header__categories-list">

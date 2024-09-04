@@ -61,7 +61,6 @@
     gap: 10px;
 
     img {
-      object-fit: contain;
       cursor: zoom-in;
 
       &:hover {
@@ -71,8 +70,8 @@
 
     &-main {
       img {
-        width: 400px;
-        height: 572px;
+        max-width: 400px;
+        max-height: 572px;
       }
     }
 
