@@ -158,7 +158,7 @@ export interface ApiResponseExtended<T> extends ApiResponse<T> {
 
 
 export interface Breadcrumb {
-    id: string;
+    id?: string;
     type: string;
     attributes: BreadcrumbAttributes;
 }

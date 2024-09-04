@@ -15,7 +15,6 @@ export const About: FC<IAboutProps> = ({title, children}) => {
         <div className="about">
             <div className="about__wrapper container">
                 <PageHeader title={title} breadcrumbsItems={[{
-                    id: '1',
                     type: 'category',
                     attributes: {name: 'LF-LABEL', isSelected: false, description: '', path: ''}
                 }]}/>
