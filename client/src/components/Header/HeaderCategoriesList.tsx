@@ -24,26 +24,20 @@ export interface ICategoryData {
 const HeaderCategoriesList: FC = () => {
 
     const [categoriesElems, setCategoriesElems] = useState<ICategoriesElem[]>([]);
-    const {data:categories = {data: []}} = useGetCategoriesQuery();
+    const {data: categories = {data: []}} = useGetCategoriesQuery();
     const [categoriesData, setCategoriesData] = useState<ICategoryData[]>(
-        [{
-            id: 1,
-            title: "Мужчинам",
-            subCategories: [
-            ]
-        }]
+        []
     );
     useEffect(() => {
-       categories.data.length && setCategoriesData([
-           {
-               id: 1,
-               title: "Мужчинам",
-               subCategories: categories.data,
-           }
+        categories.data.length && setCategoriesData([
+            {
+                id: 1,
+                title: "Каталог",
+                subCategories: categories.data,
+            },
 
-       ]);
+        ]);
     }, [categories]);
-    console.log(categoriesData);
     return (
         <>
             <ul className="main-style-list__list header__categories-list">

@@ -1,6 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BASE_URL} from "../../utils/BASE_URL";
-import {ApiResponse, Category} from "../../types/types";
+import {ApiResponse, ApiResponseExtended, Category, Product} from "../../types/types";
+import {buildUrl, clearParams} from "../../utils/common";
 
 export const categoriesApi = createApi({
     reducerPath: 'categories',
@@ -9,8 +10,14 @@ export const categoriesApi = createApi({
         getCategories: builder.query<ApiResponse<Category[]>, void>({
             query: () => `/categories`,
         }),
-        getCategoryProducts: builder.query<ApiResponse<Category[]>, string>({
-            query: (id) => `/category/${id}/products`,
+        getCategoryProducts: builder.query<ApiResponseExtended<Product[]>, {
+            id: string,
+            params?: {
+                'filter[season]'?: string,
+                'pagination[per_page]'?: number,
+            }
+        }>({
+            query: ({id, params = {}}) => buildUrl(`/category/${id}/products`, clearParams(params)),
         }),
     }),
 });

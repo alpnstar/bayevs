@@ -8,6 +8,7 @@ import {useLazyGetProductByIdQuery} from "../../store/query/productsApi";
 import {MainButton} from "../UI/MainButton/MainButton";
 import ImageView from "../UI/ImageView/ImageView";
 import addToCart from "../Products/useAddToCart";
+import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
 
 
 
@@ -48,15 +49,7 @@ const ProductSingle: FC<IProductSingleProps> = () => {
         <section className="product-single">
             <div className="product-single__wrapper container">
                 <div className="product-single__breadcrumbs">
-                    <div className="product-single__breadcrumbs-item product-single__breadcrumbs-item--available">
-                        <a href="#">LF-LABEL</a>
-                    </div>
-                    <div className="product-single__breadcrumbs-item">
-                        <a href="#">LF-LABEL</a>
-                    </div>
-                    <div className="product-single__breadcrumbs-item">
-                        <a href="#">LF-LABEL</a>
-                    </div>
+                    {<Breadcrumbs items={data.breadcrumbs}/>}
                 </div>
                 <div className="product-single__main">
                     <div className="product-single__view">

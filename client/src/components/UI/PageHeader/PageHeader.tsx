@@ -1,10 +1,11 @@
 import React from 'react';
 import {Breadcrumbs} from '../Breadcrumbs/Breadcrumbs';
 import './pageHeader.scss';
+import {Breadcrumb} from "../../../types/types";
 
 interface IPageHeaderProps {
     title: string;
-    breadcrumbsItems: string[];
+    breadcrumbsItems: Breadcrumb[];
 }
 
 const PageHeader: React.FC<IPageHeaderProps> = ({title, breadcrumbsItems}) => {

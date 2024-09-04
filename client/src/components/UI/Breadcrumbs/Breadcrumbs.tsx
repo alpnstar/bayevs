@@ -1,17 +1,25 @@
 import React, {FC} from "react";
 import "./breadcrumbs.scss";
+import {Breadcrumb} from "../../../types/types";
+import {Link} from "react-router-dom";
 
 interface IBreadcrumbsProps {
-    items: string[];
+    items: Breadcrumb[];
 }
 
-export const Breadcrumbs: FC<IBreadcrumbsProps> = () => {
+export const Breadcrumbs: FC<IBreadcrumbsProps> = ({items}) => {
 
     return (
         <div className="breadcrumbs">
-            <div className="breadcrumbs__item breadcrumbs__item--available">
-                <a href="#">LF-LABEL</a>
-            </div>
+            {items.map(item => (
+                <div className={`breadcrumbs__item ${!item.attributes.isSelected ? 'breadcrumbs__item--available' : ''}`}>
+                    {!item.attributes.isSelected ?
+                        <Link to={'/category/' + item.id + '/products'}>{item.attributes.name}</Link>
+                        :<span>{item.attributes.name}</span>
+                        }
+
+                </div>
+            ))}
 
         </div>
 

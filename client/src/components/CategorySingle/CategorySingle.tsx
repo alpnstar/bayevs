@@ -2,130 +2,109 @@ import './categorySingle.scss';
 import React, {FC, useEffect, useState} from "react";
 import Select from "../UI/Select/Select";
 import ProductsList from "../Products/ProductsList";
-import IMG from "../../../public/images/model.jpg";
 import PageHeader from "../UI/PageHeader/PageHeader";
 import {useParams} from "react-router";
-import {useLazyGetProductByIdQuery} from "../../store/query/productsApi";
-import {useLazyGetCategoryProductsQuery} from "../../store/query/categoriesApi";
+import {useGetCategoriesQuery, useLazyGetCategoryProductsQuery} from "../../store/query/categoriesApi";
+import {NavLink} from "react-router-dom";
+import _ from "lodash";
 
 interface ICategorySingleProps {
 
 }
+const PER_PAGE = 20;
 const options = [
-    {value: 'option1', label: 'Option 1'},
-    {value: 'option2', label: 'Option 2'},
-    {value: 'option3', label: 'Option 3'},
+    {value: '', label: 'Выберите сезон'},
+    {value: 'зима', label: 'Зима'},
+    {value: 'весна', label: 'Весна'},
+    {value: 'лето', label: 'Лето'},
+    {value: 'осень', label: 'Осень'},
 ];
 export const CategorySingle: FC<ICategorySingleProps> = () => {
-    const [selectedValue, setSelectedValue] = useState<string>('');
+    const [selectedValue, setSelectedValue] = useState<string>(options[0].value);
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const params = useParams();
 
-    const [trigger, {data:products={data:[]}, isSuccess, isLoading}] = useLazyGetCategoryProductsQuery();
+    const [productsTrigger, {
+        data: products,
+        isSuccess: productsIsSuccess,
+        isFetching: productsIsLoading
+    }] = useLazyGetCategoryProductsQuery();
+    const {
+        data: categories = {data: []},
+        isSuccess: categoriesIsSuccess,
+        isLoading: categoriesIsLoading
+    } = useGetCategoriesQuery();
 
 
-    console.log(products)
     useEffect(() => {
-        params.id && trigger(params.id);
-    }, [params]);
+        params.id && productsTrigger({
+            id: params.id, params: {
+                'filter[season]': selectedValue,
+                'pagination[per_page]': PER_PAGE,
+            }
+        });
+    }, [params, selectedValue,currentPage]);
+
     return (
         <section className={'category-products'}>
             <div className="category-products__wrapper container">
-                <PageHeader title={'Головные уборы'} breadcrumbsItems={['LF-LABEL', 'Каталог', 'Головные уборы']}/>
+                <PageHeader title={products ? products.category.attributes.name : ''}
+                            breadcrumbsItems={products ? products.breadcrumbs : []}/>
                 <section className='category-products__body'>
                     <div className="category-products__categories">
                         <div className="category-products__season-select">
                             <Select options={options} value={selectedValue} onChange={setSelectedValue}
-                                    placeholder={'ЛЮБОЙ СЕЗОН'}/>
+                            />
 
                         </div>
                         <ul className="category-products__categories-list">
-                            <li className="category-products__category">
-                                <span
-                                    className="category-products__categories-item category-products__categories-item--top category-products__categories-item--active
---active
---active">
+                            {categories.data.map(category => (
+                                <li className="category-products__category">
+                                    <NavLink to={'/category/' + category.id + '/products'}
+                                             className={() => `category-products__categories-item  category-products__categories-item--top ${params.id === category.id ? 'category-products__categories-item--active' : ''}`}>
+
                                     <span
                                         className="category-products__category-title">
-                                           Мужчинам
+                                           {category.attributes.name}
                                        </span>
 
-                                </span>
-                                <ul className="category-products__subcategories">
-                                    <li className="category-products__categories-item">
+                                    </NavLink>
+                                    <ul className="category-products__subcategories">
+                                        {
+                                            category.attributes.subs.map(sub => (
+
+                                                <NavLink to={'/category/' + sub.id + '/products'}
+                                                         className={() => `category-products__categories-item ${params.id === sub.id ? 'category-products__categories-item--active' : ''}`}>
                                        <span className="category-products__category-title">
-                                            Головные уборы
+                                           {sub.attributes.name}
                                        </span>
-                                        <ul className="category-products__subcategories ">
-                                            <li className="category-products__categories-item">
-                                                <span className="category-products__category-title">
-                                            Шляпы
-                                       </span>
-                                            </li>
+                                                </NavLink>
 
-                                        </ul>
-                                    </li>
+                                            ))
+                                        }
+                                    </ul>
 
-                                </ul>
+                                </li>
 
-                            </li>
-                            <li className="category-products__category">
-                                <span
-                                    className="category-products__categories-item category-products__categories-item--top category-products__categories-item">
-                                    <span
-                                        className="category-products__category-title">
-                                           Мужчинам
-                                       </span>
+                            ))}
 
-                                </span>
-                                <ul className="category-products__subcategories">
-                                    <li className="category-products__categories-item">
-                                       <span className="category-products__category-title">
-                                            Головные уборы
-                                       </span>
-                                        <ul className="category-products__subcategories ">
-                                            <li className="category-products__categories-item">
-                                                <span className="category-products__category-title">
-                                            Шляпы
-                                       </span>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-
-                                </ul>
-
-                            </li>
-                            <li className="category-products__category">
-                                <span
-                                    className="category-products__categories-item category-products__categories-item--top category-products__categories-item">
-                                    <span
-                                        className="category-products__category-title">
-                                           Мужчинам
-                                       </span>
-
-                                </span>
-                                <ul className="category-products__subcategories">
-                                    <li className="category-products__categories-item">
-                                       <span className="category-products__category-title">
-                                            Головные уборы
-                                       </span>
-                                        <ul className="category-products__subcategories ">
-                                            <li className="category-products__categories-item">
-                                                <span className="category-products__category-title">
-                                            Шляпы
-                                       </span>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-
-                                </ul>
-
-                            </li>
                         </ul>
                     </div>
                     <div className="category-products__products">
-                        <ProductsList products={products.data}/>
+                        {!productsIsLoading && products && <ProductsList products={products.data}/>}
+                        <div className="category-products__pagination">
+                            <ul className="category-products__pagination-list">
+                                {products && products.data.length === 1 && _.times(products.meta.total, (i: number) => (
+                                    <li className={`category-products__pagination-item ${products.meta.current_page === i + 1 ? 'category-products__pagination-item--active' : ''}`}>
+                                        <a onClick={() => setCurrentPage(i + 1)}
+                                           className={`category-products__pagination-link `}>
+                                            {i + 1}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
                     </div>
                 </section>
             </div>

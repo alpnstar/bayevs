@@ -13,8 +13,9 @@ const Slider: FC = () => {
     const {data} = useGetBannersQuery();
     return (
         <article className="slider">
+
             <div className="slider__wrapper container">
-                <Carousel infinite={true} widthInput={100}>
+                {data &&                 <Carousel infinite={true} widthInput={100}>
                     {data && data.data.map(item => (
                         <Page>
                             <div >
@@ -25,6 +26,7 @@ const Slider: FC = () => {
 
 
                 </Carousel>
+                }
             </div>
         </article>
     );

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import {Dispatch, SetStateAction} from "react";
 
 // Общее
 export interface BaseAttributes {
@@ -48,16 +48,17 @@ export interface Media extends BaseAttributes {
 
 // Категория
 export interface CategoryAttributes {
-    uuid: string;
+    parent_uuid: string;
     name: string;
     description: string | null;
-    products?: Product[];
+    products: Product[];
+    category: Category,
+    subs: Category[];
 }
 
 export interface Category extends BaseAttributes {
     attributes: CategoryAttributes;
 }
-
 
 
 export interface ICategoriesElem {
@@ -147,4 +148,24 @@ export interface ApiResponse<T> {
     data: T;
     links: Links;
     meta: Meta;
+}
+
+// Тип ответа для продуктов категории и сингла
+export interface ApiResponseExtended<T> extends ApiResponse<T> {
+    breadcrumbs: Breadcrumb[];
+    category: Category;
+}
+
+
+export interface Breadcrumb {
+    id: string;
+    type: string;
+    attributes: BreadcrumbAttributes;
+}
+
+export interface BreadcrumbAttributes {
+    name: string;
+    isSelected: boolean;
+    description: string | null;
+    path: string;
 }

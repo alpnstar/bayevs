@@ -221,7 +221,7 @@
 
   &__sub-categories {
     display: flex;
-    flex-direction: column;
+    //flex-direction: column;
     letter-spacing: 1px;
 
     &-item {
@@ -233,7 +233,7 @@
       &-title {
         display: inline-block;
 
-        //height: 50px;
+        height: 50px;
         font-size: mrem(14);
       }
 
