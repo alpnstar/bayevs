@@ -16,8 +16,8 @@ const Slider: FC = () => {
 
             <div className="slider__wrapper container">
                 {data &&                 <Carousel infinite={true} widthInput={100}>
-                    {data && data.data.map(item => (
-                        <Page>
+                    {data && data.data.map((item,index) => (
+                        <Page key ={index}>
                             <div >
                                 <a href={item.attributes.link}><img className="carousel__item-img" src={item.attributes.media[0].attributes.generated_conversions.list} alt=""/></a>
                             </div>

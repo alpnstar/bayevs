@@ -12,9 +12,6 @@ interface IHeaderTop {
 }
 
 const HeaderTop: FC<IHeaderTop> = ({searchClickHandler,burgerClickHandler}) => {
-
-
-
     return (
         <>
             <div className="header__top">

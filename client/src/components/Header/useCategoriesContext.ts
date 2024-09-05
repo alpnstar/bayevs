@@ -20,7 +20,6 @@ export default function useCategoriesContext(category: ICategoryData, categories
     }, [])
 
     function clickHandler(toggler: boolean): void {
-        console.log(category)
         if (toggler) {
             if (contextDisplay) return setContextDisplay(false);
             // eslint-disable-next-line sonarjs/no-ignored-return

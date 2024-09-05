@@ -9,7 +9,7 @@ const HeaderUserActions: FC = () => {
                 {/*<li className="main-style-list__item "><a href="#">Регистрация</a></li>*/}
                 {/*<li className="main-style-list__item "><a href="#">Вход</a></li>*/}
                 <Link to={ROUTES.cart}>
-                    <li className="main-style-list__item "><a href="#">Корзина</a></li>
+                    <li className="main-style-list__item ">Корзина</li>
                 </Link>
             </ul>
         </div>
