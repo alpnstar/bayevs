@@ -7,7 +7,7 @@ const HeaderNavigation: FC = () => {
 
     return (
         <nav className="header__navigation">
-            <a href="/" className={`logo ${!displayLogo ? "--logo-hidden" : ""}`}>LF LABEL</a>
+            <a href="/" className={`logo ${!displayLogo ? "--logo-hidden" : ""}`}>BAYEVS</a>
             <ul className="main-style-list__list">
                 <NavLink className="main-style-list__item" to="/about-company">О компании</NavLink>
                 <NavLink className="main-style-list__item" to="/news">Новости</NavLink>

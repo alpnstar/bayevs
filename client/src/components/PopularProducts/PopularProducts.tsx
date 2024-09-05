@@ -12,7 +12,7 @@ const PopularProducts: FC = () => {
         <section className="popular-products">
             <div className="popular-products-wrapper container">
                 <h2 className="main-h2">
-                    Новинки головных уборов LF-LABEL
+                    Новинки головных уборов BAYEVS
                 </h2>
                 {data && <ProductsList products={data.data}/>}
             </div>

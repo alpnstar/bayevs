@@ -27,7 +27,7 @@ export const ToWholesalers: FC = () => {
             <p>Телефон/whtsp: +7 (920) 872-70-40
                 Телефон/whtsp: +7 (925) 888-94-83</p>
 
-            <p>E-mail: <a href="mailto:lf-label@mail.ru">lf-label@mail.ru</a></p>
+            <p>E-mail: <a href="mailto:bayevs@mail.ru">bayevs@mail.ru</a></p>
 
             <h2>Обмен и возврат товара</h2>
 
