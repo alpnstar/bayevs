@@ -1,24 +1,24 @@
 import React, {FC, useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {useLazyGetProductsBySearchQuery} from "../../store/query/productsApi";
 import ProductsList from "../Products/ProductsList";
 import PageHeader from "../UI/PageHeader/PageHeader";
 import './searchPage.scss';
 import {NavLink} from "react-router-dom";
 import {Pagination} from "../UI/Pagination/Pagination";
+import {useGetProductsQuery} from "../../store/query/productsApi";
 
 export const SearchPage: FC = () => {
     const params = useParams();
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [trigger, {data, isFetching, isSuccess, isError}] = useLazyGetProductsBySearchQuery();
     const [search, setSearch] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const {data, isFetching, isSuccess, isError} = useGetProductsQuery({
+        params: {
 
-    useEffect(() => {
-        if (params.search) {
-            trigger(params.search);
-            setSearch(params.search);
+            'filter[name]': params.search,
         }
-
+    });
+    useEffect(() => {
+        setSearch(params.search as string);
     }, [params.search]);
     return (
         <section className="search-page">

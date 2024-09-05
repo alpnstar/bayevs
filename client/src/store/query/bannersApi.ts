@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL} from "../../utils/BASE_URL";
+import {BASE_URL} from "../../utils/CONSTS";
 import {ApiResponse, Banner, Product} from "../../types/types";
 
 

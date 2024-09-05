@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL} from "../../utils/BASE_URL";
-import {ApiResponse, ApiResponseExtended, Category, Product} from "../../types/types";
+import {ApiResponse, ApiResponseExtended, Category, Product, itemsApiParams} from "../../types/types";
 import {buildUrl, clearParams} from "../../utils/common";
+import {BASE_URL, PRODUCTS_PER_PAGE} from "../../utils/CONSTS";
 
 export const categoriesApi = createApi({
     reducerPath: 'categories',
@@ -12,14 +12,14 @@ export const categoriesApi = createApi({
         }),
         getCategoryProducts: builder.query<ApiResponseExtended<Product[]>, {
             id: string,
-            params?: {
-                'filter[season]'?: string,
-                'pagination[per_page]'?: number,
-            }
+            params?: itemsApiParams,
         }>({
-            query: ({id, params = {}}) => buildUrl(`/category/${id}/products`, clearParams(params)),
+            query: ({id, params = {}}) => buildUrl(`/category/${id}/products`, clearParams({
+                'pagination[per_page]': PRODUCTS_PER_PAGE,
+                ...params,
+            })),
         }),
     }),
 });
 
-export const {useGetCategoriesQuery, useLazyGetCategoryProductsQuery} = categoriesApi;
+export const {useGetCategoriesQuery, useGetCategoryProductsQuery} = categoriesApi;

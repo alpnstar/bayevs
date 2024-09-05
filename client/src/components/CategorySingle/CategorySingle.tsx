@@ -4,7 +4,7 @@ import Select from "../UI/Select/Select";
 import ProductsList from "../Products/ProductsList";
 import PageHeader from "../UI/PageHeader/PageHeader";
 import {useParams} from "react-router";
-import {useGetCategoriesQuery, useLazyGetCategoryProductsQuery} from "../../store/query/categoriesApi";
+import {useGetCategoriesQuery, useGetCategoryProductsQuery} from "../../store/query/categoriesApi";
 import {NavLink} from "react-router-dom";
 import {Pagination} from "../UI/Pagination/Pagination";
 
@@ -12,7 +12,7 @@ interface ICategorySingleProps {
 
 }
 
-const PER_PAGE = 20;
+
 const options = [
     {value: '', label: 'Выберите сезон'},
     {value: 'зима', label: 'Зима'},
@@ -25,26 +25,23 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const params = useParams();
 
-    const [productsTrigger, {
+    const {
         data: products,
         isSuccess: productsIsSuccess,
-        isFetching: productsIsLoading
-    }] = useLazyGetCategoryProductsQuery();
+        isFetching: productsIsFetching,
+        refetch: productsTrigger,
+    } = useGetCategoryProductsQuery({
+        id: params.id as string, params: {
+            'filter[season]': selectedValue,
+            'page[number]': currentPage,
+        }
+    });
     const {
         data: categories = {data: []},
         isSuccess: categoriesIsSuccess,
-        isLoading: categoriesIsLoading
+        isFetching: categoriesIsFetching
     } = useGetCategoriesQuery();
 
-
-    useEffect(() => {
-        params.id && productsTrigger({
-            id: params.id, params: {
-                'filter[season]': selectedValue,
-                'pagination[per_page]': PER_PAGE,
-            }
-        });
-    }, [params, selectedValue, currentPage]);
     return (
         <section className={'category-products'}>
             <div className="category-products__wrapper container">
@@ -91,7 +88,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                         </ul>
                     </div>
                     <div className="category-products__products">
-                        {!productsIsLoading && products && (<>
+                        {!productsIsFetching && products && (<>
                             <ProductsList products={products.data}/>
                             <Pagination items={products.data} meta={products.meta} setPage={setCurrentPage}/>
                         </>)}

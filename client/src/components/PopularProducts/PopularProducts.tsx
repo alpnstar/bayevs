@@ -1,11 +1,11 @@
 import React, {FC} from "react";
 import IMG from "../../../public/images/model.jpg";
 import ProductsList from "../Products/ProductsList";
-import {useGetProductsQuery} from "../../store/query/productsApi";
+import {useGetNewProductsQuery} from "../../store/query/productsApi";
 
 
 const PopularProducts: FC = () => {
-    const {data, isLoading} = useGetProductsQuery();
+    const {data, isLoading} = useGetNewProductsQuery();
 
 
     return (data &&

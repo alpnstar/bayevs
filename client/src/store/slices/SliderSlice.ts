@@ -35,7 +35,7 @@ export const {actions: SliderActions, reducer: SliderReducer} = SliderSlice;
 // export const updateUser = createAsyncThunk(
 //     'user/updateUser',
 //     async (payload) => {
-//         const res = await axios.put(BASE_URL + '/users/' + payload.id, {...payload.data})
+//         const res = await axios.put(CONSTS + '/users/' + payload.id, {...payload.data})
 //         return res.data;
 //     }
 // );

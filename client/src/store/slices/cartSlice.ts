@@ -99,7 +99,7 @@ export const {actions: cartActions, reducer: cartReducer} = cartSlice;
 // export const updateUser = createAsyncThunk(
 //     'user/updateUser',
 //     async (payload) => {
-//         const res = await axios.put(BASE_URL + '/users/' + payload.id, {...payload.data})
+//         const res = await axios.put(CONSTS + '/users/' + payload.id, {...payload.data})
 //         return res.data;
 //     }
 // );

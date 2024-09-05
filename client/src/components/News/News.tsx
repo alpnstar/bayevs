@@ -5,8 +5,13 @@ import {Pagination} from "../UI/Pagination/Pagination";
 
 
 export const News: FC = () => {
-    const {data, isFetching, isSuccess, isError} = useGetNewsQuery();
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const {data, isFetching, isSuccess, isError} = useGetNewsQuery({
+        params: {
+            'page[number]': currentPage,
+
+        }
+    });
     return (
         <div className="news">
             <div className="news__wrapper container">

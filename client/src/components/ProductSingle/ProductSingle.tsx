@@ -4,18 +4,16 @@ import {useToggler} from "../../hooks/useToggler";
 import {useAppDispatch} from "../../store/hooks";
 import {Product} from "../../types/types";
 import {useParams} from "react-router";
-import {useLazyGetProductByIdQuery} from "../../store/query/productsApi";
+import {useGetProductByIdQuery} from "../../store/query/productsApi";
 import {MainButton} from "../UI/MainButton/MainButton";
 import ImageView from "../UI/ImageView/ImageView";
 import addToCart from "../Products/useAddToCart";
 import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
 
 
-
-
 const ProductSingle: FC = () => {
     const params = useParams<{ id: string }>();
-    const [trigger, {data, isSuccess, isLoading}] = useLazyGetProductByIdQuery();
+    const {data, isSuccess, isLoading} = useGetProductByIdQuery(params.id as string);
     const [product, setProduct] = useState<Product>();
     const [currentSku, setCurrentSku] = useState(0);
     const [imageView, setImageViewHandler] = useToggler(false);
@@ -37,12 +35,7 @@ const ProductSingle: FC = () => {
     }
 
     useEffect(() => {
-        if (params.id) {
-            trigger(params.id);
-        }
-    }, [params]);
-    useEffect(() => {
-        data && setProduct(data.data);
+        if (data) setProduct(data.data);
     }, [data]);
     return (
         product && isSuccess &&
@@ -68,7 +61,7 @@ const ProductSingle: FC = () => {
                         <h1 className="product-single__info-title main-h1">
                             {product.attributes.name}
                         </h1><h1 className="product-single__info-price main-h2">
-                        {product.attributes.skus[currentSku].attributes.price.formatted }
+                        {product.attributes.skus[currentSku].attributes.price.formatted}
                     </h1>
                         <span
                             className="product-single__code">Артикул: {product.attributes.parent_sku}</span>

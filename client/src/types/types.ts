@@ -190,3 +190,11 @@ export interface News {
     type: string;
     attributes: NewsAttributes;
 }
+
+export interface itemsApiParams {
+    'filter[name]'?: string,
+    'filter[season]'?: string,
+    'pagination[per_page]'?: number,
+    'page[number]'?: number,
+
+}

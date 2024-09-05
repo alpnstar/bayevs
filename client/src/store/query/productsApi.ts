@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL} from "../../utils/BASE_URL";
-import {ApiResponse, ApiResponseExtended, Product} from "../../types/types";
+import {BASE_URL, PRODUCTS_PER_PAGE} from "../../utils/CONSTS";
+import {ApiResponse, ApiResponseExtended, Product, itemsApiParams} from "../../types/types";
 import {buildUrl, clearParams} from "../../utils/common";
 
 export const productsApi = createApi({
@@ -10,15 +10,24 @@ export const productsApi = createApi({
         getProductById: builder.query<ApiResponseExtended<Product>, string>({
             query: (id) => `/products/${id}`,  // используем id в качестве строки
         }),
-        getProductsBySearch: builder.query<ApiResponseExtended<Product[]>, string>({
-            query: (search = '') => buildUrl(`/products`, clearParams({
-                'filter[name]': search,
+        getProducts: builder.query<ApiResponseExtended<Product[]>, {
+            params: itemsApiParams,
+        }>({
+            query: (payload) => buildUrl(`/products`, clearParams({
+                'pagination[per_page]': PRODUCTS_PER_PAGE,
+                ...payload.params,
             })),
         }),
-        getProducts: builder.query<ApiResponse<Product[]>, void>({
-            query: () => `/products`,
+        getNewProducts: builder.query<ApiResponse<Product[]>, void>({
+            query: () => buildUrl(`/products`, {
+                'new': 1,
+            }),
         }),
     }),
 });
 
-export const {useGetProductsQuery, useLazyGetProductByIdQuery, useLazyGetProductsBySearchQuery} = productsApi;
+export const {
+    useGetProductsQuery,
+    useGetNewProductsQuery,
+    useGetProductByIdQuery,
+} = productsApi;
