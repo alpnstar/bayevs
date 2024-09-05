@@ -10,6 +10,8 @@ import {ToCustomers} from "../ToCustomers/ToCustomers";
 import {ToWholesalers} from "../ToWholesalers/ToWholesalers";
 import {AboutCompany} from "../AboutCompany/AboutCompany";
 import {About} from "../About/About";
+import {News} from "../News/News";
+import NewsCard from "../News/NewsCard";
 
 const RoutesComponent: FC = () => {
     return (
@@ -21,8 +23,8 @@ const RoutesComponent: FC = () => {
             <Route path={ROUTES.toCustomers} element={<ToCustomers/>}/>
             <Route path={ROUTES.toWholesalers} element={<ToWholesalers/>}/>
             <Route path={ROUTES.aboutCompany} element={<AboutCompany/>}/>
-            <Route path={ROUTES.news} element={<About title={'Новости'} children={<></>}/>}/>
-            <Route path={ROUTES.articles} element={<About title={'Статьи'} children={<></>}/>}/>
+            <Route path={ROUTES.news} element={<About title={'Новости'} children={<News/>}/>}/>
+            <Route path={ROUTES.newsById} element={<NewsCard/>}/>
             <Route path={ROUTES.lookbook} element={<About title={'Lookbook'} children={<></>}/>}/>
             <Route path={ROUTES.cart} element={<Cart/>}/>
         </Routes>

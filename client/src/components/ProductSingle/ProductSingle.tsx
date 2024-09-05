@@ -13,10 +13,10 @@ import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
 
 
 
-const ProductSingle: FC<IProductSingleProps> = () => {
+const ProductSingle: FC = () => {
     const params = useParams<{ id: string }>();
     const [trigger, {data, isSuccess, isLoading}] = useLazyGetProductByIdQuery();
-    const [product, setProduct] = useState<Product>(data);
+    const [product, setProduct] = useState<Product>();
     const [currentSku, setCurrentSku] = useState(0);
     const [imageView, setImageViewHandler] = useToggler(false);
     const [selectedImage, setSelectedImage] = useState<number>(0);
@@ -68,7 +68,7 @@ const ProductSingle: FC<IProductSingleProps> = () => {
                         <h1 className="product-single__info-title main-h1">
                             {product.attributes.name}
                         </h1><h1 className="product-single__info-price main-h2">
-                        {product.attributes.skus[currentSku].attributes.price.amount + ' ' + product.attributes.skus[currentSku].attributes.price.currency}
+                        {product.attributes.skus[currentSku].attributes.price.formatted }
                     </h1>
                         <span
                             className="product-single__code">Артикул: {product.attributes.parent_sku}</span>

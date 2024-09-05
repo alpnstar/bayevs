@@ -39,10 +39,10 @@ export const CartItem: FC<ICartItemProps> = ({item}) => {
                     <button className="cart__item-quantity-button" onClick={increment(1)}>+</button>
                 </div>
 
-                <span className="cart__item-price">{item.attributes.skus[0].attributes.price.amount} {item.attributes.skus[0].attributes.price.currency}</span>
+                <span className="cart__item-price">{item.attributes.skus[0].attributes.price.formatted}</span>
             </div>
         </div>
-        <span className="cart__item-total-price">{item.attributes.skus[0].attributes.price.amount * item.quantity} {item.attributes.skus[0].attributes.price.currency}</span>
+        <span className="cart__item-total-price">{+item.attributes.skus[0].attributes.price.amount_value * item.quantity} {item.attributes.skus[0].attributes.price.icon}</span>
         <button className="cart__item-remove-button" onClick={removeItemAll()}>×</button>
     </div>)
 

@@ -1,0 +1,156 @@
+.news {
+  h2 {
+    margin-bottom: 40px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 66px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 16px;
+    width: 100%;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-flow: column nowrap;
+    width: 100%;
+    max-width: 280px;
+    height: 424px;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 15%);
+
+    &-content-wrapper {
+      padding: 20px 16px 40px;
+    }
+
+  }
+
+  &__item-img-wrapper {
+    width: 100%;
+    height: 100%;
+    max-height: 255px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px 16px 0 0;
+    }
+
+  }
+
+
+  &__item-description {
+    max-width: 357px;
+  }
+
+  &__item-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &__item-text {
+    display: inline-block;
+    overflow: hidden;
+    max-height: 40px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+
+  }
+
+  &__item-date {
+    position: absolute;
+    top: 393px;
+    left: 18px;
+    color: #A3A3A3;
+    font-weight: 600;
+    font-size: 12px;
+  }
+}
+
+.news-card {
+  &__wrapper {
+    margin-top: 50px;
+  }
+
+  &__content {
+  }
+
+  h1 {
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.5; /* 24px */
+  }
+
+
+  img {
+    float: left;
+    object-fit: contain;
+    max-width: 289px;
+    height: 100%;
+    max-height: 208px;
+    margin: 0 20px 0 0;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (width <= 772px) {
+  .news {
+    &__item {
+      max-width: 366px;
+    }
+  }
+
+}
+
+@media screen and (width <= 430px) {
+  .news {
+    justify-content: center;
+
+    &__list {
+      justify-content: center;
+    }
+
+    &__item {
+      max-width: 366px;
+    }
+  }
+
+  .news-card {
+    p {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__img-wrapper {
+      display: block;
+      width: 100%;
+      text-align: center;
+
+      img {
+        float: none;
+        margin: 0;
+
+      }
+    }
+
+  }
+}

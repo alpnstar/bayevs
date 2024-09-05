@@ -7,7 +7,7 @@ const initialState: ICart = {
     items: [],
     totalQuantity: 0,
     totalSum: 0,
-    currency: "USD",
+    currency: "$",
 };
 type changeCartType = ReturnType<typeof cartSlice.actions.addItem>;
 export const onChangeCart: Middleware<object, RootState> = store => next => (action) => {
@@ -35,7 +35,7 @@ const cartSlice = createSlice({
                 return;
             }
             state.items.push({...action.payload});
-            state.currency = action.payload.attributes.skus[0].attributes.price.currency;
+            state.currency = action.payload.attributes.skus[0].attributes.price.icon;
             return state;
         },
 
@@ -76,7 +76,7 @@ const cartSlice = createSlice({
                 calculateQuantity();
 
                 function calculateSum(): void {
-                    state.totalSum = state.items.reduce((acc, item) => acc += item.attributes.skus[0].attributes.price.amount * item.quantity, 0)
+                    state.totalSum = state.items.reduce((acc, item) => acc += +item.attributes.skus[0].attributes.price.amount_value * item.quantity, 0)
                 }
 
                 function calculateQuantity(): void {

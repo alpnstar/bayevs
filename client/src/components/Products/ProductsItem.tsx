@@ -18,7 +18,7 @@ const ProductsItem: FC<IProductsItemProps> = ({product}) => {
                     Добавить в корзину
                 </button>
                 <span className="products__item-title">{product.attributes.name}</span>
-                {/*<span className="products__item-price">{product.attributes.} ₽</span>*/}
+                <span className="products__item-price">{product.attributes.skus[0].attributes.price.formatted}</span>
             </li>
         </Link>
     );

@@ -10,6 +10,7 @@ export const ROUTES = {
     registration: '/registration',
     lookbook: '/lookbook',
     news: '/news',
+    newsById: '/news/:id',
     articles: '/articles',
     toCustomers: '/to-customers',
     toWholesalers: '/wholesalers',

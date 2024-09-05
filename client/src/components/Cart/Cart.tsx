@@ -21,8 +21,8 @@ export const Cart: FC = () => {
                     </div>
 
                     <div className="cart__actions">
-                        <MainButton className="cart__actions-button" onClick={() => 1}
-                                    text="Перейти к оформлению"/>
+                        {/*<MainButton className="cart__actions-button" onClick={() => 1}*/}
+                        {/*            text="Перейти к оформлению"/>*/}
 
                     </div>
                 </div>

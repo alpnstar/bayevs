@@ -388,6 +388,9 @@
     }
 
     &__categories {
+      &-list {
+        width: 100%;
+      }
       &-item {
         display: flex;
         justify-content: center;

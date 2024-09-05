@@ -89,6 +89,8 @@ export interface AttributeOption extends BaseAttributes {
 export interface SkuAttributes {
     code: string;
     price: {
+        amount_value: string;
+        icon: string;
         amount: number;
         currency: string;
         formatted: string;
@@ -168,4 +170,23 @@ export interface BreadcrumbAttributes {
     isSelected: boolean;
     description: string | null;
     path: string;
+}
+
+
+// Типы для новостей
+
+export interface NewsAttributes {
+    title: string;
+    content: string;
+    is_visible: boolean;
+    slug: string;
+    created_at: string;
+    updated_at: string;
+    media: Media[];
+}
+
+export interface News {
+    id: string;
+    type: string;
+    attributes: NewsAttributes;
 }
