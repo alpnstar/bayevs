@@ -6,11 +6,12 @@ import PageHeader from "../UI/PageHeader/PageHeader";
 import {useParams} from "react-router";
 import {useGetCategoriesQuery, useLazyGetCategoryProductsQuery} from "../../store/query/categoriesApi";
 import {NavLink} from "react-router-dom";
-import _ from "lodash";
+import {Pagination} from "../UI/Pagination/Pagination";
 
 interface ICategorySingleProps {
 
 }
+
 const PER_PAGE = 20;
 const options = [
     {value: '', label: 'Выберите сезон'},
@@ -43,8 +44,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                 'pagination[per_page]': PER_PAGE,
             }
         });
-    }, [params, selectedValue,currentPage]);
-
+    }, [params, selectedValue, currentPage]);
     return (
         <section className={'category-products'}>
             <div className="category-products__wrapper container">
@@ -91,19 +91,10 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                         </ul>
                     </div>
                     <div className="category-products__products">
-                        {!productsIsLoading && products && <ProductsList products={products.data}/>}
-                        <div className="category-products__pagination">
-                            <ul className="category-products__pagination-list">
-                                {products && products.data.length === 1 && _.times(products.meta.total, (i: number) => (
-                                    <li className={`category-products__pagination-item ${products.meta.current_page === i + 1 ? 'category-products__pagination-item--active' : ''}`}>
-                                        <a onClick={() => setCurrentPage(i + 1)}
-                                           className={`category-products__pagination-link `}>
-                                            {i + 1}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {!productsIsLoading && products && (<>
+                            <ProductsList products={products.data}/>
+                            <Pagination items={products.data} meta={products.meta} setPage={setCurrentPage}/>
+                        </>)}
 
                     </div>
                 </section>

@@ -20,17 +20,13 @@
   }
 
   &__submit {
+    content: 'dada';
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 100%;
-    width: 56px;
-    height: 56px;
-    background-color: #fff;
-    background-image: url("../../../public/images/search-big.png");
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 30px;
     cursor: pointer;
-    transform: translateX(-100%);
+    transform: translate(-135%, -50%);
   }
 
   &__button {
@@ -47,6 +43,7 @@
     }
   }
 }
+
 
 @media screen and (width <= 430px) {
   .search__input::placeholder {

@@ -94,45 +94,7 @@
   &__products {
   }
 
-  &__pagination {
-    // styles for pagination container
-    margin-top: 40px;
-  }
 
-  &__pagination-list {
-    // styles for pagination list
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    max-width: 400px;
-  }
-
-  &__pagination-item {
-    display: block;
-    width: 45px;
-    height: 45px;
-
-    // styles for pagination item
-    background: #f1f1f1;
-    color: #000;
-    line-height: 46px;
-    text-align: center;
-    text-decoration: none;
-
-    &--active {
-      background: #000;
-      color: #fff;
-    }
-
-
-  }
-
-  &__pagination-link {
-    // styles for pagination link
-
-
-  }
 }
 
 @media screen and (width <= 430px) {
@@ -150,11 +112,6 @@
       flex-direction: column;
     }
 
-    &__pagination {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
   }
 
 }

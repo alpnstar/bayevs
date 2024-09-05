@@ -28,10 +28,6 @@ export const About: FC<IAboutProps> = ({title, children}) => {
                                     компании</NavLink>
                             </li>
                             <li className="about__side-item">
-                                <NavLink to={ROUTES.lookbook}
-                                         className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Lookbook</NavLink>
-                            </li>
-                            <li className="about__side-item">
                                 <NavLink to={ROUTES.toCustomers}
                                          className={({isActive}) => isActive ? "about__side-item-link--active" : "about__side-item-link"}>Заказчикам</NavLink>
                             </li>

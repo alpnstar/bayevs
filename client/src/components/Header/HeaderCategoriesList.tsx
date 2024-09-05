@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import {Category, ICategoriesElem} from "../../types/types";
 import {useGetCategoriesQuery} from "../../store/query/categoriesApi";
 import HeaderCategoriesItem from "./HeaderCategoriesItem";
+import {NavLink} from "react-router-dom";
 
 export interface ISubCategoryDataItem {
     title: string;
@@ -47,12 +48,7 @@ const HeaderCategoriesList: FC = () => {
 
                 <li className="main-style-list__item header__categories-item">
                     <div className="header__categories-item-title-wrapper">
-                        <div className="header__categories-item-title"><a href="#">Lookbook</a></div>
-                    </div>
-                </li>
-                <li className="main-style-list__item header__categories-item">
-                    <div className="header__categories-item-title-wrapper">
-                        <div className="header__categories-item-title"><a href="#">Заказчикам</a></div>
+                        <div className="header__categories-item-title"><NavLink to={'/to-customers'}>Заказчикам</NavLink></div>
                     </div>
                 </li>
             </ul>

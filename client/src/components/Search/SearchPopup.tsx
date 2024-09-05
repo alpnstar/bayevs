@@ -11,7 +11,7 @@ interface ISearchPopup {
 const SearchPopup: FC<ISearchPopup> = ({visible, setSearchVisibleHandler}) => {
     return (
         <Popup visible={visible} setVisibleHandler={setSearchVisibleHandler}>
-            <Search/>
+            <Search setVisibleHandler={setSearchVisibleHandler}/>
         </Popup>
     );
 };

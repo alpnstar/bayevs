@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import {useAppDispatch} from "./store/hooks";
 import {cartActions} from "./store/slices/cartSlice";
 
+
 const App: FC = () => {
     const dispatch = useAppDispatch();
     useEffect(() => {

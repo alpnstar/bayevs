@@ -8,13 +8,13 @@ const PopularProducts: FC = () => {
     const {data, isLoading} = useGetProductsQuery();
 
 
-    return (
+    return (data &&
         <section className="popular-products">
             <div className="popular-products-wrapper container">
                 <h2 className="main-h2">
                     Новинки головных уборов BAYEVS
                 </h2>
-                {data && <ProductsList products={data.data}/>}
+             <ProductsList products={data.data}/>
             </div>
         </section>
     );

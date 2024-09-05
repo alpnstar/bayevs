@@ -8,10 +8,9 @@ export const ROUTES = {
     contacts: '/contacts',
     login: '/login',
     registration: '/registration',
-    lookbook: '/lookbook',
     news: '/news',
     newsById: '/news/:id',
-    articles: '/articles',
     toCustomers: '/to-customers',
     toWholesalers: '/wholesalers',
+    search: '/search/:search',
 };

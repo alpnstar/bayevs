@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.scss";
+import {NavLink} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -9,14 +10,11 @@ const Footer = () => {
                     <nav className="footer__links">
                         <ul className="footer__links-list">
                             <li className="footer__links-item"><a href="#">BAYEVS</a></li>
-                            <li className="footer__links-item"><a href="#">О компании</a></li>
-                            <li className="footer__links-item"><a href="#">Каталог</a></li>
-                            <li className="footer__links-item"><a href="#">Lookbook</a></li>
-                            <li className="footer__links-item"><a href="#">Заказчикам</a></li>
-                            <li className="footer__links-item"><a href="#">Новости</a></li>
-                            <li className="footer__links-item"><a href="#">Статьи</a></li>
-                            <li className="footer__links-item"><a href="#">Оптовикам</a></li>
-                            <li className="footer__links-item"><a href="#">Контакты</a></li>
+                            <li className="footer__links-item"><NavLink to={"/about-company"}>О компании</NavLink></li>
+                            <li className="footer__links-item"><NavLink to={"/customers"}>Заказчикам</NavLink></li>
+                            <li className="footer__links-item"><NavLink to={"/news"}>Новости</NavLink></li>
+                            <li className="footer__links-item"><NavLink to={"/wholesalers"}>Оптовикам</NavLink></li>
+                            <li className="footer__links-item"><NavLink to={"/contacts"}>Контакты</NavLink></li>
                         </ul>
                     </nav>
                 </div>

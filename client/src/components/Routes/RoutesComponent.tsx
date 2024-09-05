@@ -12,6 +12,7 @@ import {AboutCompany} from "../AboutCompany/AboutCompany";
 import {About} from "../About/About";
 import {News} from "../News/News";
 import NewsCard from "../News/NewsCard";
+import {SearchPage} from "../Search/SearchPage";
 
 const RoutesComponent: FC = () => {
     return (
@@ -25,8 +26,8 @@ const RoutesComponent: FC = () => {
             <Route path={ROUTES.aboutCompany} element={<AboutCompany/>}/>
             <Route path={ROUTES.news} element={<About title={'Новости'} children={<News/>}/>}/>
             <Route path={ROUTES.newsById} element={<NewsCard/>}/>
-            <Route path={ROUTES.lookbook} element={<About title={'Lookbook'} children={<></>}/>}/>
             <Route path={ROUTES.cart} element={<Cart/>}/>
+            <Route path={ROUTES.search} element={<SearchPage/>}/>
         </Routes>
     );
 };
