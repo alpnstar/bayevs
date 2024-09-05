@@ -20,7 +20,6 @@ export const SearchPage: FC = () => {
         }
 
     }, [params.search]);
-    console.log(isSuccess,data)
     return (
         <section className="search-page">
             <div className="search-page__wrapper container">
@@ -31,7 +30,7 @@ export const SearchPage: FC = () => {
                 <form className="search-page__form">
                     <input className="search-page__input" type="text" value={search}
                            onChange={(e) => setSearch(e.target.value)} maxLength={100}/>
-                    <NavLink to={'/search/' + search}>
+                    <NavLink to={search.replace(/\s+/g, '') ? '/search/' + search : ''}>
                         <input type="submit" value="Найти" className="search-page__submit"/>
                     </NavLink>
                 </form>

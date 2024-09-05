@@ -26,30 +26,7 @@
       letter-spacing: 1px;
     }
 
-    &:hover {
-      border: 1px solid #f1f1f1;
-      cursor: pointer;
 
-      * {
-        color: #888;
-
-      }
-
-      .products__item {
-
-        &-title {
-          transition: color 0.1s linear;
-          color: #888;
-
-        }
-
-        &-fast-view {
-          opacity: 0.9;
-          cursor: pointer;
-        }
-
-      }
-    }
 
     &-img {
       width: 100%;
@@ -83,14 +60,39 @@
     }
 
     &-title {
-      display: inline-block;
+      display: block;
       margin: 20px 10px;
       font-size: 12px;
       line-height: 16px;
       letter-spacing: 1px;
       text-transform: uppercase;
+
+    }
+    &:hover {
+      border: 1px solid #f1f1f1;
+      cursor: pointer;
+
+      * {
+        color: #888;
+
+      }
+
+      .products__item {
+        &-title {
+          color: #888;
+          transition: color 0.1s linear;
+
+        }
+
+        &-fast-view {
+          opacity: 0.9;
+          cursor: pointer;
+        }
+
+      }
     }
   }
+
 }
 
 @media screen and (width <= 430px) {
