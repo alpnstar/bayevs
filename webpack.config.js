@@ -9,7 +9,6 @@ const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'source-map' : undefined;
 
-
 module.exports = {
     mode,
     devtool,
@@ -18,6 +17,9 @@ module.exports = {
     entry: ['@babel/polyfill', path.resolve(__dirname, './client/src/Index.tsx')],
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.jsx'],
+        alias: {
+            '@scss': path.resolve(__dirname, 'src/scss/')
+        },
     },
     output: {
         path: path.resolve(__dirname, './bundle'),
@@ -42,6 +44,7 @@ module.exports = {
         }),
         devMode ? new ReactRefreshWebpackPlugin() : null,
     ],
+
     module: {
         rules: [
             {

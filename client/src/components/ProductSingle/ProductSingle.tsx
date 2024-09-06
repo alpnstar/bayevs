@@ -47,7 +47,7 @@ const ProductSingle: FC = () => {
                 <div className="product-single__main">
                     <div className="product-single__view">
                         <div onClick={imageClickHandler(0)} className="product-single__view-main">
-                            <img src={product.attributes.media[selectedImage].attributes.generated_conversions.list}
+                            <img src={product.attributes.media[0].attributes.generated_conversions.list}
                                  alt=""/>
                         </div>
                         <div className="product-single__view-other">

@@ -1,45 +1,67 @@
 import React, {FC, SetStateAction} from 'react';
 import Popup from "../Popup/Popup";
-import CarouselArrows from "../CarouselArrows/CarouselArrows";
 import {togglerHandlerType} from "../../../hooks/useToggler";
 import './imageView.scss';
-import {Media, MediaAttributes} from "../../../types/types";
+import {Media} from "../../../types/types";
+import {Slide} from "../Slideshow";
+import '../Slideshow/css/styles.scss';
+import '../../UI/CarouselArrows/carouselArrows.scss'
 
 interface IImageView {
     data: Media[],
     display: boolean,
     setDisplay: togglerHandlerType,
     indexSelectedImage: number,
-    setIndexSelectedImage: React.Dispatch<SetStateAction<number>>
 }
 
-export const ImageView: FC<IImageView> = ({data, indexSelectedImage, setIndexSelectedImage, display, setDisplay}) => {
+const properties = {
+
+    prevArrow: <svg
+        className="carousel-arrow carousel-arrow__left"
+        width="25px"
+        height="50px"
+        viewBox="0 0 25 50"
+        xmlns="http://www.w3.org/2000/svg"
+        data-svg="carousel__slidenav-previous-large"
+    >
+        <polyline strokeWidth="4" points="22,1.5 22,48.5" fill="none" stroke="#dddddd"/>
+        <polyline strokeWidth="4" points="22,1.5 2,25" fill="none" stroke="#dddddd" strokeLinecap="round"
+                  strokeLinejoin="round"/>
+        <polyline strokeWidth="4" points="2,25 22,48.5" fill="none" stroke="#dddddd" strokeLinecap="round"
+                  strokeLinejoin="round"/>
+    </svg>,
+    nextArrow: <svg
+        className="carousel-arrow carousel-arrow__right"
+        width="25px"
+        height="50px"
+        viewBox="0 0 25 50"
+        xmlns="http://www.w3.org/2000/svg"
+        data-svg="carousel__slidenav-next-large"
+    >
+        <polyline strokeWidth="4" points="3,1.5 3,48.5" fill="none" stroke="#dddddd"/>
+        <polyline strokeWidth="4" points="3,1.5 23,25" fill="none" stroke="#dddddd" strokeLinecap="round"
+                  strokeLinejoin="round"/>
+        <polyline strokeWidth="4" points="23,25 3,48.5" fill="none" stroke="#dddddd" strokeLinecap="round"
+                  strokeLinejoin="round"/>
+    </svg>
+}
+
+export const ImageView: FC<IImageView> = ({data, indexSelectedImage, display, setDisplay}) => {
     return (
         <Popup visible={display} setVisibleHandler={setDisplay}>
-            <CarouselArrows position={{
-                leftArrow: {
-                    left: '1%',
-                    top: '50%',
-                },
-                rightArrow: {
-                    left: '99%',
-                    top: '50%',
-                }
-            }} leftAction={() => {
-                if (indexSelectedImage !== 0) setIndexSelectedImage(indexSelectedImage - 1);
+            <Slide {...properties} defaultIndex={indexSelectedImage} autoplay={false} transitionDuration={350}
+                   containerSize={{maxWidth: '500px', width: '100%', height: 'auto'}}>
 
-            }} rightAction={() => {
-                if (indexSelectedImage !== data.length - 1) setIndexSelectedImage(indexSelectedImage + 1);
-            }}>
-                <div className="image-view">
-                    <div className="image-view__item">
-                        <img src={data[indexSelectedImage].attributes.generated_conversions.list} alt=""/>
+                {data.map((item, index) => (
+                    <div key={index} className="each-slide-effect">
+                        <div className="slider-item">
+                            <img src={item.attributes.generated_conversions.list} alt=""/>
+                        </div>
                     </div>
-                    <div className="image-view__counter">
-                        {indexSelectedImage + 1 + ' из ' + data.length}
-                    </div>
-                </div>
-            </CarouselArrows>
+                ))}
+
+
+            </Slide>
         </Popup>
     );
 };

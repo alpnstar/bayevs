@@ -1,6 +1,6 @@
 .carousel-arrow {
   z-index: 1;
-  width: 2.5%;
+  width: 30px;
   cursor: pointer;
   fill: none;
   stroke: #9d9d9d;
@@ -15,11 +15,11 @@
 
   &__left {
     position: absolute;
-    transform: translate(0, -50%);
+    left: 2% !important;
   }
 
   &__right {
     position: absolute;
-    transform: translate(-100%, -50%);
+    right: 2% !important;
   }
 }

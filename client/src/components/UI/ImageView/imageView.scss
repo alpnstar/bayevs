@@ -10,18 +10,34 @@
     width: 100%;
 
     img {
-      width: 100%;
       object-fit: contain;
+      width: 100%;
     }
   }
 
   &__counter {
+    position: relative;
+    left: 100%;
     display: inline-block;
     color: #CCC;
     font-size: 12px;
     line-height: 18px;
-    position: relative;
-    left: 100%;
     transform: translateX(-100%);
+  }
+}
+
+.each-slide-effect {
+
+}
+
+.slider-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    object-fit: contain;
+    width: 500px;
   }
 }
