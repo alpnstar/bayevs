@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import "./productSingle.scss";
 import {useToggler} from "../../hooks/useToggler";
-import {useAppDispatch} from "../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {Product} from "../../types/types";
 import {useParams} from "react-router";
 import {useGetProductByIdQuery} from "../../store/query/productsApi";
@@ -17,6 +17,7 @@ import {NotFound} from "../UI/NotFound/NotFound";
 
 const ProductSingle: FC = () => {
     const params = useParams<{ id: string }>();
+    const profile = useAppSelector(state => state.userReducer.userProfile);
     const {data, refetch,  isSuccess, isError, isFetching} = useGetProductByIdQuery(params.id as string);
     const [product, setProduct] = useState<Product>();
     const [currentSku, setCurrentSku] = useState(0);
@@ -69,9 +70,9 @@ const ProductSingle: FC = () => {
                             <div className="product-single__info">
                                 <h1 className="product-single__info-title main-h1">
                                     {product.attributes.name}
-                                </h1><h1 className="product-single__info-price main-h2">
+                                </h1>{profile && <h1 className="product-single__info-price main-h2">
                                 {product.attributes.skus[currentSku].attributes.price.formatted}
-                            </h1>
+                            </h1>}
                                 <span
                                     className="product-single__code">Артикул: {product.attributes.parent_sku}</span>
                                 <div className="product-single__character">
@@ -81,7 +82,7 @@ const ProductSingle: FC = () => {
                                         </div>
                                     )}
                                 </div>
-                                <MainButton onClick={addToCart(product)} text="В корзину"/>
+                                {profile &&  <MainButton onClick={addToCart(product)} text="В корзину"/>}
                             </div>
                         </div>
                         <ImageView display={imageView} setDisplay={setImageViewHandler} data={product.attributes.media}

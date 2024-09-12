@@ -70,9 +70,9 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                                     </NavLink>
                                     <ul className="category-products__subcategories">
                                         {
-                                            category.attributes.subs.map(sub => (
+                                            category.attributes.subs.map((sub,index) => (
 
-                                                <NavLink to={'/category/' + sub.id + '/products'}
+                                                <NavLink key={index} to={'/category/' + sub.id + '/products'}
                                                          className={() => `category-products__categories-item ${params.id === sub.id ? 'category-products__categories-item--active' : ''}`}>
                                        <span className="category-products__category-title">
                                            {sub.attributes.name}
