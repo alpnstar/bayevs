@@ -1,13 +1,7 @@
-import React, {
-    useState,
-    useRef,
-    useEffect,
-    useMemo,
-    useImperativeHandle,
-    useCallback,
-} from 'react';
+import React, {useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState,} from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { Group, Tween } from '@tweenjs/tween.js';
+import {Group, Tween} from '@tweenjs/tween.js';
+import './css/styles.scss';
 import {
     getEasing,
     getResponsiveSettings,
@@ -16,8 +10,9 @@ import {
     showNextArrow,
     showPreviousArrow,
 } from './helpers';
-import { ButtonClick, SlideshowRef, SlideProps } from './types';
-import { defaultProps } from './props';
+
+import {ButtonClick, SlideProps, SlideshowRef} from './types';
+import {defaultProps} from './props';
 
 export const Slide = React.forwardRef<SlideshowRef, SlideProps>((props, ref) => {
     const [index, setIndex] = useState(getStartingIndex(props.children, props.defaultIndex));

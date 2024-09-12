@@ -1,6 +1,7 @@
 import React, {FC, useState} from "react";
-import NewsList from "./NewsList";
 import {useGetNewsQuery} from "../../store/query/newsApi";
+import {Loader} from "../UI/Loader/Loader";
+import NewsList from "./NewsList";
 import {Pagination} from "../UI/Pagination/Pagination";
 
 
@@ -15,7 +16,7 @@ export const News: FC = () => {
     return (
         <div className="news">
             <div className="news__wrapper container">
-                {data && (
+                {isFetching ? <Loader/> : data && data.data.length === 0 ? <h2 className="main-h2">Новостей нет</h2> : data && (
                     <>
                         <NewsList data={data.data}/>
                         <Pagination items={data.data} meta={data.meta} setPage={setCurrentPage}/>

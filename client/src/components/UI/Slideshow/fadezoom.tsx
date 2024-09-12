@@ -1,22 +1,9 @@
-import React, {
-    useState,
-    useRef,
-    useEffect,
-    useMemo,
-    useImperativeHandle,
-    useCallback,
-} from 'react';
+import React, {useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState,} from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { Group, Tween } from '@tweenjs/tween.js';
-import {
-    getEasing,
-    getStartingIndex,
-    showIndicators,
-    showNextArrow,
-    showPreviousArrow,
-} from './helpers';
-import { ButtonClick, SlideshowRef, ZoomProps } from './types';
-import { defaultProps } from './props';
+import {Group, Tween} from '@tweenjs/tween.js';
+import {getEasing, getStartingIndex, showIndicators, showNextArrow, showPreviousArrow,} from './helpers';
+import {ButtonClick, SlideshowRef, ZoomProps} from './types';
+import {defaultProps} from './props';
 
 export const FadeZoom = React.forwardRef<SlideshowRef, ZoomProps>((props, ref) => {
     const [index, setIndex] = useState<number>(

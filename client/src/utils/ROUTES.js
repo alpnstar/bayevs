@@ -8,6 +8,7 @@ export const ROUTES = {
     contacts: '/contacts',
     login: '/login',
     registration: '/registration',
+    authorization: '/authorization',
     news: '/news',
     newsById: '/news/:id',
     toCustomers: '/to-customers',

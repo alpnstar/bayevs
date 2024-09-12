@@ -11,9 +11,12 @@ const ProductsList: FC<IProductsProps> = ({products}) => {
 
 
     return (
-        <ul className="products__list">
-            {products.map((item,index) => <ProductsItem key={index} product={item}/>)}
-        </ul>
+        <>
+            <ul className="products__list">
+                {products.map((item, index) => <ProductsItem key={index} product={item}/>)}
+            </ul>
+        </>
+
     );
 };
 

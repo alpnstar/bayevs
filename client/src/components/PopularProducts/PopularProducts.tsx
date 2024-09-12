@@ -1,5 +1,4 @@
 import React, {FC} from "react";
-import IMG from "../../../public/images/model.jpg";
 import ProductsList from "../Products/ProductsList";
 import {useGetNewProductsQuery} from "../../store/query/productsApi";
 

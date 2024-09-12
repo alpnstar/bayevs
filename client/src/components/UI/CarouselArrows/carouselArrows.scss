@@ -23,3 +23,9 @@
     right: 2% !important;
   }
 }
+
+@media screen and (width <= 770px) {
+  .carousel-arrow {
+    display: none;
+  }
+}

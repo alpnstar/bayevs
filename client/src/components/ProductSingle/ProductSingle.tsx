@@ -9,11 +9,15 @@ import {MainButton} from "../UI/MainButton/MainButton";
 import ImageView from "../UI/ImageView/ImageView";
 import addToCart from "../Products/useAddToCart";
 import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
+import {Loader} from "../UI/Loader/Loader";
+import ProductsList from "../Products/ProductsList";
+import {Pagination} from "../UI/Pagination/Pagination";
+import {NotFound} from "../UI/NotFound/NotFound";
 
 
 const ProductSingle: FC = () => {
     const params = useParams<{ id: string }>();
-    const {data, isSuccess, isLoading} = useGetProductByIdQuery(params.id as string);
+    const {data, refetch,  isSuccess, isError, isFetching} = useGetProductByIdQuery(params.id as string);
     const [product, setProduct] = useState<Product>();
     const [currentSku, setCurrentSku] = useState(0);
     const [imageView, setImageViewHandler] = useToggler(false);
@@ -37,50 +41,57 @@ const ProductSingle: FC = () => {
     useEffect(() => {
         if (data) setProduct(data.data);
     }, [data]);
+    useEffect(() => {
+        refetch();
+    }, [params.id]);
     return (
-        product && isSuccess &&
         <section className="product-single">
             <div className="product-single__wrapper container">
-                <div className="product-single__breadcrumbs">
-                    {<Breadcrumbs items={data.breadcrumbs}/>}
-                </div>
-                <div className="product-single__main">
-                    <div className="product-single__view">
-                        <div onClick={imageClickHandler(0)} className="product-single__view-main">
-                            <img src={product.attributes.media[0].attributes.generated_conversions.list}
-                                 alt=""/>
+                {
+                    isFetching ? <Loader/> : isError ? <NotFound/> : (product && data) ?
+                        <>
+                        <div className="product-single__breadcrumbs">
+                            {<Breadcrumbs items={data.breadcrumbs}/>}
                         </div>
-                        <div className="product-single__view-other">
-                            {product.attributes.media.map((item, index) =>
-                                index !== 0 ?
-                                    <img onClick={imageClickHandler(index)}
-                                         src={item.attributes.generated_conversions.list} alt=""/> : "")}
-                        </div>
-                    </div>
-                    <div className="product-single__info">
-                        <h1 className="product-single__info-title main-h1">
-                            {product.attributes.name}
-                        </h1><h1 className="product-single__info-price main-h2">
-                        {product.attributes.skus[currentSku].attributes.price.formatted}
-                    </h1>
-                        <span
-                            className="product-single__code">Артикул: {product.attributes.parent_sku}</span>
-                        <div className="product-single__character">
-                            {product.attributes.skus[currentSku].attributes.attributeOptions.map(attrs =>
-                                <div className="product-single__character-item">
-                                    {attrs.attributes.label}: <b>{attrs.attributes.value}</b>
+                        <div className="product-single__main">
+                            <div className="product-single__view">
+                                <div onClick={imageClickHandler(0)} className="product-single__view-main">
+                                    <img src={product.attributes.media[0].attributes.generated_conversions.list}
+                                         alt=""/>
                                 </div>
-                            )}
+                                <div className="product-single__view-other">
+                                    {product.attributes.media.map((item, index) =>
+                                        index !== 0 ?
+                                            <img onClick={imageClickHandler(index)}
+                                                 src={item.attributes.generated_conversions.list} alt=""/> : "")}
+                                </div>
+                            </div>
+                            <div className="product-single__info">
+                                <h1 className="product-single__info-title main-h1">
+                                    {product.attributes.name}
+                                </h1><h1 className="product-single__info-price main-h2">
+                                {product.attributes.skus[currentSku].attributes.price.formatted}
+                            </h1>
+                                <span
+                                    className="product-single__code">Артикул: {product.attributes.parent_sku}</span>
+                                <div className="product-single__character">
+                                    {product.attributes.skus[currentSku].attributes.attributeOptions.map(attrs =>
+                                        <div className="product-single__character-item">
+                                            {attrs.attributes.label}: <b>{attrs.attributes.value}</b>
+                                        </div>
+                                    )}
+                                </div>
+                                <MainButton onClick={addToCart(product)} text="В корзину"/>
+                            </div>
                         </div>
-                        <MainButton onClick={addToCart(product)} text="В корзину"/>
-                    </div>
-                </div>
+                        <ImageView display={imageView} setDisplay={setImageViewHandler} data={product.attributes.media}
+                                   indexSelectedImage={selectedImage}/>
+                    </> : ''
+                }
             </div>
-            <ImageView display={imageView} setDisplay={setImageViewHandler} data={product.attributes.media}
-                       indexSelectedImage={selectedImage} setIndexSelectedImage={setSelectedImage}/>
-        </section>
 
-    );
+        </section>
+);
 };
 
 export default ProductSingle;

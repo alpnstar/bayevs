@@ -1,14 +1,6 @@
-import React, { ReactNode } from 'react';
-import {
-    ButtonClick,
-    FadeProps,
-    IndicatorPropsType,
-    Responsive,
-    SlideProps,
-    TweenEasingFn,
-    ZoomProps,
-} from './types';
-import { Easing } from '@tweenjs/tween.js';
+import React, {ReactNode} from 'react';
+import {ButtonClick, FadeProps, IndicatorPropsType, Responsive, SlideProps, TweenEasingFn, ZoomProps,} from './types';
+import {Easing} from '@tweenjs/tween.js';
 
 export const getStartingIndex = (children: ReactNode, defaultIndex?: number): number => {
     if (defaultIndex && defaultIndex < React.Children.count(children)) {

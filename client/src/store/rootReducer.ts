@@ -4,9 +4,11 @@ import {productsApi} from "./query/productsApi";
 import {bannersApi} from "./query/bannersApi";
 import {categoriesApi} from "./query/categoriesApi";
 import {newsApi} from "./query/newsApi";
+import {userReducer} from "./slices/userSlice";
 
 export const rootReducer = combineReducers({
     cartReducer,
+    userReducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [bannersApi.reducerPath]: bannersApi.reducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,

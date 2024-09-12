@@ -1,5 +1,5 @@
 import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
-import {Category, ICategoriesElem} from "../../types/types";
+import {ICategoriesElem} from "../../types/types";
 import {ICategoryData} from "./HeaderCategoriesList";
 
 type useCategoriesContextReturnType = [boolean, Dispatch<SetStateAction<boolean>>, React.RefObject<HTMLDivElement>, (toggler: boolean) => void];

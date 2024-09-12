@@ -152,6 +152,10 @@ export interface ApiResponse<T> {
     meta: Meta;
 }
 
+export interface ApiResponseCutted<T> {
+    data: T,
+}
+
 // Тип ответа для продуктов категории и сингла
 export interface ApiResponseExtended<T> extends ApiResponse<T> {
     breadcrumbs: Breadcrumb[];
@@ -191,10 +195,43 @@ export interface News {
     attributes: NewsAttributes;
 }
 
-export interface itemsApiParams {
+export interface ItemsApiParams {
     'filter[name]'?: string,
     'filter[season]'?: string,
     'pagination[per_page]'?: number,
     'page[number]'?: number,
+}
 
+export interface UserData extends BaseAttributes {
+    attributes: UserAttributes
+}
+
+export interface UserAttributes {
+    uuid: string,
+    email: string,
+    first_name: string,
+    last_name: string,
+    mobile: string,
+    status: string,
+    city: string,
+    company: string
+}
+
+
+export interface SignUpData extends BaseAttributes {
+    attributes: SignUpAttributes
+}
+
+export interface SignUpAttributes {
+    email: string,
+    password: string,
+    password_confirmation: string,
+    first_name: string,
+    last_name: string,
+    mobile: string,
+    company: string,
+    city: string
+}
+export interface SignIn {
+    
 }

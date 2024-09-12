@@ -22,6 +22,8 @@ html, #root, .app {
 .app {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  font-size: 12px;
 
   main {
     flex-grow: 1;
@@ -44,6 +46,7 @@ html, #root, .app {
 
   &__item {
     text-transform: uppercase;
+    cursor: pointer;
   }
 }
 
@@ -97,3 +100,14 @@ html, #root, .app {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+.main-input {
+  padding: 10px;
+  border-radius: 4px;
+  background: #e5e5e5;
+  color: #222;
+}
+
+.notification {
+  display: block;
+  margin-top: 20px;
+}

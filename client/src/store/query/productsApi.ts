@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BASE_URL, PRODUCTS_PER_PAGE} from "../../utils/CONSTS";
-import {ApiResponse, ApiResponseExtended, Product, itemsApiParams} from "../../types/types";
+import {ApiResponse, ApiResponseExtended, ItemsApiParams, Product} from "../../types/types";
 import {buildUrl, clearParams} from "../../utils/common";
 
 export const productsApi = createApi({
@@ -11,7 +11,7 @@ export const productsApi = createApi({
             query: (id) => `/products/${id}`,  // используем id в качестве строки
         }),
         getProducts: builder.query<ApiResponseExtended<Product[]>, {
-            params: itemsApiParams,
+            params: ItemsApiParams,
         }>({
             query: (payload) => buildUrl(`/products`, clearParams({
                 'pagination[per_page]': PRODUCTS_PER_PAGE,

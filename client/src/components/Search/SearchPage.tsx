@@ -6,6 +6,7 @@ import './searchPage.scss';
 import {NavLink} from "react-router-dom";
 import {Pagination} from "../UI/Pagination/Pagination";
 import {useGetProductsQuery} from "../../store/query/productsApi";
+import {Loader} from "../UI/Loader/Loader";
 
 export const SearchPage: FC = () => {
     const params = useParams();
@@ -34,14 +35,11 @@ export const SearchPage: FC = () => {
                         <input type="submit" value="Найти" className="search-page__submit"/>
                     </NavLink>
                 </form>
-                {isSuccess && data.data.length !== 0 ? (
-                    <>
-                        <ProductsList products={data.data}/>
-                        <Pagination items={data.data} meta={data.meta} setPage={setCurrentPage}/>
-                    </>
-                ) : isSuccess && data.data.length === 0 ?
-                    <h3 className="search-page__not-found">Товар не найден</h3> : isError ?
-                        <h3 className="search-page__not-found">Ошибка</h3> : ''}
+                {isFetching ? <Loader marginTop={'100px'}/> : data && data.data.length !== 0 ? <>
+                    <ProductsList products={data.data}/>
+                    <Pagination items={data.data} meta={data.meta} setPage={setCurrentPage}/>
+                </> : <h3 className="search-page__not-found">Товар не найден</h3>
+                }
             </div>
         </section>
     );

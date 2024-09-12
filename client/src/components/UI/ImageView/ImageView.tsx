@@ -1,10 +1,9 @@
-import React, {FC, SetStateAction} from 'react';
+import React, {FC} from 'react';
 import Popup from "../Popup/Popup";
 import {togglerHandlerType} from "../../../hooks/useToggler";
 import './imageView.scss';
 import {Media} from "../../../types/types";
 import {Slide} from "../Slideshow";
-import '../Slideshow/css/styles.scss';
 import '../../UI/CarouselArrows/carouselArrows.scss'
 
 interface IImageView {
@@ -49,13 +48,13 @@ const properties = {
 export const ImageView: FC<IImageView> = ({data, indexSelectedImage, display, setDisplay}) => {
     return (
         <Popup visible={display} setVisibleHandler={setDisplay}>
-            <Slide {...properties} defaultIndex={indexSelectedImage} autoplay={false} transitionDuration={350}
+            <Slide {...properties} defaultIndex={indexSelectedImage} autoplay={false} transitionDuration={200}
                    containerSize={{maxWidth: '500px', width: '100%', height: 'auto'}}>
 
                 {data.map((item, index) => (
                     <div key={index} className="each-slide-effect">
                         <div className="slider-item">
-                            <img src={item.attributes.generated_conversions.list} alt=""/>
+                            <img src={item.attributes.generated_conversions.list}  alt=""/>
                         </div>
                     </div>
                 ))}

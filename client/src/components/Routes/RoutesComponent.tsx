@@ -11,8 +11,11 @@ import {ToWholesalers} from "../ToWholesalers/ToWholesalers";
 import {AboutCompany} from "../AboutCompany/AboutCompany";
 import {About} from "../About/About";
 import {News} from "../News/News";
-import NewsCard from "../News/NewsCard";
+import NewsSingle from "../News/NewsSingle";
 import {SearchPage} from "../Search/SearchPage";
+import {NotFound} from "../UI/NotFound/NotFound";
+import {Registration} from "../Registration/Registration";
+import {Authorization} from "../Authorization/Authorization";
 
 const RoutesComponent: FC = () => {
     return (
@@ -25,9 +28,12 @@ const RoutesComponent: FC = () => {
             <Route path={ROUTES.toWholesalers} element={<ToWholesalers/>}/>
             <Route path={ROUTES.aboutCompany} element={<AboutCompany/>}/>
             <Route path={ROUTES.news} element={<About title={'Новости'} children={<News/>}/>}/>
-            <Route path={ROUTES.newsById} element={<NewsCard/>}/>
+            <Route path={ROUTES.newsById} element={<NewsSingle/>}/>
             <Route path={ROUTES.cart} element={<Cart/>}/>
             <Route path={ROUTES.search} element={<SearchPage/>}/>
+            <Route path={ROUTES.registration} element={<Registration/>}/>
+            <Route path={ROUTES.authorization} element={<Authorization/>}/>
+            <Route path={'/*'} element={<NotFound/>}/>
         </Routes>
     );
 };

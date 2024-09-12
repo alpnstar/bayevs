@@ -1,5 +1,5 @@
 import './categorySingle.scss';
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import Select from "../UI/Select/Select";
 import ProductsList from "../Products/ProductsList";
 import PageHeader from "../UI/PageHeader/PageHeader";
@@ -7,6 +7,7 @@ import {useParams} from "react-router";
 import {useGetCategoriesQuery, useGetCategoryProductsQuery} from "../../store/query/categoriesApi";
 import {NavLink} from "react-router-dom";
 import {Pagination} from "../UI/Pagination/Pagination";
+import {Loader} from "../UI/Loader/Loader";
 
 interface ICategorySingleProps {
 
@@ -29,6 +30,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
         data: products,
         isSuccess: productsIsSuccess,
         isFetching: productsIsFetching,
+        isLoading: productsIsLoading,
         refetch: productsTrigger,
     } = useGetCategoryProductsQuery({
         id: params.id as string, params: {
@@ -88,10 +90,11 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                         </ul>
                     </div>
                     <div className="category-products__products">
-                        {!productsIsFetching && products && (<>
+                        {productsIsFetching ? <Loader/> : (products && products.data.length) ?
+                        <>
                             <ProductsList products={products.data}/>
                             <Pagination items={products.data} meta={products.meta} setPage={setCurrentPage}/>
-                        </>)}
+                        </> : 'Ничего не найдено'}
 
                     </div>
                 </section>

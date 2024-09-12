@@ -1,8 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BASE_URL, NEWS_PER_PAGE} from "../../utils/CONSTS";
-import {ApiResponse, ApiResponseExtended, News, Product, itemsApiParams} from "../../types/types";
+import {ApiResponse, ApiResponseExtended, ItemsApiParams, News} from "../../types/types";
 import {buildUrl, clearParams} from "../../utils/common";
-
 
 
 export const newsApi = createApi({
@@ -12,7 +11,7 @@ export const newsApi = createApi({
         getNewsById: builder.query<ApiResponseExtended<News>, string>({
             query: (id) => `/news/${id}`,  // используем id в качестве строки
         }),
-        getNews: builder.query<ApiResponse<News[]>, {params: itemsApiParams}>({
+        getNews: builder.query<ApiResponse<News[]>, {params: ItemsApiParams}>({
             query: ({params}) => buildUrl(`/news`, clearParams({
                 'pagination[per_page]': NEWS_PER_PAGE,
                 ...params,
