@@ -11,7 +11,7 @@ const Footer = () => {
                         <ul className="footer__links-list">
                             <li className="footer__links-item"><a href="#">BAYEVS</a></li>
                             <li className="footer__links-item"><NavLink to={"/about-company"}>О компании</NavLink></li>
-                            <li className="footer__links-item"><NavLink to={"/customers"}>Заказчикам</NavLink></li>
+                            <li className="footer__links-item"><NavLink to={"/to-customers"}>Заказчикам</NavLink></li>
                             <li className="footer__links-item"><NavLink to={"/news"}>Новости</NavLink></li>
                             <li className="footer__links-item"><NavLink to={"/wholesalers"}>Оптовикам</NavLink></li>
                             <li className="footer__links-item"><NavLink to={"/contacts"}>Контакты</NavLink></li>

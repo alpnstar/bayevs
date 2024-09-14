@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import CloseButton from "../UI/CloseButton/CloseButton";
 import {togglerHandlerType} from "../../hooks/useToggler";
 import {NavLink} from "react-router-dom";
+import {ROUTES} from "../../utils/ROUTES";
 
 interface IBurgerMenu {
     burgerVisible: boolean,
@@ -31,9 +32,9 @@ const BurgerMenu: FC<IBurgerMenu> = ({burgerVisible, burgerClickHandler}) => {
                     </li>
                 </ul>
                 <ul className="burger-menu__list burger-menu__user-actions">
-                    <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()} to="/cart">Корзина</NavLink></li>
-                    <li className="burger-menu__list-item" onClick={(e) => e.preventDefault()}>Регистрация</li>
-                    <li className="burger-menu__list-item" onClick={(e) => e.preventDefault()}>Вход</li>
+                    <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()} to={ROUTES.cart}>Корзина</NavLink></li>
+                    <li className="burger-menu__list-item"><NavLink to={ROUTES.registration}>Регистрация</NavLink></li>
+                    <li className="burger-menu__list-item" ><NavLink to={ROUTES.authorization}>Вход</NavLink></li>
                 </ul>
             </div>
         </div>
