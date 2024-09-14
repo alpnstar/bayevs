@@ -91,6 +91,7 @@ const cartSlice = createSlice({
             return state;
         },
         setOrderData(state) {
+            const newProducts:any[] = [];
             state.items.forEach(item => {
                 const product = {
                     sku_uuid: item.attributes.skus[0].id,
@@ -103,8 +104,9 @@ const cartSlice = createSlice({
                     }),
                     product_name: item.attributes.name,
                 };
-                state.orderData.products.push(product);
+                newProducts.push(product);
             })
+            state.orderData.products = [...newProducts];
         },
         setTotals(state) {
 

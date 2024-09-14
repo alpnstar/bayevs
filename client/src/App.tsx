@@ -17,7 +17,7 @@ const App: FC = () => {
         if(token) {
             dispatch(getProfileUser(token));
             dispatch(userActions.setToken(token))
-        };
+        }
     }, []);
 
     return (
