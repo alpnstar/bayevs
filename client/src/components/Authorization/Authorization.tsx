@@ -3,9 +3,11 @@ import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {useForm} from "react-hook-form";
 import {SignUpAttributes} from "../../types/types";
 import {getProfileUser, loginUser} from "../../store/slices/userSlice";
+import {useNavigate} from "react-router";
 
 export const Authorization: FC = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const state = useAppSelector(state => state.userReducer);
     const {register, handleSubmit, formState} = useForm<SignUpAttributes>({
         mode: 'onChange',
@@ -18,7 +20,9 @@ export const Authorization: FC = () => {
         state.accessToken && dispatch(getProfileUser(state.accessToken));
     }, [state.accessToken]);
     useEffect(() => {
-        state.authorizationIsSuccess && alert('Авторизация прошла успешно.');
+        if (state.authorizationIsSuccess) {
+            setTimeout(() => navigate('/'), 5000);
+        }
     }, [state.authorizationIsSuccess]);
     return (!state.userProfile ?
             <section className="registration">

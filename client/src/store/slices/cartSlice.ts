@@ -1,26 +1,54 @@
-import {createSlice, Middleware, PayloadAction} from "@reduxjs/toolkit";
-import {ICart, ICartItem} from "../../types/types";
+import {createAsyncThunk, createSlice, Middleware, PayloadAction} from "@reduxjs/toolkit";
+import {ICart, ICartItem, IOrderData} from "../../types/types";
 import {RootState} from "../rootReducer";
+import {SizesState} from "../../components/ProductSingle/ProductSingle";
+import axios from "axios";
+import {BASE_URL} from "../../utils/CONSTS";
 
 
 const initialState: ICart = {
     items: [],
-    totalQuantity: 0,
+    orderData: {products: []},
     totalSum: 0,
-    currency: "$",
+
 };
 type changeCartType = ReturnType<typeof cartSlice.actions.addItem>;
 export const onChangeCart: Middleware<object, RootState> = store => next => (action) => {
-    const typedAction = action as changeCartType;
+    const typedAction = action as { type: string };
     next(action);
-    if (typedAction.type === cartActions.addItem.type
-        || typedAction.type === cartActions.incrementItem.type
-        || typedAction.type === cartActions.decrementItem.type) {
-
+    if (
+        typedAction.type === cartActions.addItem.type
+        || typedAction.type === cartActions.setProductSizes.type
+        || typedAction.type === cartActions.removeItem.type
+        || typedAction.type === cartActions.setCartState.type
+    ) {
         store.dispatch(cartActions.setTotals());
         localStorage.setItem("cart", JSON.stringify(store.getState().cartReducer));
+        store.dispatch(cartActions.setOrderData());
+
     }
 };
+
+function calculateTotalCount(sizes: SizesState): number {
+    return Object.values(sizes).reduce((acc, item) => acc += +item.count, 0);
+}
+
+export const sendOrder = createAsyncThunk<
+    any,                // Тип данных, возвращаемых при успешном выполнении
+    { data: IOrderData, token: string },          // Тип аргументов, передаваемых в thunk
+    { state: RootState }>(
+    'cart/sendOrder',
+    async (payload) => {
+        const res = await axios.post(BASE_URL + '/api/orders', payload.data, {
+            headers: {
+                Authorization: `Bearer ${payload.token}`,
+            }
+        });
+        return res.data;
+    }
+);
+
+
 const cartSlice = createSlice({
     name: "cart",
     initialState,
@@ -28,74 +56,97 @@ const cartSlice = createSlice({
         addItem(state, action: PayloadAction<ICartItem>) {
             const search: number = state.items.findIndex(item => item.id === action.payload.id);
             if (search !== -1) {
+                const newSizes: SizesState = {};
+                Object.keys(action.payload.addedSizes).forEach(key => {
+                    newSizes[key] = {
+                        ...action.payload.addedSizes[key],
+                        count: action.payload.addedSizes[key].count + (state.items[search].addedSizes[key].count || 0)
+                    };
+                })
                 state.items[search] = {
                     ...state.items[search],
-                    quantity: state.items[search].quantity + 1,
+                    addedSizes: {
+                        ...state.items[search].addedSizes,
+                        ...newSizes,
+                    }
                 }
                 return;
             }
             state.items.push({...action.payload});
-            state.currency = action.payload.attributes.skus[0].attributes.price.icon;
+            state.items
             return state;
         },
-
-        decrementItem(state, action: PayloadAction<{
-            id: string,
-            quantity: number,
-        }>) {
-            const elemIndex = state.items.findIndex(item => item.id === action.payload.id);
-            const elem = state.items[elemIndex];
-            if (elem.quantity - action.payload.quantity !== 0) {
-                state.items[elemIndex] = {
-                    ...elem,
-                    quantity: elem.quantity - action.payload.quantity,
+        setProductSizes(state, action: PayloadAction<{ id: string, sizes: any }>) {
+            const search: number = state.items.findIndex(item => item.id === action.payload.id);
+            Object.keys(action.payload.sizes).forEach(key => {
+                state.items[search].addedSizes[key] = {
+                    ...state.items[search].addedSizes[key],
+                    count: action.payload.sizes[key],
                 }
-                return state;
-            }
-            state.items = state.items.filter(item => item.id !== action.payload.id);
+            })
             return state;
         },
-        incrementItem(state, action: PayloadAction<{
-            id: string,
-            quantity: number,
-        }>) {
-            const elemIndex = state.items.findIndex(item => item.id === action.payload.id);
-            const elem = state.items[elemIndex];
-            state.items[elemIndex] = {
-                ...elem,
-                quantity: elem.quantity + action.payload.quantity,
-            }
+        removeItem(state, action: PayloadAction<string>) {
+            state.items = state.items.filter(item => item.id !== action.payload);
             return state;
+        },
+        setOrderData(state) {
+            state.items.forEach(item => {
+                const product = {
+                    sku_uuid: item.attributes.skus[0].id,
+                    sku_code: item.attributes.skus[0].attributes.code,
+                    sizes: Object.keys(item.addedSizes).map(key => {
+                        return {
+                            size_uuid: item.addedSizes[key].name,
+                            quantity: item.addedSizes[key].count
+                        }
+                    }),
+                    product_name: item.attributes.name,
+                };
+                state.orderData.products.push(product);
+            })
         },
         setTotals(state) {
 
             calculate();
 
+
             function calculate(): void {
                 calculateSum();
-                calculateQuantity();
+                calculateProductSum();
 
                 function calculateSum(): void {
-                    state.totalSum = state.items.reduce((acc, item) => acc += +item.attributes.skus[0].attributes.price.amount_value * item.quantity, 0)
+                    state.totalSum = state.items.reduce((acc, item) => {
+                        const price: number = item.attributes.skus[0].attributes.price.amount
+                        const total: number = calculateTotalCount(item.addedSizes) * price;
+                        return total / 100;
+                    }, 0)
                 }
 
-                function calculateQuantity(): void {
-                    state.totalQuantity = state.items.reduce((acc, item) => acc += item.quantity, 0)
+                function calculateProductSum(): void {
+                    state.items.forEach((item, index) => {
+                        const total = calculateTotalCount(item.addedSizes);
+                        state.items[index].totalProductSum = total * item.attributes.skus[0].attributes.price.amount / 100;
+                    })
                 }
+
+
             }
         },
         setCartState(state, action: PayloadAction<ICart>) {
             return state = action.payload;
         },
-        setCurrency(state, action: PayloadAction<string>) {
 
-        }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(sendOrder.fulfilled, (state, {payload}) => {
+            alert('Заказ оформлен!\n\nС вами свяжется менеджер для подтверждения.');
+        })
     }
 });
 
 
 export const {actions: cartActions, reducer: cartReducer} = cartSlice;
-
 // export const updateUser = createAsyncThunk(
 //     'user/updateUser',
 //     async (payload) => {

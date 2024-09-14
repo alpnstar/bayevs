@@ -120,6 +120,26 @@
       }
     }
   }
+  &__sizes {
+    margin-bottom: 15px;
+    &-title {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    &-item {
+      display: flex;
+      align-items: center;
+      &-name {
+        font-size: 14px;
+        margin-right: 12px;
+      }
+    }
+  }
 }
 
 @media screen and (width <= 770px) {

@@ -1,4 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
+import {SizesState} from "../components/ProductSingle/ProductSingle";
 
 // Общее
 export interface BaseAttributes {
@@ -96,6 +97,7 @@ export interface SkuAttributes {
         formatted: string;
     };
     attributeOptions: AttributeOption[];
+    sizes: Size[];
 }
 
 export interface Sku extends BaseAttributes {
@@ -115,22 +117,39 @@ export interface ProductAttributes {
     skus: Sku[];
 }
 
+export interface Size extends BaseAttributes {
+    attributes: {
+        name: string,
+        stock: number,
+    }
+}
+
 export interface Product extends BaseAttributes {
     attributes: ProductAttributes;
 }
 
 // Корзина
 export interface ICartItem extends Pick<Product, "id" | "attributes"> {
-    quantity: number;
+    addedSizes: SizesState,
+    totalProductSum?: number,
 }
 
 export interface ICart {
     items: ICartItem[];
-    totalQuantity: number;
     totalSum: number;
-    currency: string;
+    orderData: IOrderData,
 }
-
+export interface IOrderData {
+    products: {
+        sku_uuid: string;
+        sku_code: string;
+        sizes: {
+            size_uuid: string;
+            quantity: string;
+        }[];
+        product_name: string;
+    }[];
+}
 // Баннеры
 export interface BannerAttributes {
     created_at: string;
@@ -232,6 +251,7 @@ export interface SignUpAttributes {
     company: string,
     city: string
 }
+
 export interface SignIn {
-    
+
 }

@@ -22,7 +22,7 @@ const HeaderUserActions: FC = () => {
                     )
                     : (
                         <>
-                            <li className="main-style-list__item "><span>{user ? user.first_name : ''}</span></li>
+                            <li className="main-style-list__item "><span className=""><b>{user ? user.first_name : ''}</b></span></li>
                             <li className="main-style-list__item "><span onClick={exitHandler}>Выход</span></li>
                             <Link to={ROUTES.cart}>
                                 <li className="main-style-list__item ">Корзина</li>

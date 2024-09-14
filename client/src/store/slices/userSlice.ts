@@ -24,12 +24,13 @@ export const loginUser = createAsyncThunk<
     { email: string, password: string },          // Тип аргументов, передаваемых в thunk
     { state: RootState }>(
     'user/loginUser',
-    async (payload) => {
+    async (payload, {rejectWithValue}) => {
         try {
             const res = await axios.post<LoginUserReturnType>(BASE_URL + '/api/customers/login', payload);
             return res.data;
         } catch (e: any) {
-            return e;
+            return rejectWithValue(e.response.data);
+
         }
     }
 );
@@ -69,6 +70,11 @@ const userSlice = createSlice({
     reducers: {
         logoutUser: (state) => {
             state.userProfile = null;
+            state.accessToken = null;
+            state.authorizationIsSuccess = null;
+        },
+        setToken: (state, {payload}) => {
+            state.accessToken = payload;
         }
     },
     extraReducers: (builder) => {

@@ -16,7 +16,7 @@ export const News: FC = () => {
     return (
         <div className="news">
             <div className="news__wrapper container">
-                {isFetching ? <Loader/> : data && data.data.length === 0 ? <h2 className="main-h2">Новостей нет</h2> : data && (
+                {isFetching ? <Loader/> : data && data.data.length === 0 ? <span>Новостей нет</span> : data && (
                     <>
                         <NewsList data={data.data}/>
                         <Pagination items={data.data} meta={data.meta} setPage={setCurrentPage}/>

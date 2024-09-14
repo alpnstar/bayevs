@@ -1,49 +1,97 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {useAppDispatch} from "../../store/hooks";
-import {cartActions} from "../../store/slices/cartSlice";
 import {ICartItem} from "../../types/types";
+import {useForm} from "react-hook-form";
+import {cartActions} from "../../store/slices/cartSlice";
+import {NavLink} from "react-router-dom";
 
 interface ICartItemProps {
-    item: ICartItem;
+    cartItem: ICartItem;
 }
 
-export const CartItem: FC<ICartItemProps> = ({item}) => {
-
+export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
     const dispatch = useAppDispatch();
 
-    function decrement(quantity: number) {
-        return function (): void {
-            dispatch(cartActions.decrementItem({id: item.id, quantity}))
-        }
+    const sku = cartItem.attributes.skus[0];
+    const {register, setValue, handleSubmit, getValues, watch} = useForm({
+        mode: "onBlur",
+    });
+    const watched = watch();
+
+    function setSizeHandler() {
+        dispatch(cartActions.setProductSizes({
+            id: cartItem.id,
+            sizes: getValues(),
+        }));
+
     }
 
-    function increment(quantity: number) {
-        return function (): void {
-            dispatch(cartActions.incrementItem({id: item.id, quantity}))
-        }
-    }
 
-    function removeItemAll() {
-        return decrement(item.quantity);
-    }
+    useEffect(() => {
+        Object.keys(cartItem.addedSizes).forEach(key => {
+            setValue(key, Math.min(+cartItem.addedSizes[key].count, +cartItem.addedSizes[key].maxCount));
+        })
+    }, []);
+    return (
+        <tr className="cart__table-row">
+            <td className="cart__product-image">
+                <NavLink  to={'/product/' + cartItem.id}>
+                    <img
+                        width="42"
+                        height="60"
+                        src={cartItem.attributes.media[0].attributes.generated_conversions.list}
+                        alt="Продукт"
+                    />
+                </NavLink>
+            </td>
+            <td>
+                <NavLink  to={'/product/' + cartItem.id}><span className="cart__product-label">{cartItem.attributes.name}</span></NavLink>
+                <div>Артикул: <b>{sku.attributes.code}</b></div>
+            </td>
+            <td className="cart__product-price">{sku.attributes.price.formatted}</td>
+            <td className="cart__product-sizes">
+                <div className="cart__product-sizes-inputs">
+                    {sku.attributes.sizes.map(item => {
+                        const foo = cartItem.addedSizes[item.attributes.name];
+                        return (
+                            <label>
+                                <legend>{item.attributes.name}</legend>
+                                <input maxLength={4} {...register(item.attributes.name, {
+                                    onBlur({target}: React.ChangeEvent<HTMLInputElement>) {
+                                        const value = target.value;
+                                        if (
+                                            Object.values(getValues()).every(item => item === '' || item === '0')
+                                        ) {
+                                            dispatch(cartActions.removeItem(cartItem.id))
+                                        }
+                                    },
+                                    onChange: ({target}) => {
+                                        const value = target.value;
+                                        if (+value > +foo.maxCount) {
+                                            setValue(item.attributes.name, foo.maxCount);
+                                            setSizeHandler();
+                                        }
+                                        setSizeHandler();
+                                    }
+                                })}
 
-    return (<div className="cart__item">
-        <div className="cart__item-info">
-            <img className="cart__item-image" src={item.attributes.media[0].attributes.generated_conversions.list}
-                 alt=""/>
-            <div className="cart__item-description">
-                <h2 className="cart__item-title">{item.attributes.name}</h2>
-                <div className="cart__item-quantity">
-                    <button className="cart__item-quantity-button" onClick={decrement(1)}>-</button>
-                    <span className="cart__item-quantity-number">{item.quantity}</span>
-                    <button className="cart__item-quantity-button" onClick={increment(1)}>+</button>
+                                       onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                           const value = e.target.value;
+                                           e.target.value = e.target.value.replace(/\D/g, ''); // Оставляем только цифры
+                                       }}
+                                       className="cart__size-input main-input"/>
+                            </label>
+
+                        )
+                    })}
                 </div>
+            </td>
+            <td className="cart__product-total">{cartItem.totalProductSum + ' ' + sku.attributes.price.icon} </td>
+            <td className="cart__product-delete"><input onClick={() => dispatch(cartActions.removeItem(cartItem.id))}
+                                                        style={{fontSize: '30px'}} type="submit" value="×"
+                                                        title="Удалить из корзины"/></td>
+        </tr>
 
-                <span className="cart__item-price">{item.attributes.skus[0].attributes.price.formatted}</span>
-            </div>
-        </div>
-        <span className="cart__item-total-price">{+item.attributes.skus[0].attributes.price.amount_value * item.quantity} {item.attributes.skus[0].attributes.price.icon}</span>
-        <button className="cart__item-remove-button" onClick={removeItemAll()}>×</button>
-    </div>)
+    )
 
 };

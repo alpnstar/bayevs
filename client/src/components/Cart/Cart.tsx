@@ -1,40 +1,59 @@
 import React, {FC} from "react";
 import "./cart.scss";
-import {useAppSelector} from "../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {CartItem} from "./CartItem";
-import {MainButton} from "../UI/MainButton/MainButton";
+import {sendOrder} from "../../store/slices/cartSlice";
 
 
 export const Cart: FC = () => {
-    const cart = useAppSelector(state => state.cartReducer);
-    const profile = useAppSelector(state => state.userReducer.userProfile);
-    return (profile ?
-        <div className="cart">
-            <div className="cart__wrapper container">
-                {cart.items.length === 0 ? <h2 className="cart__empty main-h2">Корзина пуста</h2> : <>
-                    <div className="cart__list">
-                        {cart.items.map(item => <CartItem item={item}/>)}
+    const cart = useAppSelector((state) => state.cartReducer);
+    const user = useAppSelector((state) => state.userReducer);
+    const dispatch = useAppDispatch();
 
+    return (user.userProfile ? (
+        cart.items.length ? (
+            <div className="cart">
+                <div className="cart__wrapper container">
+                    <h1 className="main-h1">Корзина</h1>
+                    <table className="cart__table">
+                        <thead>
+                        <tr className="cart__table-header">
+                            <th>Фото</th>
+                            <th className="cart__product-name">Товар</th>
+                            <th>Цена, руб.</th>
+                            <th>Кол-во по размерам</th>
+                            <th>Сумма, руб.</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {cart.items.map((item) => (
+                            <CartItem key={item.id} cartItem={item}/>
+                        ))}
+                        <tr className="cart__total-row">
+                            <td colSpan={4} className="cart__total-label"><b>Итого на сумму:</b></td>
+                            <td colSpan={2} className="cart__total-amount"><b>{cart.totalSum + ' ' + cart.items[0].attributes.skus[0].attributes.price.icon}</b></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div className="cart__actions">
+                        <button className="cart__submit main-button"
+                                onClick={() => dispatch(sendOrder({data: cart.orderData, token: user.accessToken}))}>Отправить заказ
+                        </button>
                     </div>
-                    <div className="cart__info">
-                        <div className="cart__summary">
-                            <span className="cart__summary-text">Итого: </span>
-                            <span className="cart__summary-total">{cart.totalSum} {cart.currency}</span>
-                        </div>
-
-                        <div className="cart__actions">
-                            <MainButton className="cart__actions-button" onClick={() => 1}
-                                        text="Перейти к оформлению"/>
-
-                        </div>
-                    </div>
-                </>}
+                </div>
             </div>
-        </div>: <div>
-                <div className="container"><span className="notification">
-                    Вы не авторизованы
-                </span></div>
+        ) : <div>
+            <div className="container">
+                <span className="notification">Корзина пуста</span>
             </div>
-
-    );
+        </div>
+    ) : (
+        <div>
+            <div className="container">
+                <span className="notification">Вы не авторизованы</span>
+            </div>
+        </div>
+    ));
 };
