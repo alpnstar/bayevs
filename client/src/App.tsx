@@ -15,11 +15,11 @@ const App: FC = () => {
         if (storage) dispatch(cartActions.setCartState(JSON.parse(storage)));
         const token = localStorage.getItem("bearer");
         if(token) {
-            dispatch(getProfileUser(token));
             dispatch(userActions.setToken(token))
+            dispatch(getProfileUser(token));
+
         }
     }, []);
-
     return (
         <div className="app">
             <Header/>

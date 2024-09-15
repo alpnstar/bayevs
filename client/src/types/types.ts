@@ -252,6 +252,13 @@ export interface SignUpAttributes {
     city: string
 }
 
-export interface SignIn {
-
+export interface OrderItem {
+    id: string,
+    type: string,
+    attributes: {
+        number: string,
+        date: string,
+        total_price: string,
+        status: string
+    }
 }

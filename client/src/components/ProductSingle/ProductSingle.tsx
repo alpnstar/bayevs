@@ -72,11 +72,13 @@ const ProductSingle: FC = () => {
                                 <div className="product-single__info">
                                     <h1 className="product-single__info-title main-h1">
                                         {product.attributes.name}
-                                    </h1>{profile && <h1 className="product-single__info-price main-h2">
-                                    {product.attributes.skus[currentSku].attributes.price.formatted}
-                                </h1>}
+                                    </h1>
                                     <span
                                         className="product-single__code">Артикул: {product.attributes.skus[0].attributes.code}</span>
+                                    {profile && <h1 className="product-single__info-price main-h2">
+                                        {product.attributes.skus[currentSku].attributes.price.formatted}
+
+                                    </h1>}
                                     <div className="product-single__character">
                                         {product.attributes.skus[currentSku].attributes.attributeOptions.map(attrs =>
                                             <div className="product-single__character-item">
@@ -98,7 +100,8 @@ const ProductSingle: FC = () => {
 
                                         </div>
                                     </div>
-                                    {profile && <MainButton onClick={addToCart(product, sizes)} text="Добавить в корзину"/>}
+                                    {profile &&
+                                        <MainButton onClick={addToCart(product, sizes)} text="Добавить в корзину"/>}
                                 </div>
                             </div>
                             <ImageView display={imageView} setDisplay={setImageViewHandler}

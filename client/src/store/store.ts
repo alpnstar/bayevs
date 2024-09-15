@@ -5,6 +5,7 @@ import {onChangeCart} from "./slices/cartSlice";
 import {bannersApi} from "./query/bannersApi";
 import {categoriesApi} from "./query/categoriesApi";
 import {newsApi} from "./query/newsApi";
+import {ordersApi} from "./query/ordersApi";
 
 
 const store = configureStore({
@@ -12,7 +13,7 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
         immutableCheck: false,
-    }).concat(categoriesApi.middleware,bannersApi.middleware, productsApi.middleware, newsApi.middleware, onChangeCart),
+    }).concat(categoriesApi.middleware,bannersApi.middleware, productsApi.middleware, newsApi.middleware,ordersApi.middleware, onChangeCart),
 });
 
 

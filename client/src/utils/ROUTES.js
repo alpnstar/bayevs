@@ -14,4 +14,6 @@ export const ROUTES = {
     toCustomers: '/to-customers',
     toWholesalers: '/wholesalers',
     search: '/search/:search',
+    orders: '/orders',
+    order: '/order/:id',
 };

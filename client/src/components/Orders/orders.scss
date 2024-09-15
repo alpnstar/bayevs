@@ -1,0 +1,40 @@
+.orders {
+  margin-top: 38px;
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    &-header {
+
+
+    }
+
+    &-body {
+
+    }
+  }
+
+ &__table-date {
+   width: 42.5%;
+  }
+  &__table-number {
+    width: 16.2%;
+  }
+  &__table-sum {
+    width: 24.5%;
+  }
+
+  &__order-actions {
+    text-align: right;
+  }
+}
+@media screen  and (max-width: 330px) {
+  .orders__table {
+    overflow-x: scroll;
+  }
+}

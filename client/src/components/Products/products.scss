@@ -20,6 +20,7 @@
     }
 
     &-price {
+      color: #b98710;
       display: inline-block;
       margin-bottom: 15px;
       font-size: 15px;
@@ -82,6 +83,9 @@
           color: #888;
           transition: color 0.1s linear;
 
+        }
+        &-price {
+          color: #dea810;
         }
 
         &-fast-view {

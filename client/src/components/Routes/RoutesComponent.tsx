@@ -16,6 +16,8 @@ import {SearchPage} from "../Search/SearchPage";
 import {NotFound} from "../UI/NotFound/NotFound";
 import {Registration} from "../Registration/Registration";
 import {Authorization} from "../Authorization/Authorization";
+import {Orders} from "../Orders/Orders";
+import {OrdersHOC} from "../Orders/OrdersHOC";
 
 const RoutesComponent: FC = () => {
     return (
@@ -33,6 +35,7 @@ const RoutesComponent: FC = () => {
             <Route path={ROUTES.search} element={<SearchPage/>}/>
             <Route path={ROUTES.registration} element={<Registration/>}/>
             <Route path={ROUTES.authorization} element={<Authorization/>}/>
+            <Route path={ROUTES.orders} element={<OrdersHOC/>}/>
             <Route path={'/*'} element={<NotFound/>}/>
         </Routes>
     );

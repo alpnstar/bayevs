@@ -9,7 +9,6 @@ export const Cart: FC = () => {
     const cart = useAppSelector((state) => state.cartReducer);
     const user = useAppSelector((state) => state.userReducer);
     const dispatch = useAppDispatch();
-    console.log(cart.orderData);
     return (user.userProfile ? (
         cart.items.length ? (
             <div className="cart">
