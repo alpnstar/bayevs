@@ -10,7 +10,7 @@ interface ICounterProps {
 }
 
 export const Counter: FC<ICounterProps> = ({maxCount, item, setSizes}) => {
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
     useEffect(() => {
         setSizes((prev) => ({
             ...prev,

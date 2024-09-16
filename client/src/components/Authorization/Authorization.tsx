@@ -13,17 +13,13 @@ export const Authorization: FC = () => {
         mode: 'onChange',
 
     });
+    console.log(state);
     const onSubmit = (data: SignUpAttributes) => {
         dispatch(loginUser(data));
     };
     useEffect(() => {
         state.accessToken && dispatch(getProfileUser(state.accessToken));
     }, [state.accessToken]);
-    useEffect(() => {
-        if (state.authorizationIsSuccess) {
-            setTimeout(() => navigate('/'), 5000);
-        }
-    }, [state.authorizationIsSuccess]);
     return (!state.userProfile ?
             <section className="registration">
                 <div className="registration__wrapper container">
@@ -43,8 +39,8 @@ export const Authorization: FC = () => {
                                            message: 'Поле обязательно для заполнения',
                                        }
                                    })}/>
-                            {state.registrationError && state.registrationError.errors.email &&
-                                <span className="registration__error">{state.registrationError.errors.email[0]}</span>}
+                            {state.authorizationError && state.authorizationError.message &&
+                                <span className="registration__error">{state.authorizationError.message}</span>}
                         </label>
 
                         <label>
@@ -57,9 +53,9 @@ export const Authorization: FC = () => {
                                            message: 'Поле обязательно для заполнения',
                                        }
                                    })}/>
-                            {state.registrationError && state.registrationError.errors.password &&
+                            {state.authorizationError && state.authorizationError.error &&
                                 <span
-                                    className="registration__error">{state.registrationError.errors.password[0]}</span>}
+                                    className="registration__error">{state.authorizationError.message}</span>}
                         </label>
                         <button className="main-button registration__button " type="submit">
                             Авторизоваться

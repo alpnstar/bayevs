@@ -13,7 +13,12 @@ const initialState: ISliderState = {
 export const getSliders = createAsyncThunk(
     'slider/getSliders',
     async (payload) => {
-        const res = await axios.get(BASE_URL + '/slider/')
+        const res = await axios.get(BASE_URL + '/slider/', {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            }
+        })
         return res.data;
     }
 );

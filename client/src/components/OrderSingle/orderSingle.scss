@@ -1,0 +1,15 @@
+.order-single {
+  margin-top: 38px;
+
+  &__header{
+    margin-bottom: 25px;
+    &-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    &-property-value {
+      font-weight: 600;
+    }
+  }
+}

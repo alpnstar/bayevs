@@ -11,8 +11,8 @@ export const Breadcrumbs: FC<IBreadcrumbsProps> = ({items}) => {
 
     return (
         <div className="breadcrumbs">
-            {items.map(item => (
-                <div
+            {items.map((item,index) => (
+                <div key={index}
                     className={`breadcrumbs__item ${!item.attributes.isSelected ? 'breadcrumbs__item--available' : ''}`}>
                     {!item.attributes.isSelected ?
                         <Link to={item.id ? '/category/' + item.id + '/products' : '/'}>{item.attributes.name}</Link>

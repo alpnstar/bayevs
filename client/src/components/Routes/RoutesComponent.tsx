@@ -16,8 +16,9 @@ import {SearchPage} from "../Search/SearchPage";
 import {NotFound} from "../UI/NotFound/NotFound";
 import {Registration} from "../Registration/Registration";
 import {Authorization} from "../Authorization/Authorization";
-import {Orders} from "../Orders/Orders";
 import {OrdersHOC} from "../Orders/OrdersHOC";
+import {OrderSingle} from "../OrderSingle/OrderSingle";
+import {OrderSingleHOC} from "../OrderSingle/OrderSingleHOC";
 
 const RoutesComponent: FC = () => {
     return (
@@ -36,6 +37,7 @@ const RoutesComponent: FC = () => {
             <Route path={ROUTES.registration} element={<Registration/>}/>
             <Route path={ROUTES.authorization} element={<Authorization/>}/>
             <Route path={ROUTES.orders} element={<OrdersHOC/>}/>
+            <Route path={ROUTES.order} element = {<OrderSingleHOC/>}/>
             <Route path={'/*'} element={<NotFound/>}/>
         </Routes>
     );

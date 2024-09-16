@@ -16,6 +16,7 @@ import {Counter} from "../UI/Counter/Counter";
 export interface SizesState {
     [key: string]: { count: string, name: string, maxCount: string };
 }
+
 const ProductSingle: FC = () => {
     const params = useParams<{ id: string }>();
     const profile = useAppSelector(state => state.userReducer.userProfile);
@@ -65,7 +66,7 @@ const ProductSingle: FC = () => {
                                     <div className="product-single__view-other">
                                         {product.attributes.media.map((item, index) =>
                                             index !== 0 ?
-                                                <img onClick={imageClickHandler(index)}
+                                                <img key={index} onClick={imageClickHandler(index)}
                                                      src={item.attributes.generated_conversions.list} alt=""/> : "")}
                                     </div>
                                 </div>
@@ -80,28 +81,32 @@ const ProductSingle: FC = () => {
 
                                     </h1>}
                                     <div className="product-single__character">
-                                        {product.attributes.skus[currentSku].attributes.attributeOptions.map(attrs =>
-                                            <div className="product-single__character-item">
+                                        {product.attributes.skus[currentSku].attributes.attributeOptions.map((attrs,index) =>
+                                            <div key={index} className="product-single__character-item">
                                                 {attrs.attributes.label}: <b>{attrs.attributes.value}</b>
                                             </div>
                                         )}
                                     </div>
 
-                                    <div className="product-single__sizes">
-                                        <h2 className="product-single__sizes-title ">Размеры:</h2>
-                                        <div className="product-single__sizes-list">
-                                            {product.attributes.skus[0].attributes.sizes.map(item => (
-                                                <div className="product-single__sizes-item">
+                                    {profile && <>
+                                        <div className="product-single__sizes">
+                                            <h2 className="product-single__sizes-title ">Размеры:</h2>
+                                            <div className="product-single__sizes-list">
+                                                {product.attributes.skus[0].attributes.sizes.map((item,index) => (
+                                                    <div key={
+                                                        index
+                                                    } className="product-single__sizes-item">
                                                 <span
                                                     className="product-single__sizes-item-name">{item.attributes.name}:</span>
-                                                    <Counter item={item} setSizes={setSizes}
-                                                             maxCount={item.attributes.stock}/></div>
-                                            ))}
+                                                        <Counter item={item} setSizes={setSizes}
+                                                                 maxCount={item.attributes.stock}/></div>
+                                                ))}
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    {profile &&
-                                        <MainButton onClick={addToCart(product, sizes)} text="Добавить в корзину"/>}
+
+                                        <MainButton onClick={addToCart(product, sizes)} text="Добавить в корзину"/>
+                                    </>}
                                 </div>
                             </div>
                             <ImageView display={imageView} setDisplay={setImageViewHandler}

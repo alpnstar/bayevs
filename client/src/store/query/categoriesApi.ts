@@ -5,7 +5,13 @@ import {BASE_URL, PRODUCTS_PER_PAGE} from "../../utils/CONSTS";
 
 export const categoriesApi = createApi({
     reducerPath: 'categories',
-    baseQuery: fetchBaseQuery({baseUrl: `${BASE_URL}/api`}), // правильный синтаксис baseQuery
+    baseQuery: fetchBaseQuery({
+        baseUrl: `${BASE_URL}/api`, prepareHeaders: (headers, {getState}) => {
+            headers.set('Content-Type', 'application/json');
+            headers.set('Accept', 'application/json');
+            return headers;
+        }
+    }), // правильный синтаксис baseQuery
     endpoints: (builder) => ({
         getCategories: builder.query<ApiResponse<Category[]>, void>({
             query: () => `/categories`,

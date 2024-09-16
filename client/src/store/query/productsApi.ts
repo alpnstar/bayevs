@@ -5,7 +5,13 @@ import {buildUrl, clearParams} from "../../utils/common";
 
 export const productsApi = createApi({
     reducerPath: 'products',
-    baseQuery: fetchBaseQuery({baseUrl: `${BASE_URL}/api`}), // правильный синтаксис baseQuery
+    baseQuery: fetchBaseQuery({
+        baseUrl: `${BASE_URL}/api`, prepareHeaders: (headers, {getState}) => {
+            headers.set('Content-Type', 'application/json');
+            headers.set('Accept', 'application/json');
+            return headers;
+        }
+    }), // правильный синтаксис baseQuery
     endpoints: (builder) => ({
         getProductById: builder.query<ApiResponseExtended<Product>, string>({
             query: (id) => `/products/${id}`,  // используем id в качестве строки

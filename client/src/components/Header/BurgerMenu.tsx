@@ -3,6 +3,8 @@ import CloseButton from "../UI/CloseButton/CloseButton";
 import {togglerHandlerType} from "../../hooks/useToggler";
 import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../utils/ROUTES";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {userActions} from "../../store/slices/userSlice";
 
 interface IBurgerMenu {
     burgerVisible: boolean,
@@ -10,6 +12,8 @@ interface IBurgerMenu {
 }
 
 const BurgerMenu: FC<IBurgerMenu> = ({burgerVisible, burgerClickHandler}) => {
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(state => state.userReducer.userProfile);
     return (
         <div className={`burger-menu ${burgerVisible ? "burger-menu--active" : ""}`}>
             <div className="burger-menu__header">
@@ -32,9 +36,23 @@ const BurgerMenu: FC<IBurgerMenu> = ({burgerVisible, burgerClickHandler}) => {
                     </li>
                 </ul>
                 <ul className="burger-menu__list burger-menu__user-actions">
-                    <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()} to={ROUTES.cart}>Корзина</NavLink></li>
-                    <li className="burger-menu__list-item"><NavLink to={ROUTES.registration}>Регистрация</NavLink></li>
-                    <li className="burger-menu__list-item" ><NavLink to={ROUTES.authorization}>Вход</NavLink></li>
+                    <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()}
+                                                                    to={ROUTES.orders}>Заказы</NavLink></li>
+                    <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()}
+                                                                    to={ROUTES.cart}>Корзина</NavLink></li>
+                    {!user ? <>
+                        <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()}
+                                                                        to={ROUTES.registration}>Регистрация</NavLink>
+                        </li>
+                        <li className="burger-menu__list-item"><NavLink onClick={() => burgerClickHandler()}
+                                                                        to={ROUTES.authorization}>Вход</NavLink></li>
+
+                    </> : <li className="burger-menu__list-item"
+                              onClick={() => {
+                                  dispatch(userActions.logoutUser());
+                                  burgerClickHandler();
+                              }}>Выход</li>}
+
                 </ul>
             </div>
         </div>

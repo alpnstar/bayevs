@@ -26,7 +26,12 @@ export const loginUser = createAsyncThunk<
     'user/loginUser',
     async (payload, {rejectWithValue}) => {
         try {
-            const res = await axios.post<LoginUserReturnType>(BASE_URL + '/api/customers/login', payload);
+            const res = await axios.post<LoginUserReturnType>(BASE_URL + '/api/customers/login', payload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                }
+            });
             return res.data;
         } catch (e: any) {
             return rejectWithValue(e.response.data);
@@ -55,7 +60,12 @@ export const registrationUser = createAsyncThunk<
     'user/registrationUser',
     async (payload, {dispatch, rejectWithValue}) => {
         try {
-            const res = await axios.post<UserData>(BASE_URL + '/api/customers/register', payload);
+            const res = await axios.post<UserData>(BASE_URL + '/api/customers/register', payload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                }
+            });
             return res.data;
 
         } catch (e: any) {
@@ -72,6 +82,7 @@ const userSlice = createSlice({
             state.userProfile = null;
             state.accessToken = null;
             state.authorizationIsSuccess = null;
+            localStorage.removeItem('bearer');
         },
         setToken: (state, {payload}) => {
             state.accessToken = payload;

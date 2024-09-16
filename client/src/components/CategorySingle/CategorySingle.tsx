@@ -90,7 +90,7 @@ export const CategorySingle: FC<ICategorySingleProps> = () => {
                         </ul>
                     </div>
                     <div className="category-products__products">
-                        {productsIsFetching ? <Loader/> : (products && products.data.length) ?
+                        {productsIsFetching ? <Loader marginTop={"100px"}/> : (products && products.data.length) ?
                         <>
                             <ProductsList products={products.data}/>
                             <Pagination items={products.data} meta={products.meta} setPage={setCurrentPage}/>

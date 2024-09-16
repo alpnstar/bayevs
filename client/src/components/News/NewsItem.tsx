@@ -8,6 +8,7 @@ interface INewsItemProps {
 }
 
 const NewsItem: FC<INewsItemProps> = ({data}) => {
+
     return (
         <NavLink to={'/news/' + data.id} className="news__item">
             <div

@@ -1,13 +1,14 @@
-import React, {FC} from "react";
-import {CartItem} from "../../Cart/CartItem";
-import {ICartItem} from "../../../types/types";
+import React, {FC, useEffect} from "react";
+import {useForm} from "react-hook-form";
+import {NavLink} from "react-router-dom";
+import {OrderSingleResponse} from "../../types/types";
+import {OrderSingleItem} from "./OrderSingleItem";
 
-interface IProductsTableProps {
-  items: ICartItem[],
-  totalSum: string,
+interface IOrderSingleListProps {
+  order: OrderSingleResponse;
 }
 
-export const ProductsTable:FC<IProductsTableProps> = ({items, totalSum}) => {
+export const OrderSingleList:FC<IOrderSingleListProps> = ({order}) => {
 
   return (
       <table className="cart__table">
@@ -18,20 +19,22 @@ export const ProductsTable:FC<IProductsTableProps> = ({items, totalSum}) => {
               <th>Цена, руб.</th>
               <th>Кол-во по размерам</th>
               <th>Сумма, руб.</th>
-              <th>&nbsp;</th>
           </tr>
           </thead>
           <tbody>
-          {items.map((item) => (
-              <CartItem key={item.id} cartItem={item}/>
-          ))}
+
+          {order.data.map((item) => <OrderSingleItem item = {item}/>)}
+          </tbody>
+          <tbody>
           <tr className="cart__total-row">
               <td colSpan={4} className="cart__total-label"><b>Итого на сумму:</b></td>
               <td colSpan={2} className="cart__total-amount">
-                  <b>{totalSum + ' ' + items[0].attributes.skus[0].attributes.price.icon}</b></td>
+                  <b>{order.order.attributes.total_price + order.data[0].attributes.total_price.currency.USD.symbol}</b></td>
           </tr>
 
           </tbody>
+
       </table>
+
   );
 };

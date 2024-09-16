@@ -15,5 +15,5 @@ export const ROUTES = {
     toWholesalers: '/wholesalers',
     search: '/search/:search',
     orders: '/orders',
-    order: '/order/:id',
+    order: '/orders/:id/items',
 };

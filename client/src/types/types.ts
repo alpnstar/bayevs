@@ -139,6 +139,7 @@ export interface ICart {
     totalSum: number;
     orderData: IOrderData,
 }
+
 export interface IOrderData {
     products: {
         sku_uuid: string;
@@ -150,6 +151,7 @@ export interface IOrderData {
         product_name: string;
     }[];
 }
+
 // Баннеры
 export interface BannerAttributes {
     created_at: string;
@@ -261,4 +263,48 @@ export interface OrderItem {
         total_price: string,
         status: string
     }
+}
+
+export interface OrderSingleCurrency {
+    name: string;
+    code: number;
+    rate: number;
+    precision: number;
+    subunit: number;
+    symbol: string;
+    symbol_first: boolean;
+    decimal_mark: string;
+    thousands_separator: string;
+    prefix: string;
+    suffix: string;
+}
+
+export interface OrderSinglePrice {
+    amount: string;
+    value: string;
+    currency: {
+        USD: OrderSingleCurrency;
+    };
+}
+
+export interface OrderSingleAttributes {
+    uuid: string;
+    sku: Sku;
+    product: Product;
+    name: string;
+    description: string;
+    price: OrderSinglePrice;
+    total_price: OrderSinglePrice;
+    created_at: string;
+    updated_at: string;
+    sizes: Record<string, string>;
+}
+
+export interface OrderSingle {
+    id: string;
+    type: string;
+    attributes: OrderSingleAttributes;
+}
+export interface OrderSingleResponse extends ApiResponse<OrderSingle[]>{
+    order:OrderItem,
 }

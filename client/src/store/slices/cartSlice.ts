@@ -42,6 +42,8 @@ export const sendOrder = createAsyncThunk<
         const res = await axios.post(BASE_URL + '/api/orders', payload.data, {
             headers: {
                 Authorization: `Bearer ${payload.token}`,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
             }
         });
         return res.data;

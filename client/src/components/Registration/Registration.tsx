@@ -18,11 +18,6 @@ export const Registration: FC = () => {
     const onSubmit = (data: SignUpAttributes) => {
         dispatch(registrationUser(data));
     };
-    useEffect(() => {
-        if (state.registrationIsSuccess) {
-            setTimeout(() => navigate('/'), 5000);
-        }
-    }, [state]);
     return (!state.registrationIsSuccess ?
             <section className="registration">
                 <div className="registration__wrapper container">
