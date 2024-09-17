@@ -37,6 +37,7 @@ const ProductSingle: FC = () => {
         };
     }
 
+
     function imageClickHandler(index: number) {
         return function () {
             setSelectedImageHandler(index)();
@@ -76,6 +77,7 @@ const ProductSingle: FC = () => {
 
     useEffect(() => {
         const findedElem = cartItems.find(item => item.id === product?.id);
+        console.log(findedElem)
         if (findedElem) {
             Object.keys(findedElem.addedSizes).map(item => {
                 setMaxCounts(prevState => {
@@ -87,6 +89,8 @@ const ProductSingle: FC = () => {
             })
         }
     }, [cartItems, product]);
+    console.log('max', maxCounts)
+    console.log('sizes',sizes)
     useEffect(() => {
         if (data) setProduct(data.data);
     }, [data]);

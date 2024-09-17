@@ -4,7 +4,7 @@ import {Size} from "../../../types/types";
 import {SizesState} from "../../ProductSingle/ProductSingle";
 
 interface ICounterProps {
-    maxCount: number ,
+    maxCount: number,
     setSizes: Dispatch<SetStateAction<SizesState>>,
     sizes: SizesState,
     item: Size,
@@ -12,14 +12,18 @@ interface ICounterProps {
 
 export const Counter: FC<ICounterProps> = ({maxCount, item, sizes, setSizes}) => {
     useEffect(() => {
-        setSizes(prev => ({
-            ...prev,
-            [item.attributes.name]: {
-                count: 0,
-                name: item.id,
-                maxCount: maxCount,
+        setSizes(prev => {
+            return {
+                ...prev,
+                [item.attributes.name]: {
+                    ...prev[item.attributes.name],
+                    count: 0,
+                    name: item.id,
+                    maxCount: item.attributes.stock,
+
+                }
             }
-        }))
+        })
     }, []);
 
     function increment() {

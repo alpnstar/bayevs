@@ -16,7 +16,6 @@ export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
     const {register, setValue, getValues,} = useForm({
         mode: "onBlur",
     });
-
     function setSizeHandler() {
         dispatch(cartActions.setProductSizes({
             id: cartItem.id,
@@ -24,7 +23,6 @@ export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
         }));
 
     }
-
 
     useEffect(() => {
         Object.keys(cartItem.addedSizes).forEach(key => {
@@ -57,6 +55,7 @@ export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
                             <label>
                                 <legend>{item.attributes.name}</legend>
                                 <input maxLength={4} {...register(item.attributes.name, {
+                                    valueAsNumber:true,
                                     onBlur({target}: React.ChangeEvent<HTMLInputElement>) {
                                         const value = target.value;
                                         if (

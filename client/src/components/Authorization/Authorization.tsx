@@ -13,7 +13,6 @@ export const Authorization: FC = () => {
         mode: 'onChange',
 
     });
-    console.log(state);
     const onSubmit = (data: SignUpAttributes) => {
         dispatch(loginUser(data));
     };

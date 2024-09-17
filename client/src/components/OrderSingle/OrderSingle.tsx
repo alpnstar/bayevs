@@ -8,7 +8,6 @@ import {Loader} from "../UI/Loader/Loader";
 export const OrderSingle: FC = () => {
     const params = useParams();
     const {data: order, isFetching,  refetch} = useGetOrderByIdQuery(params.id || '');
-    console.log(order)
     return (
         <div className="order-single">
             <div className="order-single__wrapper container">

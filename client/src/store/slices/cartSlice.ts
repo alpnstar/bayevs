@@ -30,7 +30,7 @@ export const onChangeCart: Middleware<object, RootState> = store => next => (act
 };
 
 function calculateTotalCount(sizes: SizesState): number {
-    return Object.values(sizes).reduce((acc, item) => acc += +item.count, 0);
+    return Object.values(sizes).reduce((acc, item) => acc += +(item.count || 0), 0);
 }
 
 export const sendOrder = createAsyncThunk<
@@ -126,7 +126,7 @@ const cartSlice = createSlice({
                 function calculateSum(): void {
                     state.totalSum = state.items.reduce((acc, item) => {
                         const price: number = item.attributes.skus[0].attributes.price.amount
-                        const total: number = calculateTotalCount(item.addedSizes) * price;
+                        const total: number = (calculateTotalCount(item.addedSizes)) * price;
                         return total / 100;
                     }, 0)
                 }
