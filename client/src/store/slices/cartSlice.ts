@@ -93,17 +93,21 @@ const cartSlice = createSlice({
             return state;
         },
         setOrderData(state) {
-            const newProducts:any[] = [];
+            const newProducts: any[] = [];
             state.items.forEach(item => {
-                const product = {
-                    sku_uuid: item.attributes.skus[0].id,
-                    sku_code: item.attributes.skus[0].attributes.code,
-                    sizes: Object.keys(item.addedSizes).map(key => {
-                        return {
+                const sizes: any[] = []
+                Object.keys(item.addedSizes).forEach(key => {
+                    if (item.addedSizes[key].count > 0) sizes.push({
                             size_uuid: item.addedSizes[key].name,
                             quantity: item.addedSizes[key].count
                         }
-                    }),
+                    )
+                })
+
+                const product = {
+                    sku_uuid: item.attributes.skus[0].id,
+                    sku_code: item.attributes.skus[0].attributes.code,
+                    sizes,
                     product_name: item.attributes.name,
                 };
                 newProducts.push(product);

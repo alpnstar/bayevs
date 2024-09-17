@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Product} from "../../types/types";
 import {Link} from "react-router-dom";
-import addToCart from "./useAddToCart";
+import useAddToCart from "./useAddToCart";
 import {useAppSelector} from "../../store/hooks";
 
 interface IProductsItemProps {

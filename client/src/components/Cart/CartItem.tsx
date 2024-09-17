@@ -13,10 +13,9 @@ export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
     const dispatch = useAppDispatch();
 
     const sku = cartItem.attributes.skus[0];
-    const {register, setValue, handleSubmit, getValues, watch} = useForm({
+    const {register, setValue, getValues,} = useForm({
         mode: "onBlur",
     });
-    const watched = watch();
 
     function setSizeHandler() {
         dispatch(cartActions.setProductSizes({
@@ -35,7 +34,7 @@ export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
     return (
         <tr className="cart__table-row">
             <td className="cart__product-image">
-                <NavLink  to={'/product/' + cartItem.id}>
+                <NavLink to={'/product/' + cartItem.id}>
                     <img
                         width="42"
                         height="60"
@@ -45,7 +44,8 @@ export const CartItem: FC<ICartItemProps> = ({cartItem}) => {
                 </NavLink>
             </td>
             <td>
-                <NavLink  to={'/product/' + cartItem.id}><span className="cart__product-label">{cartItem.attributes.name}</span></NavLink>
+                <NavLink to={'/product/' + cartItem.id}><span
+                    className="cart__product-label">{cartItem.attributes.name}</span></NavLink>
                 <div>Артикул: <b>{sku.attributes.code}</b></div>
             </td>
             <td className="cart__product-price">{sku.attributes.price.formatted}</td>

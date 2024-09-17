@@ -3,6 +3,7 @@ import PageHeader from "../UI/PageHeader/PageHeader";
 import {NavLink} from "react-router-dom";
 import './about.scss';
 import {ROUTES} from "../../utils/ROUTES";
+import {SITE_NAME} from "../../utils/CONSTS";
 
 interface IAboutProps {
     title: string,
@@ -16,7 +17,7 @@ export const About: FC<IAboutProps> = ({title, children}) => {
             <div className="about__wrapper container">
                 <PageHeader title={title} breadcrumbsItems={[{
                     type: 'category',
-                    attributes: {name: 'BAYEVS', isSelected: false, description: '', path: ''}
+                    attributes: {name: SITE_NAME, isSelected: false, description: '', path: ''}
                 }]}/>
 
                 <div className="about__body">

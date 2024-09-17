@@ -7,6 +7,7 @@ import {NavLink} from "react-router-dom";
 import {Pagination} from "../UI/Pagination/Pagination";
 import {useGetProductsQuery} from "../../store/query/productsApi";
 import {Loader} from "../UI/Loader/Loader";
+import {SITE_NAME} from "../../utils/CONSTS";
 
 export const SearchPage: FC = () => {
     const params = useParams();
@@ -26,7 +27,7 @@ export const SearchPage: FC = () => {
             <div className="search-page__wrapper container">
                 <PageHeader title={'поиск по товарам'} breadcrumbsItems={[{
                     type: 'category',
-                    attributes: {name: 'BAYEVS', isSelected: false, description: '', path: ''}
+                    attributes: {name: SITE_NAME, isSelected: false, description: '', path: ''}
                 }]}/>
                 <form className="search-page__form">
                     <input className="search-page__input" type="text" value={search}

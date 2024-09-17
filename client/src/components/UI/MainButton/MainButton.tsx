@@ -5,11 +5,12 @@ interface IMainButtonProps {
     onClick: (arg:any) => void;
     text: string;
     className?: string;
+    isDisabled?: boolean;
 }
 
-export const MainButton: FC<IMainButtonProps> = ({onClick, text, className}) => {
+export const MainButton: FC<IMainButtonProps> = ({isDisabled,onClick, text, className}) => {
 
     return (
-        <button onClick={onClick} className={`main-button ${className ? className : ''}`}>{text}</button>
+        <button disabled={isDisabled} onClick={onClick} className={`main-button ${className ? className : ''} ${isDisabled ? 'main-button--disabled' : ''}`}>{text}</button>
     );
 };

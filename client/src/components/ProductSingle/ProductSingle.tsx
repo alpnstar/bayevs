@@ -7,14 +7,14 @@ import {useParams} from "react-router";
 import {useGetProductByIdQuery} from "../../store/query/productsApi";
 import {MainButton} from "../UI/MainButton/MainButton";
 import ImageView from "../UI/ImageView/ImageView";
-import addToCart from "../Products/useAddToCart";
 import {Breadcrumbs} from "../UI/Breadcrumbs/Breadcrumbs";
 import {Loader} from "../UI/Loader/Loader";
 import {NotFound} from "../UI/NotFound/NotFound";
 import {Counter} from "../UI/Counter/Counter";
+import {cartActions} from "../../store/slices/cartSlice";
 
 export interface SizesState {
-    [key: string]: { count: string, name: string, maxCount: string };
+    [key: string]: { count: number, name: string, maxCount: number };
 }
 
 const ProductSingle: FC = () => {
@@ -26,6 +26,9 @@ const ProductSingle: FC = () => {
     const [currentSku, setCurrentSku] = useState(0);
     const [imageView, setImageViewHandler] = useToggler(false);
     const [selectedImage, setSelectedImage] = useState<number>(0);
+    const [maxCounts, setMaxCounts] = useState<{ [key: string]: string | number }>({});
+    const cartItems = useAppSelector(state => state.cartReducer.items);
+    const [isEmpty, setIsEmpty] = useState(true);
     const dispatch = useAppDispatch();
 
     function setSelectedImageHandler(i: number) {
@@ -42,6 +45,48 @@ const ProductSingle: FC = () => {
         };
     }
 
+    useEffect(() => {
+        Object.values(sizes).some(item => item.count) ? setIsEmpty(false) : setIsEmpty(true);
+    }, [sizes]);
+
+    function addToCartHandler(e: React.MouseEvent<HTMLButtonElement>) {
+        addToCart(e);
+        setSizes(prev => {
+            const clearedSizes: any = {};
+            Object.keys(prev).map(item => {
+                clearedSizes[item] = {
+                    ...prev[item],
+                    count: 0,
+                };
+            })
+            return clearedSizes;
+
+        })
+    }
+
+    function addToCart(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        product && dispatch(cartActions.addItem({
+            id: product.id,
+            attributes: product.attributes,
+            addedSizes: sizes,
+        }));
+
+    }
+
+    useEffect(() => {
+        const findedElem = cartItems.find(item => item.id === product?.id);
+        if (findedElem) {
+            Object.keys(findedElem.addedSizes).map(item => {
+                setMaxCounts(prevState => {
+                    return {
+                        ...prevState,
+                        [item]: Math.max(+findedElem.addedSizes[item].maxCount - +findedElem.addedSizes[item].count, 0),
+                    }
+                })
+            })
+        }
+    }, [cartItems, product]);
     useEffect(() => {
         if (data) setProduct(data.data);
     }, [data]);
@@ -81,7 +126,7 @@ const ProductSingle: FC = () => {
 
                                     </h1>}
                                     <div className="product-single__character">
-                                        {product.attributes.skus[currentSku].attributes.attributeOptions.map((attrs,index) =>
+                                        {product.attributes.skus[currentSku].attributes.attributeOptions.map((attrs, index) =>
                                             <div key={index} className="product-single__character-item">
                                                 {attrs.attributes.label}: <b>{attrs.attributes.value}</b>
                                             </div>
@@ -92,20 +137,23 @@ const ProductSingle: FC = () => {
                                         <div className="product-single__sizes">
                                             <h2 className="product-single__sizes-title ">Размеры:</h2>
                                             <div className="product-single__sizes-list">
-                                                {product.attributes.skus[0].attributes.sizes.map((item,index) => (
+                                                {product.attributes.skus[0].attributes.sizes.map((item, index) => (
                                                     <div key={
                                                         index
                                                     } className="product-single__sizes-item">
                                                 <span
                                                     className="product-single__sizes-item-name">{item.attributes.name}:</span>
-                                                        <Counter item={item} setSizes={setSizes}
-                                                                 maxCount={item.attributes.stock}/></div>
+                                                        <Counter item={item} sizes={sizes} setSizes={setSizes}
+                                                                 maxCount={maxCounts[item.attributes.name] !== undefined ? maxCounts[item.attributes.name] : item.attributes.stock}/>
+                                                    </div>
                                                 ))}
 
                                             </div>
                                         </div>
 
-                                        <MainButton onClick={addToCart(product, sizes)} text="Добавить в корзину"/>
+                                        <MainButton
+                                                    isDisabled={isEmpty} onClick={addToCartHandler}
+                                                    text="Добавить в корзину"/>
                                     </>}
                                 </div>
                             </div>
